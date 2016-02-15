@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="" />
+    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <manually-removed-from-ignored>
       <directory path="$PROJECT_DIR$/out/" />
     </manually-removed-from-ignored>
@@ -568,7 +570,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455494617267</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Second commit">
+      <created>1455494633871</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1455494633871</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
