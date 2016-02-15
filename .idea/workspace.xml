@@ -6,9 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="">
+    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Remove little inaccuracy">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+    <ignored mask="*.xml" />
     <manually-removed-from-ignored>
       <directory path="$PROJECT_DIR$/out/" />
     </manually-removed-from-ignored>
@@ -19,7 +20,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="false" show_ignored="false" />
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="true" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -33,10 +34,9 @@
         <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+              <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#saveFile#0;class#Editor#0" expanded="false" />
                 <element signature="e#2449#2450#0" expanded="true" />
                 <element signature="e#2477#2478#0" expanded="true" />
               </folding>
@@ -48,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="172" column="9" selection-start-line="172" selection-start-column="9" selection-end-line="172" selection-end-column="9" />
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#642:1083" expanded="false" />
@@ -68,8 +68,8 @@
       <file leaf-file-name="EDocument.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.862069">
-              <caret line="155" column="36" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="36" />
+            <state vertical-scroll-proportion="-8.931034">
+              <caret line="459" column="15" selection-start-line="459" selection-start-column="15" selection-end-line="459" selection-end-column="15" />
               <folding>
                 <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
                 <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
@@ -96,6 +96,8 @@
                 <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
                 <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
                 <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+                <element signature="e#12069#12070#0" expanded="true" />
+                <element signature="e#12110#12111#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,16 +106,18 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73955774">
-              <caret line="186" column="29" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.4987715">
+              <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-                <element signature="method#parseLine#0;class#Parser#0" expanded="false" />
-                <element signature="e#6084#6085#0" expanded="true" />
-                <element signature="e#6139#6140#0" expanded="true" />
-                <element signature="method#isLinesEquals#0;class#Parser#0" expanded="false" />
+                <element signature="e#1005#1006#0" expanded="true" />
+                <element signature="e#1054#1055#0" expanded="true" />
+                <element signature="e#6202#6203#0" expanded="true" />
+                <element signature="e#6257#6258#0" expanded="true" />
+                <element signature="e#6774#6775#0" expanded="true" />
+                <element signature="e#6842#6843#0" expanded="true" />
                 <element signature="method#updateWhileLess#0;class#Parser#0" expanded="false" />
-                <element signature="method#isBracket#0;class#Parser#0" expanded="false" />
                 <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
                 <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
               </folding>
@@ -141,6 +145,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Sergey Ibragomov &lt;serg20309@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -576,7 +585,19 @@
       <option name="project" value="LOCAL" />
       <updated>1455494633871</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Second commit">
+      <created>1455494687336</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1455494687336</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Remove little inaccuracy">
+      <created>1455495072843</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1455495072843</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -596,11 +617,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19876733" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819724" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5028158" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.16949153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="25" y="94" width="1237" height="580" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32973805" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.16949153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1475" y="143" width="1237" height="580" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32973805" sideWeight="0.49718422" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16795069" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="8" y="235" width="1271" height="298" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -659,7 +680,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Second commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second commit" />
+    <MESSAGE value="Remove little inaccuracy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove little inaccuracy" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1048,10 +1073,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="172" column="9" selection-start-line="172" selection-start-column="9" selection-end-line="172" selection-end-column="9" />
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#642:1083" expanded="false" />
@@ -1067,23 +1100,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#saveFile#0;class#Editor#0" expanded="false" />
-            <element signature="e#2449#2450#0" expanded="true" />
-            <element signature="e#2477#2478#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.862069">
-          <caret line="155" column="36" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="36" />
+        <state vertical-scroll-proportion="-8.931034">
+          <caret line="459" column="15" selection-start-line="459" selection-start-column="15" selection-end-line="459" selection-end-column="15" />
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
@@ -1110,30 +1130,38 @@
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="e#12069#12070#0" expanded="true" />
+            <element signature="e#12110#12111#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
+    <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#2477#2478#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73955774">
-          <caret line="186" column="29" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.4987715">
+          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#parseLine#0;class#Parser#0" expanded="false" />
-            <element signature="e#6084#6085#0" expanded="true" />
-            <element signature="e#6139#6140#0" expanded="true" />
-            <element signature="method#isLinesEquals#0;class#Parser#0" expanded="false" />
+            <element signature="e#1005#1006#0" expanded="true" />
+            <element signature="e#1054#1055#0" expanded="true" />
+            <element signature="e#6202#6203#0" expanded="true" />
+            <element signature="e#6257#6258#0" expanded="true" />
+            <element signature="e#6774#6775#0" expanded="true" />
+            <element signature="e#6842#6843#0" expanded="true" />
             <element signature="method#updateWhileLess#0;class#Parser#0" expanded="false" />
-            <element signature="method#isBracket#0;class#Parser#0" expanded="false" />
             <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
             <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
           </folding>
