@@ -4,8 +4,8 @@ import java.awt.event.*;
 
 class EListener implements KeyListener, MouseMotionListener, MouseListener {
 
-    private EDocument doc;
     private final ETextArea area;
+    private EDocument doc;
     private boolean isMouseDown;
 
     public EListener(EDocument doc, ETextArea area) {
@@ -71,10 +71,10 @@ class EListener implements KeyListener, MouseMotionListener, MouseListener {
             case 34: //pageDown
                 doc.pageDown();
                 break;
-            case 18: // Alt
-            case 20: // Caps Lock
-            case 27: // Escape
-                break;
+            //case 18: // Alt
+            //case 20: // Caps Lock
+            //case 27: // Escape
+            //    break;
             //case 112-123: // F1 - 12
 
             default:
@@ -90,8 +90,7 @@ class EListener implements KeyListener, MouseMotionListener, MouseListener {
                             doc.paste();
                             break;
                     }
-                }
-                else if (keyCode > 123 || keyCode < 112) {
+                } else if (e.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
                         doc.insertChar(e.getKeyChar());
                         doc.setExistSelectionFalse();
                         //System.out.println("keyTyped " + e.getKeyChar());

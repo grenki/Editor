@@ -2,19 +2,20 @@ package Editor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import java.util.List;
 
 class ETextArea extends JPanel{
 
-    private EDocument doc;
     private final int lineSpacing = 13;
     private final int charWidth = 8;
     private final EListener listener;
     private final int minOffsetRight = 1;
     private final int minOffsetBottom = 2;
+    private EDocument doc;
 
 
 
@@ -52,6 +53,11 @@ class ETextArea extends JPanel{
         doc = new EDocument(list);
         listener.setEDocument(doc);
         updateSize();
+        repaint();
+    }
+
+    public void setFileName(String fileName) {
+        doc.setFileName(fileName);
         repaint();
     }
 
@@ -131,44 +137,59 @@ class ETextArea extends JPanel{
     }
 
     private void drawText(Graphics2D graphics2D) {
-        int x;
         int y = - doc.getHeightOffset() * lineSpacing;
-        ArrayList<ArrayList<Word>> data = doc.getAllDataInWords();
-        for (ArrayList<Word> line: data) {
+        boolean isText = doc.isFileTypeText();
+
+        ArrayList<ArrayList<Word>> dataInWords = doc.getAllDataInWords();
+        List<CharSequence> dataInLines = doc.getAllDataInLines();
+
+        graphics2D.setPaint(Color.BLACK);
+
+        for (int i = 0; i < dataInLines.size(); i++) {
             if (y > getHeight()) {
                 break;
             }
             y += lineSpacing;
-            x = - doc.getWidthOffset() * charWidth;
-            for (Word word: line) {
-                if (x > getWidth()) {
-                    break;
+            int x = -doc.getWidthOffset() * charWidth;
+            if (!isText) {
+                for (Word word : dataInWords.get(i)) {
+                    if (x > getWidth()) {
+                        break;
+                    }
+                    switch (word.t) {
+                        case Key:
+                            graphics2D.setPaint(Color.BLUE);
+                            break;
+                        case Identifier:
+                            graphics2D.setPaint(Color.GRAY);
+                            break;
+                        case Comment:
+                            graphics2D.setPaint(Color.MAGENTA);
+                            break;
+                        case Bracket:
+                            graphics2D.setPaint(Color.BLACK);
+                            break;
+                        case BracketLight:
+                            graphics2D.setPaint(Color.RED);
+                            break;
+                        case Other:
+                            graphics2D.setPaint(Color.BLACK);
+                            break;
+                        default:
+                            graphics2D.setPaint(Color.BLACK);
+                            break;
+                    }
+                    graphics2D.drawString(word.s, x, y);
+                    x += word.s.length() * charWidth;
                 }
-                switch (word.t){
-                    case Key:
-                        graphics2D.setPaint(Color.BLUE);
-                        break;
-                    case Identifier:
-                        graphics2D.setPaint(Color.GRAY);
-                        break;
-                    case Comment:
-                        graphics2D.setPaint(Color.MAGENTA);
-                        break;
-                    case Bracket:
-                        graphics2D.setPaint(Color.BLACK);
-                        break;
-                    case BracketLight:
-                        graphics2D.setPaint(Color.RED);
-                        break;
-                    case Other:
-                        graphics2D.setPaint(Color.BLACK);
-                        break;
-                    default:
-                        graphics2D.setPaint(Color.BLACK);
-                        break;
+            } else {
+                int offset = doc.getWidthOffset();
+                CharSequence line = dataInLines.get(i);
+                if (dataInLines.get(i).length() > offset) {
+                    graphics2D.drawString(line.subSequence(offset, Math.min(offset + doc.getWidth(), line.length())).toString(), 0, y);
+                } else {
+                    graphics2D.drawString(line.toString(), x, y);
                 }
-                graphics2D.drawString(word.s, x, y);
-                x += word.s.length() * charWidth;
             }
         }
     }

@@ -1,20 +1,27 @@
 package Editor;
 
-public class Word {
+class Word {
 
-    enum Type {
-        Key, Identifier, Comment, Bracket, Other, BracketLight
-    }
     public final String s;
     public Type t;
 
-    Word(String string) {
+    Word(String string, FileType fileType) {
         s = string;
-        t = KeyWords.isKey(s) ? Type.Key : Type.Identifier;
+        if (fileType == FileType.Java) {
+            t = KeyWords.isJavaKey(s) ? Type.Key : Type.Identifier;
+        } else if (fileType == FileType.JS) {
+            t = KeyWords.isJSKey(s) ? Type.Key : Type.Identifier;
+        } else {
+            t = Type.Other;
+        }
     }
 
     public Word(String s, Type t) {
         this.s = s;
         this.t = t;
+    }
+
+    enum Type {
+        Key, Identifier, Comment, Bracket, Other, BracketLight
     }
 }

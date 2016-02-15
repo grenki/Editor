@@ -13,10 +13,12 @@ class Parser {
     private final ArrayList<Boolean> commentContinuousList;
     private Word firstBracket;
     private Word secondBracket;
+    private FileType fileType;
 
     public Parser(ArrayList<ArrayList<Word>> dataInWords, ArrayList<StringBuilder> dataInChars) {
         this.dataInWords = dataInWords;
         this.dataInChars = dataInChars;
+        fileType = FileType.Text;
         commentContinuousList = new ArrayList<>(dataInChars.size());
 
         parse(0,dataInChars.size());
@@ -74,7 +76,6 @@ class Parser {
         int commentLineFirstPosition = updateFind(commentLine);
         int bracketFirstPosition = updateFind(bracket);
         int multilineCommentFirstPosition;
-
         boolean isCommentContinuous = commentContinuousList.get(row);
 
         if (!isCommentContinuous) {
@@ -123,7 +124,7 @@ class Parser {
             }
             else if (identifierFirstPosition == closestMatch) {
                 firstNotParsedChar = identifier.end();
-                outputLineInWords.add(new Word(inputStringToParse.substring(identifierFirstPosition, firstNotParsedChar)));
+                outputLineInWords.add(new Word(inputStringToParse.substring(identifierFirstPosition, firstNotParsedChar), fileType));
                 identifierFirstPosition = updateIdentifier(updateFind(identifier));
             }
         }
@@ -236,5 +237,13 @@ class Parser {
                 secondBracket.t = Type.BracketLight;
             }
         }
+    }
+
+    public void setFileType(FileType fileType) {
+        if (fileType != this.fileType) {
+            this.fileType = fileType;
+            parse(0, dataInChars.size());
+        }
+        this.fileType = fileType;
     }
 }

@@ -30,7 +30,7 @@ public class Editor extends JFrame{
 
         menu.add(fileMenu);
         setJMenuBar(menu);
-
+        
         setSize(600, 600);
         setLocationRelativeTo(null);
 

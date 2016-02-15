@@ -8,14 +8,20 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 class EDocument {
+
+    private final ArrayList<ArrayList<Word>> dataInWords;
+    private final ArrayList<StringBuilder> dataInChars;
+    private final Parser parser;
+    private final Clipboard clipboard;
     private int width;
     private int height;
     private int widthOffset;
     private int heightOffset;
-    // Rename to Caret Row/column
     private int column;
     private int row;
     private boolean insert;
@@ -23,11 +29,8 @@ class EDocument {
     private boolean existSelection;
     private int startSelectionRow;
     private int startSelectionColumn;
-    private final ArrayList<ArrayList<Word>> dataInWords;
-    private final ArrayList<StringBuilder> dataInChars;
-    private final Parser parser;
-
-    private final Clipboard clipboard;
+    private FileType fileType;
+    private String fileName;
 
     public EDocument(List<String> initData) {
 
@@ -38,6 +41,7 @@ class EDocument {
         widthOffset = 0;
         isShiftPressed = false;
         existSelection = false;
+        fileType = FileType.Text;
 
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
@@ -86,13 +90,15 @@ class EDocument {
         updatePosition();
         updateOffset();
 
-        if (startRow >= 0) {
-            isShiftPressed = false;
-            parser.parse(startRow, endRow);
-        }
+        if (fileType != FileType.Text) {
+            if (startRow >= 0) {
+                isShiftPressed = false;
+                parser.parse(startRow, endRow);
+            }
 
-        parser.bracketLightOff();
-        parser.bracketLight(column, row);
+            parser.bracketLightOff();
+            parser.bracketLight(column, row);
+        }
 
         //dataInChars.forEach(System.out :: println);
 
@@ -169,6 +175,7 @@ class EDocument {
                 sb.append(s.charAt(i));
             }
             else {
+                column = 0;
                 dataInChars.get(row).append(sb);
                 row++;
                 column = 0;
@@ -177,7 +184,7 @@ class EDocument {
             }
         }
 
-        column = sb.length();
+        column += sb.length();
         dataInChars.get(row).append(sb).append(end);
 
         updateWithChanges(startChangesRow, row);
@@ -418,6 +425,23 @@ class EDocument {
         insert = !insert;
     }
 
+    public void setFileName(String s) {
+        fileName = s;
+
+        Matcher javaFile = Pattern.compile("\\w*\\.java").matcher(s);
+        Matcher jsFile = Pattern.compile("\\w*\\.js").matcher(s);
+
+        if (javaFile.matches()) {
+            fileType = FileType.Java;
+        } else if (jsFile.matches()) {
+            fileType = FileType.JS;
+        } else {
+            fileType = FileType.Text;
+        }
+
+        parser.setFileType(fileType);
+    }
+
     // Getters
 
     public int getHeightOffset() {
@@ -448,7 +472,13 @@ class EDocument {
         return new int[] {startSelectionColumn, startSelectionRow, column, row};
     }
 
+    public boolean isFileTypeText() {
+        return fileType == FileType.Text;
+    }
 
+    public int getWidth() {
+        return width;
+    }
 
     // Get all data
 
