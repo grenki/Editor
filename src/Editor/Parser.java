@@ -1,16 +1,16 @@
 package Editor;
 
+import Editor.Word.Type;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import Editor.Word.*;
-import jdk.nashorn.internal.ir.WhileNode;
 
 class Parser {
 
     private final ArrayList<ArrayList<Word>> dataInWords;
     private final ArrayList<StringBuilder> dataInChars;
-    private ArrayList<Boolean> commentContinuousList;
+    private final ArrayList<Boolean> commentContinuousList;
     private Word firstBracket;
     private Word secondBracket;
 
@@ -23,6 +23,11 @@ class Parser {
     }
 
     // Words
+
+    private static boolean isBracket(Character ch) {
+        Pattern bracket = Pattern.compile("[\\[\\]\\{\\}\\(\\)]");
+        return bracket.matcher(ch.toString()).matches();
+    }
 
     public void addLine(int row) {
         commentContinuousList.add(row, false);
@@ -53,7 +58,6 @@ class Parser {
     }
 
     private boolean parseLine(int row) {
-        final int identiferOffset = 1;
         final int multiLineCommentOffset = 2;
 
         ArrayList<Word> outputLineInWords = new ArrayList<>();
@@ -66,7 +70,7 @@ class Parser {
         Matcher bracket= Pattern.compile("[\\{\\}\\(\\)\\[\\]]").matcher(inputStringToParse);
 
         int firstNotParsedChar = 0;
-        int identifierFirstPosition = updateIdetifier(updateFind(identifier));
+        int identifierFirstPosition = updateIdentifier(updateFind(identifier));
         int commentLineFirstPosition = updateFind(commentLine);
         int bracketFirstPosition = updateFind(bracket);
         int multilineCommentFirstPosition;
@@ -96,7 +100,7 @@ class Parser {
                     firstNotParsedChar = firstMultilineCommentEnd + multiLineCommentOffset ;
                     multilineCommentFirstPosition = updateWhileLess(multilineCommentFirstPosition,
                             startComment, firstNotParsedChar);
-                    identifierFirstPosition = updateIdetifier(
+                    identifierFirstPosition = updateIdentifier(
                             updateWhileLess(identifierFirstPosition, identifier, firstNotParsedChar));
                     commentLineFirstPosition = updateWhileLess(commentLineFirstPosition, commentLine, firstNotParsedChar);
                     bracketFirstPosition = updateWhileLess(bracketFirstPosition, bracket, firstNotParsedChar);
@@ -120,7 +124,7 @@ class Parser {
             else if (identifierFirstPosition == closestMatch) {
                 firstNotParsedChar = identifier.end();
                 outputLineInWords.add(new Word(inputStringToParse.substring(identifierFirstPosition, firstNotParsedChar)));
-                identifierFirstPosition = updateIdetifier(updateFind(identifier));
+                identifierFirstPosition = updateIdentifier(updateFind(identifier));
             }
         }
 
@@ -130,7 +134,8 @@ class Parser {
         commentContinuousList.set(row + 1, isCommentContinuous);
         return res;
     }
-    private int updateIdetifier(int position) {
+
+    private int updateIdentifier(int position) {
         return position == 0 ? 0 : position + 1;
     }
 
@@ -156,18 +161,13 @@ class Parser {
         return m.find() ? m.start() : Integer.MAX_VALUE - 10;
     }
 
+    // Brackets
+
     private int updateWhileLess(int value, Matcher m, int threshold) {
         while (value < threshold) {
             value = updateFind(m);
         }
         return value;
-    }
-
-    // Brackets
-
-    private static boolean isBracket(Character ch) {
-        Pattern bracket = Pattern.compile("[\\[\\]\\{\\}\\(\\)]");
-        return bracket.matcher(ch.toString()).matches();
     }
 
     private int findWordInLine(int column, int row) {
