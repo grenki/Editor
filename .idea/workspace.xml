@@ -6,35 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/EDocument.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/EListener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/ETextArea$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/ETextArea$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/ETextArea.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$openFile.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$saveFile.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/Editor_jar/Editor.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/KeyWords.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Parser.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Word$Type.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Word.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Editor.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Editor_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Editor/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/qaplug_profiles.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="" />
     <manually-removed-from-ignored>
       <directory path="$PROJECT_DIR$/out/" />
     </manually-removed-from-ignored>
@@ -590,6 +562,13 @@
       <option name="number" value="Default" />
       <updated>1453922836434</updated>
     </task>
+    <task id="LOCAL-00001" summary="Second commit">
+      <created>1455494617267</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1455494617267</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -669,6 +648,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Second commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
