@@ -440,6 +440,7 @@ class EDocument {
         }
 
         parser.setFileType(fileType);
+        updateWithoutChanges();
     }
 
     // Getters
