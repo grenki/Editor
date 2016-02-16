@@ -125,8 +125,12 @@ class EListener implements KeyListener, MouseMotionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            isMouseDown = true;
-            doc.mousePressed(area.scaleToColumn(e.getX()), area.scaleToRow(e.getY()));
+            if (e.isShiftDown()) {
+                doc.mouseMoved(area.scaleToColumn(e.getX()), area.scaleToRow(e.getY()));
+            } else {
+                isMouseDown = true;
+                doc.mousePressed(area.scaleToColumn(e.getX()), area.scaleToRow(e.getY()));
+            }
             area.repaint();
         }
     }

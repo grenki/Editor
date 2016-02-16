@@ -6,16 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Highligth syntax in *.java *.js files&#10;Add JS syntax highligth&#10;Improve drawing big strings in text files&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/EListener.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/EListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/ETextArea$1.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/ETextArea$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$openFile.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$openFile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$saveFile.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor$saveFile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/Editor.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Editor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/Word$Type.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Word$Type.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EDocument.java" afterPath="$PROJECT_DIR$/src/Editor/EDocument.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/KeyWords.java" afterPath="$PROJECT_DIR$/src/Editor/KeyWords.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/Parser.java" afterPath="$PROJECT_DIR$/src/Editor/Parser.java" />
+    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/EDocument.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/EDocument.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/KeyWords.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/KeyWords.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/Parser.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Parser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EListener.java" afterPath="$PROJECT_DIR$/src/Editor/EListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored mask="*.xml" />
@@ -42,8 +37,8 @@
       <file leaf-file-name="Editor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.041867957">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.049919486">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#openFile#0;class#Editor#0" expanded="false" />
@@ -114,11 +109,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FileType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="EListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <caret line="128" column="46" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -128,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="112" column="47" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+              <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
               <folding>
                 <element signature="method#isBracket#0;class#Parser#0" expanded="false" />
                 <element signature="method#isLinesEquals#0;class#Parser#0" expanded="false" />
@@ -186,12 +191,12 @@
         <option value="$PROJECT_DIR$/src/Editor/Word.java" />
         <option value="$PROJECT_DIR$/src/Editor/FileType.java" />
         <option value="$PROJECT_DIR$/src/Editor/Editor.java" />
-        <option value="$PROJECT_DIR$/src/Editor/EListener.java" />
         <option value="$PROJECT_DIR$/src/Editor/KeyWords.java" />
         <option value="$PROJECT_DIR$/src/Editor/EDocument.java" />
         <option value="$PROJECT_DIR$/src/Editor/ETextArea.java" />
         <option value="$PROJECT_DIR$/src/Editor/Test.java" />
         <option value="$PROJECT_DIR$/src/Editor/Parser.java" />
+        <option value="$PROJECT_DIR$/src/Editor/EListener.java" />
       </list>
     </option>
   </component>
@@ -318,6 +323,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Editor/src/Editor/FileType.java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -622,7 +628,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455578316315</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;">
+      <created>1455626400392</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1455626400392</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -647,7 +659,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.16949153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="264" y="86" width="914" height="520" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32718894" sideWeight="0.49718422" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.16765578" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="380" y="471" width="833" height="352" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.16765578" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="382" y="320" width="833" height="352" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25181013" sideWeight="0.48690292" order="1" side_tool="false" content_ui="combo" x="382" y="6" width="308" height="519" />
@@ -707,7 +719,8 @@
     <MESSAGE value="Second commit" />
     <MESSAGE value="Remove little inaccuracy" />
     <MESSAGE value="Highligth syntax in *.java *.js files&#10;Add JS syntax highligth&#10;Improve drawing big strings in text files&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Highligth syntax in *.java *.js files&#10;Add JS syntax highligth&#10;Improve drawing big strings in text files&#10;" />
+    <MESSAGE value="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -913,11 +926,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
+    <entry file="file://$PROJECT_DIR$/src/Editor/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/lang/Character.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5944" column="26" selection-start-line="5944" selection-start-column="26" selection-end-line="5944" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/KeyWords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2753623">
+          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
+          <folding>
+            <element signature="e#2794#2795#0" expanded="true" />
+            <element signature="e#2836#2837#0" expanded="true" />
+            <element signature="e#2883#2884#0" expanded="true" />
+            <element signature="e#2923#2924#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
+          <folding>
+            <element signature="method#isBracket#0;class#Parser#0" expanded="false" />
+            <element signature="method#isLinesEquals#0;class#Parser#0" expanded="false" />
+            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
+            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
+            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -953,20 +1003,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/lang/Character.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5944" column="26" selection-start-line="5944" selection-start-column="26" selection-end-line="5944" selection-end-column="26" />
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -985,45 +1025,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/KeyWords.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2753623">
-          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
-          <folding>
-            <element signature="e#2794#2795#0" expanded="true" />
-            <element signature="e#2836#2837#0" expanded="true" />
-            <element signature="e#2883#2884#0" expanded="true" />
-            <element signature="e#2923#2924#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <caret line="128" column="46" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="112" column="47" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
-          <folding>
-            <element signature="method#isBracket#0;class#Parser#0" expanded="false" />
-            <element signature="method#isLinesEquals#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.041867957">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.049919486">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#openFile#0;class#Editor#0" expanded="false" />
