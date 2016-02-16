@@ -6,11 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/EDocument.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/EDocument.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/KeyWords.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/KeyWords.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/Parser.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/Parser.class" />
+    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Add selection by mouse + shift">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Editor/Editor/EListener.class" afterPath="$PROJECT_DIR$/out/production/Editor/Editor/EListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EDocument.java" afterPath="$PROJECT_DIR$/src/Editor/EDocument.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EListener.java" afterPath="$PROJECT_DIR$/src/Editor/EListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/ETextArea.java" afterPath="$PROJECT_DIR$/src/Editor/ETextArea.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored mask="*.xml" />
@@ -34,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Editor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Editor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.049919486">
-              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#openFile#0;class#Editor#0" expanded="false" />
@@ -50,11 +50,11 @@
       <file leaf-file-name="ETextArea.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.793103">
-              <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
+            <state vertical-scroll-proportion="-11.137931">
+              <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#730:1171" expanded="false" />
+                <element signature="class#771:1212" expanded="false" />
                 <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
                 <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
                 <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
@@ -66,14 +66,15 @@
       <file leaf-file-name="EDocument.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="106.206894">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state vertical-scroll-proportion="-11.034483">
+              <caret line="120" column="28" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
               <folding>
                 <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
                 <element signature="method#removeLine#0;class#EDocument#0" expanded="false" />
-                <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
+                <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
                 <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
                 <element signature="method#paste#0;class#EDocument#0" expanded="false" />
+                <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
                 <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
                 <element signature="method#copy#0;class#EDocument#0" expanded="false" />
                 <element signature="method#cut#0;class#EDocument#0" expanded="false" />
@@ -91,6 +92,7 @@
                 <element signature="method#pageUp#0;class#EDocument#0" expanded="false" />
                 <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
                 <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+                <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
                 <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
               </folding>
             </state>
@@ -119,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EListener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="46" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.7536232">
+              <caret line="156" column="27" selection-start-line="156" selection-start-column="27" selection-end-line="156" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -192,11 +194,11 @@
         <option value="$PROJECT_DIR$/src/Editor/FileType.java" />
         <option value="$PROJECT_DIR$/src/Editor/Editor.java" />
         <option value="$PROJECT_DIR$/src/Editor/KeyWords.java" />
-        <option value="$PROJECT_DIR$/src/Editor/EDocument.java" />
-        <option value="$PROJECT_DIR$/src/Editor/ETextArea.java" />
         <option value="$PROJECT_DIR$/src/Editor/Test.java" />
         <option value="$PROJECT_DIR$/src/Editor/Parser.java" />
+        <option value="$PROJECT_DIR$/src/Editor/ETextArea.java" />
         <option value="$PROJECT_DIR$/src/Editor/EListener.java" />
+        <option value="$PROJECT_DIR$/src/Editor/EDocument.java" />
       </list>
     </option>
   </component>
@@ -634,7 +636,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455626400392</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add selection by mouse + shift">
+      <created>1455627662552</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1455627662552</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -720,7 +728,8 @@
     <MESSAGE value="Remove little inaccuracy" />
     <MESSAGE value="Highligth syntax in *.java *.js files&#10;Add JS syntax highligth&#10;Improve drawing big strings in text files&#10;" />
     <MESSAGE value="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Highligth brakets after save file&#10;Fix highligthing 4 keywords in java&#10;Improve identifiers and keywords recognizing&#10;" />
+    <MESSAGE value="Add selection by mouse + shift" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add selection by mouse + shift" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -730,7 +739,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Editor/ETextArea.java</url>
-          <line>92</line>
+          <line>93</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
@@ -761,7 +770,7 @@
           <caret line="190" column="46" selection-start-line="190" selection-start-column="46" selection-end-line="190" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#730:1171" expanded="false" />
+            <element signature="class#771:1212" expanded="false" />
             <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
             <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
             <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
@@ -776,9 +785,10 @@
           <folding>
             <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLine#0;class#EDocument#0" expanded="false" />
-            <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
@@ -796,6 +806,7 @@
             <element signature="method#pageUp#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
@@ -856,7 +867,7 @@
           <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#730:1171" expanded="false" />
+            <element signature="class#771:1212" expanded="false" />
             <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
             <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
             <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
@@ -871,9 +882,10 @@
           <folding>
             <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLine#0;class#EDocument#0" expanded="false" />
-            <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
@@ -891,6 +903,7 @@
             <element signature="method#pageUp#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
@@ -971,16 +984,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.137931">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#771:1212" expanded="false" />
+            <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
+            <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
+            <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="106.206894">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state vertical-scroll-proportion="-11.034483">
+          <caret line="120" column="28" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
           <folding>
             <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLine#0;class#EDocument#0" expanded="false" />
-            <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
@@ -998,49 +1034,28 @@
             <element signature="method#pageUp#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
+    <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.793103">
-          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
+          <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#730:1171" expanded="false" />
-            <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
+            <element signature="class#openFile#0;class#Editor#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="46" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.7536232">
+          <caret line="156" column="27" selection-start-line="156" selection-start-column="27" selection-end-line="156" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.049919486">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#openFile#0;class#Editor#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

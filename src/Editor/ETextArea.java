@@ -26,6 +26,7 @@ class ETextArea extends JPanel{
         listener = new EListener(doc, this);
         addMouseMotionListener(listener);
         addMouseListener(listener);
+        addMouseWheelListener(listener);
 
         addComponentListener(new ComponentListener() {
             @Override

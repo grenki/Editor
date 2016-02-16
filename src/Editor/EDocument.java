@@ -88,7 +88,7 @@ class EDocument {
     private void updateWithChanges(int startRow, int endRow) {
 
         updatePosition();
-        updateOffset();
+        updateOffsetOnCaret();
 
         if (fileType != FileType.Text) {
             if (startRow >= 0) {
@@ -109,6 +109,20 @@ class EDocument {
     }
 
     private void updateOffset() {
+        if (heightOffset + height >= dataInChars.size()) {
+            heightOffset = dataInChars.size() - height;
+        }
+
+        if (heightOffset < 0) {
+            heightOffset = 0;
+        }
+
+        if (widthOffset < 0) {
+            widthOffset = 0;
+        }
+    }
+
+    private void updateOffsetOnCaret() {
         if (column > widthOffset + width) {
             widthOffset = column - width;
         }
@@ -441,6 +455,11 @@ class EDocument {
 
         parser.setFileType(fileType);
         updateWithoutChanges();
+    }
+
+    public void updateHeightOffset(int diff) {
+        heightOffset += diff;
+        updateOffset();
     }
 
     // Getters

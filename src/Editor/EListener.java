@@ -2,7 +2,7 @@ package Editor;
 
 import java.awt.event.*;
 
-class EListener implements KeyListener, MouseMotionListener, MouseListener {
+class EListener implements KeyListener, MouseMotionListener, MouseListener, MouseWheelListener {
 
     private final ETextArea area;
     private EDocument doc;
@@ -149,4 +149,12 @@ class EListener implements KeyListener, MouseMotionListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) { }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+            doc.updateHeightOffset(e.getUnitsToScroll());
+            area.repaint();
+        }
+    }
 }
