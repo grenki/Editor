@@ -100,13 +100,6 @@ class EDocument {
             parser.bracketLightOff();
             parser.bracketLight(column, row);
         }
-
-        //dataInChars.forEach(System.out :: println);
-
-        /*dataInWords.forEach(e -> {
-            e.forEach(c -> System.out.print(c.s));
-            System.out.println();
-        });*/
     }
 
     private void updateOffset() {
@@ -188,6 +181,7 @@ class EDocument {
     }
 
     private void insertString(String s) {
+        existSelection = false;
         int startChangesRow = row;
         StringBuilder sb = new StringBuilder();
         StringBuilder start =  dataInChars.get(row);
@@ -218,6 +212,7 @@ class EDocument {
 
     private void deleteSelection() {
         if (!isExistSelection()) {
+            existSelection = false;
             return;
         }
         existSelection = false;
@@ -339,6 +334,7 @@ class EDocument {
                 dataInChars.get(row).replace(column, column + 1, "");
             }
 
+            existSelection = false;
             updateWithChanges(row);
         }
     }
@@ -462,8 +458,8 @@ class EDocument {
     public void setFileName(String s) {
         fileName = s;
 
-        Matcher javaFile = Pattern.compile("\\w*\\.java").matcher(s);
-        Matcher jsFile = Pattern.compile("\\w*\\.js").matcher(s);
+        Matcher javaFile = Pattern.compile(".*\\.java").matcher(s);
+        Matcher jsFile = Pattern.compile(".*\\.js").matcher(s);
 
         if (javaFile.matches()) {
             fileType = FileType.Java;

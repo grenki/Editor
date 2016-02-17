@@ -86,7 +86,6 @@ class EListener implements KeyListener, MouseMotionListener, MouseListener, Mous
                         if (e.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
                             doc.insertChar(e.getKeyChar());
                             doc.setExistSelectionFalse();
-                            //System.out.println("keyTyped " + e.getKeyChar());
                         }
                         break;
                 }

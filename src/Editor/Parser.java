@@ -52,125 +52,12 @@ class Parser {
         }
 
         for (int i = row; i < dataInChars.size(); i++) {
-            boolean isNotChangesInLine = parseLine(i);
+            boolean isNotChangesInLine = new ParseLine(i).isThisLineEqualsPreviousParse();
             if (!parseAll && isNotChangesInLine && endRow <= i){
                 return;
             }
         }
     }
-
-    private boolean parseLine(int row) {
-        final int multiLineCommentOffset = 2;
-
-        ArrayList<Word> outputLineInWords = new ArrayList<>();
-        String inputStringToParse = dataInChars.get(row).toString();
-
-        Matcher identifier = Pattern.compile("(\\W|^)[a-zA-Z]+[a-zA-Z0-9_]*").matcher(inputStringToParse);
-        Matcher commentLine = Pattern.compile("//").matcher(inputStringToParse);
-        Matcher startComment = Pattern.compile("/\\*").matcher(inputStringToParse);
-        Matcher endComment = Pattern.compile("\\*/").matcher(inputStringToParse);
-        Matcher bracket= Pattern.compile("[\\{\\}\\(\\)\\[\\]]").matcher(inputStringToParse);
-
-        int firstNotParsedChar = 0;
-        int identifierFirstPosition = updateIdentifier(updateFind(identifier), inputStringToParse);
-        int commentLineFirstPosition = updateFind(commentLine);
-        int bracketFirstPosition = updateFind(bracket);
-        int multilineCommentFirstPosition;
-        boolean isCommentContinuous = commentContinuousList.get(row);
-
-        if (!isCommentContinuous) {
-            multilineCommentFirstPosition = updateFind(startComment);
-        }
-        else {
-            multilineCommentFirstPosition = -2;
-        }
-
-        while (firstNotParsedChar < inputStringToParse.length()) {
-            int closestMatch = Math.min(Math.min(inputStringToParse.length(), commentLineFirstPosition),
-                    Math.min(bracketFirstPosition, Math.min(multilineCommentFirstPosition, identifierFirstPosition)));
-
-            if (closestMatch - firstNotParsedChar > 0) {
-                outputLineInWords.add(new Word(inputStringToParse.substring(firstNotParsedChar, closestMatch), Type.Other));
-                firstNotParsedChar = closestMatch;
-            }
-
-
-            if (multilineCommentFirstPosition == closestMatch) {
-                int firstMultilineCommentEnd = updateWhileLess(-10, endComment,
-                        multilineCommentFirstPosition + multiLineCommentOffset);
-                if (firstMultilineCommentEnd < inputStringToParse.length()) {
-                    firstNotParsedChar = firstMultilineCommentEnd + multiLineCommentOffset ;
-                    multilineCommentFirstPosition = updateWhileLess(multilineCommentFirstPosition,
-                            startComment, firstNotParsedChar);
-                    identifierFirstPosition = updateIdentifier(
-                            updateWhileLess(identifierFirstPosition, identifier, firstNotParsedChar - 1), inputStringToParse);
-                    commentLineFirstPosition = updateWhileLess(commentLineFirstPosition, commentLine, firstNotParsedChar);
-                    bracketFirstPosition = updateWhileLess(bracketFirstPosition, bracket, firstNotParsedChar);
-                    isCommentContinuous = false;
-                }
-                else {
-                    firstNotParsedChar = inputStringToParse.length();
-                    isCommentContinuous = true;
-                }
-                outputLineInWords.add(new Word(inputStringToParse.substring(Math.max(closestMatch, 0), firstNotParsedChar),
-                        Type.Comment));
-            }
-            else if (bracketFirstPosition == closestMatch) {
-                firstNotParsedChar++;
-                outputLineInWords.add(new Word(inputStringToParse.substring(closestMatch, closestMatch + 1), Type.Bracket));
-                bracketFirstPosition = updateFind(bracket);
-            }
-            else if (commentLineFirstPosition == closestMatch) {
-                outputLineInWords.add(new Word(inputStringToParse.substring(closestMatch), Type.Comment));
-                firstNotParsedChar = inputStringToParse.length();
-            }
-            else if (identifierFirstPosition == closestMatch) {
-                firstNotParsedChar = identifier.end();
-                outputLineInWords.add(new Word(inputStringToParse.substring(identifierFirstPosition, firstNotParsedChar), fileType));
-                identifierFirstPosition = updateIdentifier(updateFind(identifier), inputStringToParse);
-            }
-        }
-
-        boolean res = isCommentContinuous == commentContinuousList.get(row + 1) &&
-                isLinesEquals(outputLineInWords, dataInWords.get(row));
-        dataInWords.set(row, outputLineInWords);
-        commentContinuousList.set(row + 1, isCommentContinuous);
-        return res;
-    }
-
-    private int updateIdentifier(int position, String s) {
-        return position < s.length() && Character.isAlphabetic(s.charAt(position)) ? position : position + 1;
-    }
-
-    private boolean isLinesEquals(ArrayList<Word> firstLine, ArrayList<Word> secondLine) {
-        if (firstLine == null || secondLine == null) {
-            return false;
-        }
-
-        if (firstLine.size() != secondLine.size()) {
-            return false;
-        }
-
-        for (int i = 0; i < firstLine.size(); i++) {
-            if (!firstLine.get(i).s.equals(secondLine.get(i).s)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private int updateFind(Matcher m) {
-        return m.find() ? m.start() : Integer.MAX_VALUE - 10;
-    }
-
-    private int updateWhileLess(int value, Matcher m, int threshold) {
-        while (value < threshold) {
-            value = updateFind(m);
-        }
-        return value;
-    }
-    // Brackets
 
     private int findWordInLine(int column, int row) {
         int i = 0;
@@ -185,6 +72,8 @@ class Parser {
 
         return wordNumber - 1;
     }
+
+    // Brackets
 
     public void bracketLightOff() {
         if (firstBracket != null) {
@@ -246,5 +135,139 @@ class Parser {
             parse(0, dataInChars.size());
         }
         this.fileType = fileType;
+    }
+
+    private class ParseLine {
+        ArrayList<Word> outputLineInWords;
+        StringBuilder inputStringToParse;
+        Matcher identifier;
+        Matcher commentLine;
+        Matcher startComment;
+        Matcher endComment;
+        Matcher bracket;
+        //int firstNotParsedChar = 0;
+        int identifierFirstPosition;
+        int commentLineFirstPosition;
+        int bracketFirstPosition;
+        int multilineCommentFirstPosition;
+        boolean isCommentContinuous;
+        private boolean isThisLineEqualsPreviousParse;
+        private Pattern identifierPattern = Pattern.compile("([^а-яА-Я\\w]|^)[a-zA-Z_]+[a-zA-Z0-9_]*($|[^а-яА-я\\w])");
+        private Pattern commentLinePattern = Pattern.compile("//");
+        private Pattern startCommentPattern = Pattern.compile("/\\*");
+        private Pattern endCommentPattern = Pattern.compile("\\*/");
+        private Pattern bracketPattern = Pattern.compile("[\\{\\}\\(\\)\\[\\]]");
+
+        ParseLine(int row) {
+            final int multiLineCommentOffset = 2;
+
+            outputLineInWords = new ArrayList<>();
+            inputStringToParse = new StringBuilder(dataInChars.get(row));
+
+            update(0);
+
+            isCommentContinuous = commentContinuousList.get(row);
+            if (isCommentContinuous) {
+                multilineCommentFirstPosition = -2;
+            }
+
+            while (inputStringToParse.length() > 0) {
+                int closestMatch = Math.min(Math.min(inputStringToParse.length(), commentLineFirstPosition),
+                        Math.min(bracketFirstPosition, Math.min(multilineCommentFirstPosition, identifierFirstPosition)));
+
+                if (closestMatch > 0) {
+                    outputLineInWords.add(new Word(inputStringToParse.substring(0, closestMatch), Type.Other));
+                    update(closestMatch);
+                } else if (multilineCommentFirstPosition <= 0) {
+                    int firstMultilineCommentEnd;
+                    if (multilineCommentFirstPosition == -2) {
+                        firstMultilineCommentEnd = updateFind(endComment);
+                    } else {
+                        firstMultilineCommentEnd = updateWhileLess(-1, endComment, multilineCommentFirstPosition + multiLineCommentOffset);
+                        System.out.println(firstMultilineCommentEnd);
+                    }
+                    int end = firstMultilineCommentEnd + multiLineCommentOffset;
+                    outputLineInWords.add(new Word(inputStringToParse.substring(0, Math.min(inputStringToParse.length(), end)), Type.Comment));
+                    if (firstMultilineCommentEnd < inputStringToParse.length()) {
+                        update(firstMultilineCommentEnd + multiLineCommentOffset);
+                        isCommentContinuous = false;
+                    } else {
+                        update(inputStringToParse.length());
+                        isCommentContinuous = true;
+                    }
+                } else if (bracketFirstPosition == closestMatch) {
+                    outputLineInWords.add(new Word(inputStringToParse.substring(0, 1), Type.Bracket));
+                    update(1);
+                } else if (commentLineFirstPosition == closestMatch) {
+                    outputLineInWords.add(new Word(inputStringToParse.substring(closestMatch), Type.Comment));
+                    update(inputStringToParse.length());
+                } else if (identifierFirstPosition == closestMatch) {
+                    int end = updateEndIdentifier(identifier.end() - 1, inputStringToParse) + 1;
+                    outputLineInWords.add(new Word(inputStringToParse.substring(0, end), fileType));
+                    update(end);
+                }
+            }
+
+            isThisLineEqualsPreviousParse = isCommentContinuous == commentContinuousList.get(row + 1) &&
+                    isLinesEquals(outputLineInWords, dataInWords.get(row));
+            dataInWords.set(row, outputLineInWords);
+            commentContinuousList.set(row + 1, isCommentContinuous);
+        }
+
+        public boolean isThisLineEqualsPreviousParse() {
+            return isThisLineEqualsPreviousParse;
+        }
+
+        private void update(int closestMatch) {
+            inputStringToParse.replace(0, closestMatch, "");
+
+            identifier = identifierPattern.matcher(inputStringToParse);
+            commentLine = commentLinePattern.matcher(inputStringToParse);
+            startComment = startCommentPattern.matcher(inputStringToParse);
+            endComment = endCommentPattern.matcher(inputStringToParse);
+            bracket = bracketPattern.matcher(inputStringToParse);
+
+            identifierFirstPosition = updateIdentifier(updateFind(identifier), inputStringToParse);
+            commentLineFirstPosition = updateFind(commentLine);
+            bracketFirstPosition = updateFind(bracket);
+            multilineCommentFirstPosition = updateFind(startComment);
+        }
+
+        private int updateEndIdentifier(int position, StringBuilder s) {
+            return position == s.length() - 1 && Character.isJavaIdentifierPart(s.charAt(position)) ? position : position - 1;
+        }
+
+        private int updateIdentifier(int position, StringBuilder s) {
+            return position < s.length() && Character.isJavaIdentifierStart(s.charAt(position)) ? position : position + 1;
+        }
+
+        private boolean isLinesEquals(ArrayList<Word> firstLine, ArrayList<Word> secondLine) {
+            if (firstLine == null || secondLine == null) {
+                return false;
+            }
+
+            if (firstLine.size() != secondLine.size()) {
+                return false;
+            }
+
+            for (int i = 0; i < firstLine.size(); i++) {
+                if (!firstLine.get(i).s.equals(secondLine.get(i).s)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private int updateFind(Matcher m) {
+            return m.find() ? m.start() : Integer.MAX_VALUE - 10;
+        }
+
+        private int updateWhileLess(int value, Matcher m, int threshold) {
+            while (value < threshold) {
+                value = updateFind(m);
+            }
+            return value;
+        }
     }
 }
