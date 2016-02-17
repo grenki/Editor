@@ -184,7 +184,6 @@ class Parser {
                         firstMultilineCommentEnd = updateFind(endComment);
                     } else {
                         firstMultilineCommentEnd = updateWhileLess(-1, endComment, multilineCommentFirstPosition + multiLineCommentOffset);
-                        System.out.println(firstMultilineCommentEnd);
                     }
                     int end = firstMultilineCommentEnd + multiLineCommentOffset;
                     outputLineInWords.add(new Word(inputStringToParse.substring(0, Math.min(inputStringToParse.length(), end)), Type.Comment));
