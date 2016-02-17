@@ -187,7 +187,7 @@ class ETextArea extends JPanel{
                 int offset = doc.getWidthOffset();
                 CharSequence line = dataInLines.get(i);
                 if (dataInLines.get(i).length() > offset) {
-                    graphics2D.drawString(line.subSequence(offset, Math.min(offset + doc.getWidth(), line.length())).toString(), 0, y);
+                    graphics2D.drawString(line.subSequence(offset, Math.min(offset + doc.getWidth() + 2, line.length())).toString(), 0, y);
                 } else {
                     graphics2D.drawString(line.toString(), x, y);
                 }

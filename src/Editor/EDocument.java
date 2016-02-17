@@ -287,7 +287,7 @@ class EDocument {
             if (ch.equals("\n")) {
                 row++;
                 column = 0;
-                if (row == dataInChars.size() - 1) {
+                if (row == dataInChars.size()) {
                     addLine(dataInChars.size(), new StringBuilder());
                     updateWithChanges(row);
                 }
