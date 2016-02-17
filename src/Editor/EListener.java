@@ -37,6 +37,9 @@ class EListener implements KeyListener, MouseMotionListener, MouseListener, Mous
             case 8: // backspace
                 doc.backspace();
                 break;
+            case 9: //tab
+                doc.insertTab();
+                break;
             case 155: // insert
                 break;
             case 127: // delete

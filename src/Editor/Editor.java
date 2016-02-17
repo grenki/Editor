@@ -15,6 +15,7 @@ public class Editor extends JFrame{
 
     private Editor() throws HeadlessException {
         super("Editor");
+        setFocusTraversalKeysEnabled(false);
 
         area = new ETextArea();
         add(area);

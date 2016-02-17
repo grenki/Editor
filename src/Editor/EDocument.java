@@ -18,6 +18,7 @@ class EDocument {
     private final ArrayList<StringBuilder> dataInChars;
     private final Parser parser;
     private final Clipboard clipboard;
+    private final String TAB = "    ";
     private int width;
     private int height;
     private int widthOffset;
@@ -162,9 +163,17 @@ class EDocument {
         if (column > dataInChars.get(row).length()) {
             column = dataInChars.get(row).length();
         }
+        System.out.println(column + " " + row);
     }
 
     // Selection + change selection area
+
+    public void selectAll() {
+        startSelectionColumn = 0;
+        startSelectionRow = 0;
+        row = dataInChars.size() - 1;
+        column = dataInChars.get(row).length() - 1;
+    }
 
     public void paste() {
         if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
@@ -186,6 +195,9 @@ class EDocument {
         start.replace(column, start.length(), "");
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) != '\n') {
+                if (Character.codePointAt(s, i) == 9) {
+                    sb.append(TAB);
+                }
                 sb.append(s.charAt(i));
             }
             else {
@@ -205,7 +217,7 @@ class EDocument {
     }
 
     private void deleteSelection() {
-        if (! existSelection) {
+        if (!isExistSelection()) {
             return;
         }
 
@@ -310,7 +322,7 @@ class EDocument {
     }
 
     public void backspace() {
-        if (existSelection){
+        if (isExistSelection()) {
             deleteSelection();
         }
         else {
@@ -331,7 +343,7 @@ class EDocument {
     }
 
     public void delete(){
-        if (existSelection) {
+        if (isExistSelection()) {
             deleteSelection();
         }
         else {
@@ -342,6 +354,10 @@ class EDocument {
             right();
             backspace();
         }
+    }
+
+    public void insertTab() {
+        insertString(TAB);
     }
 
     // Mouse
@@ -464,6 +480,10 @@ class EDocument {
 
     // Getters
 
+    public boolean isExistSelection() {
+        return existSelection && !(startSelectionColumn == column && startSelectionRow == row);
+    }
+
     public int getHeightOffset() {
         return heightOffset;
     }
@@ -478,10 +498,6 @@ class EDocument {
 
     public int getCaretColumn() {
         return column;
-    }
-
-    public boolean isExistSelection() {
-        return existSelection;
     }
 
     int[] getSelectionInterval() {
