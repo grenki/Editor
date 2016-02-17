@@ -163,7 +163,6 @@ class EDocument {
         if (column > dataInChars.get(row).length()) {
             column = dataInChars.get(row).length();
         }
-        System.out.println(column + " " + row);
     }
 
     // Selection + change selection area
@@ -172,7 +171,8 @@ class EDocument {
         startSelectionColumn = 0;
         startSelectionRow = 0;
         row = dataInChars.size() - 1;
-        column = dataInChars.get(row).length() - 1;
+        column = dataInChars.get(row).length();
+        existSelection = true;
     }
 
     public void paste() {
@@ -220,6 +220,7 @@ class EDocument {
         if (!isExistSelection()) {
             return;
         }
+        existSelection = false;
 
         int[] selectionInterval = getSelectionInterval();
         int startColumn = selectionInterval[0];
@@ -430,7 +431,10 @@ class EDocument {
     // Setters
 
     public void setExistSelectionFalse() {
-        existSelection = false;
+        if (!isShiftPressed) {
+            existSelection = false;
+
+        }
     }
 
     public void setWindowSize(int width, int height) {
@@ -439,7 +443,7 @@ class EDocument {
     }
 
     public void setShiftPressed(boolean shiftPressed) {
-        if (!this.isShiftPressed && shiftPressed) {
+        if (!isExistSelection() && shiftPressed) {
             startSelectionRow = row;
             startSelectionColumn = column;
         }
