@@ -100,6 +100,11 @@ class ETextArea extends JPanel{
     }
 
     private Polygon createPolygon(int x1, int y1, int x2, int y2) {
+        y1 = Math.max(0, y1);
+        x1 = Math.max(0, x1);
+        y2 = Math.min(getHeight(), y2);
+        x2 = Math.min(getWidth(), x2);
+
         int[] x = {x1,x2,x2,x1};
         int[] y = {y1,y1,y2,y2};
         return new Polygon(x,y, 4);
@@ -138,18 +143,16 @@ class ETextArea extends JPanel{
     }
 
     private void drawText(Graphics2D graphics2D) {
-        int y = - doc.getHeightOffset() * lineSpacing;
-        boolean isText = doc.isFileTypeText();
 
         ArrayList<ArrayList<Word>> dataInWords = doc.getAllDataInWords();
         List<CharSequence> dataInLines = doc.getAllDataInLines();
 
         graphics2D.setPaint(Color.BLACK);
 
-        for (int i = 0; i < dataInLines.size(); i++) {
-            if (y > getHeight()) {
-                break;
-            }
+        int startDrawingRow = doc.getHeightOffset() > 0 ? -1 : 0;
+        int y = startDrawingRow * lineSpacing;
+        boolean isText = doc.isFileTypeText();
+        for (int i = doc.getHeightOffset() + startDrawingRow; i < dataInLines.size() && y < getHeight(); i++) {
             y += lineSpacing;
             int x = -doc.getWidthOffset() * charWidth;
             if (!isText) {
