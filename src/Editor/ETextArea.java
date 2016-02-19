@@ -23,6 +23,7 @@ class ETextArea extends JPanel{
         setOpaque(true);
         doc = new EDocument(null);
 
+
         listener = new EListener(doc, this);
         addMouseMotionListener(listener);
         addMouseListener(listener);
@@ -60,6 +61,10 @@ class ETextArea extends JPanel{
     public void setFileName(String fileName) {
         doc.setFileName(fileName);
         repaint();
+    }
+
+    public void setScrollBar(JScrollBar scrollBar) {
+        doc.setScrollBar(scrollBar);
     }
 
     public List<CharSequence> getLines() {

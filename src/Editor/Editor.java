@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,10 +18,21 @@ public class Editor extends JFrame{
     private Editor() throws HeadlessException {
         super("Editor");
         setFocusTraversalKeysEnabled(false);
+        setLayout(new BorderLayout());
 
         area = new ETextArea();
         add(area);
 
+        JScrollBar scrollBar = new JScrollBar(Adjustable.VERTICAL);
+        add(scrollBar, BorderLayout.EAST);
+        scrollBar.addAdjustmentListener(new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                System.out.println(e.getValue());
+            }
+        });
+
+        area.setScrollBar(scrollBar);
         JMenuBar menu = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem openItem = new JMenuItem("Open");

@@ -1,5 +1,6 @@
 package Editor;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -32,6 +33,7 @@ class EDocument {
     private int startSelectionColumn;
     private FileType fileType;
     private String fileName;
+    private JScrollBar scrollBar;
 
     public EDocument(List<String> initData) {
 
@@ -114,6 +116,7 @@ class EDocument {
         if (widthOffset < 0) {
             widthOffset = 0;
         }
+        updateScrollBar();
     }
 
     private void updateOffsetOnCaret() {
@@ -132,6 +135,13 @@ class EDocument {
         if (row < heightOffset) {
             heightOffset = row;
         }
+        updateScrollBar();
+    }
+
+    private void updateScrollBar() {
+        scrollBar.setMaximum(dataInChars.size() - 1);
+        scrollBar.setValue(heightOffset);
+        scrollBar.setVisibleAmount(height);
     }
 
     private void updatePosition(){
@@ -476,6 +486,14 @@ class EDocument {
     public void updateHeightOffset(int diff) {
         heightOffset += diff;
         updateOffset();
+    }
+
+    public void setOffset(int widthOffset, int heightOffset) {
+
+    }
+
+    public void setScrollBar(JScrollBar scrollBar) {
+        this.scrollBar = scrollBar;
     }
 
     // Getters
