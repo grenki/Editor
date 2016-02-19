@@ -93,6 +93,8 @@ class EDocument {
         updatePosition();
         updateOffsetOnCaret();
 
+        updateScrollBar();
+
         if (fileType != FileType.Text) {
             if (startRow >= 0) {
                 isShiftPressed = false;
@@ -135,10 +137,11 @@ class EDocument {
         if (row < heightOffset) {
             heightOffset = row;
         }
-        updateScrollBar();
+
     }
 
     private void updateScrollBar() {
+        int heightOffset = this.heightOffset;
         scrollBar.setMaximum(dataInChars.size() - 1);
         scrollBar.setValue(heightOffset);
         scrollBar.setVisibleAmount(height);
@@ -494,6 +497,11 @@ class EDocument {
 
     public void setScrollBar(JScrollBar scrollBar) {
         this.scrollBar = scrollBar;
+        updateScrollBar();
+    }
+
+    public void setOffsetFromScrollBar(int value) {
+        heightOffset = value;
     }
 
     // Getters

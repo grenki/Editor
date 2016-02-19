@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,12 +23,7 @@ public class Editor extends JFrame{
 
         JScrollBar scrollBar = new JScrollBar(Adjustable.VERTICAL);
         add(scrollBar, BorderLayout.EAST);
-        scrollBar.addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                System.out.println(e.getValue());
-            }
-        });
+        scrollBar.addAdjustmentListener(area.getAdjustmentListener());
 
         area.setScrollBar(scrollBar);
         JMenuBar menu = new JMenuBar();
@@ -48,7 +41,7 @@ public class Editor extends JFrame{
         setSize(600, 600);
         setLocationRelativeTo(null);
 
-        addKeyListener(area.getListener());
+        addKeyListener(area.getKeyListener());
 
         setVisible(true);
     }

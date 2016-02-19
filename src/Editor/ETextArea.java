@@ -2,6 +2,7 @@ package Editor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyListener;
@@ -43,7 +44,11 @@ class ETextArea extends JPanel{
         });
     }
 
-    public KeyListener getListener() {
+    public KeyListener getKeyListener() {
+        return listener;
+    }
+
+    public AdjustmentListener getAdjustmentListener() {
         return listener;
     }
 
