@@ -16,6 +16,7 @@ class ETextArea extends JPanel{
     private final EListener listener;
     private final int minOffsetRight = 1;
     private final int minOffsetBottom = 2;
+    private JScrollBar scrollBar;
     private EDocument doc;
 
 
@@ -59,6 +60,7 @@ class ETextArea extends JPanel{
     public void setNewDocument(List<String> list){
         doc = new EDocument(list);
         listener.setEDocument(doc);
+        doc.setScrollBar(scrollBar);
         updateSize();
         repaint();
     }
@@ -69,6 +71,7 @@ class ETextArea extends JPanel{
     }
 
     public void setScrollBar(JScrollBar scrollBar) {
+        this.scrollBar = scrollBar;
         doc.setScrollBar(scrollBar);
     }
 

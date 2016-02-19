@@ -93,8 +93,6 @@ class EDocument {
         updatePosition();
         updateOffsetOnCaret();
 
-        updateScrollBar();
-
         if (fileType != FileType.Text) {
             if (startRow >= 0) {
                 isShiftPressed = false;
@@ -104,6 +102,8 @@ class EDocument {
             parser.bracketLightOff();
             parser.bracketLight(column, row);
         }
+
+        updateScrollBar();
     }
 
     private void updateOffset() {

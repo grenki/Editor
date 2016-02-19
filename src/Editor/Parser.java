@@ -21,7 +21,6 @@ class Parser {
         fileType = FileType.Text;
         commentContinuousList = new ArrayList<>(dataInChars.size());
 
-        parse(0,dataInChars.size());
     }
 
     // Words
@@ -52,11 +51,13 @@ class Parser {
         }
 
         for (int i = row; i < dataInChars.size(); i++) {
-            boolean isNotChangesInLine = new ParseLine(i).isThisLineEqualsPreviousParse();
+            boolean isNotChangesInLine = new ParseLine(i, endRow <= i).isThisLineEqualsPreviousParse();
             if (!parseAll && isNotChangesInLine && endRow <= i){
+                //System.out.println("lines: " + (i - row));
                 return;
             }
         }
+        //System.out.println("lines: " + (dataInChars.size() - row));
     }
 
     private int findWordInLine(int column, int row) {
@@ -158,7 +159,7 @@ class Parser {
         private Pattern endCommentPattern = Pattern.compile("\\*/");
         private Pattern bracketPattern = Pattern.compile("[\\{\\}\\(\\)\\[\\]]");
 
-        ParseLine(int row) {
+        ParseLine(int row, boolean needCheck) {
             final int multiLineCommentOffset = 2;
 
             outputLineInWords = new ArrayList<>();
@@ -206,8 +207,7 @@ class Parser {
                     update(end);
                 }
             }
-
-            isThisLineEqualsPreviousParse = isCommentContinuous == commentContinuousList.get(row + 1) &&
+            isThisLineEqualsPreviousParse = needCheck && isCommentContinuous == commentContinuousList.get(row + 1) &&
                     isLinesEquals(outputLineInWords, dataInWords.get(row));
             dataInWords.set(row, outputLineInWords);
             commentContinuousList.set(row + 1, isCommentContinuous);
