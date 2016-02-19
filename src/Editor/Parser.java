@@ -38,6 +38,10 @@ class Parser {
         commentContinuousList.remove(row);
     }
 
+    public void removeLines(int startRow, int endRow) {
+        commentContinuousList.subList(startRow, endRow).clear();
+    }
+
     public void parse(int row, int endRow) {
         boolean parseAll = dataInChars.size() != dataInWords.size();
 
@@ -212,6 +216,7 @@ class Parser {
             dataInWords.set(row, outputLineInWords);
             commentContinuousList.set(row + 1, isCommentContinuous);
         }
+
 
         public boolean isThisLineEqualsPreviousParse() {
             return isThisLineEqualsPreviousParse;

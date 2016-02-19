@@ -63,6 +63,24 @@ class EDocument {
         parser = new Parser(dataInWords, dataInChars);
     }
 
+
+    public void recreateDocument(List<String> initData) {
+        column = 0;
+        row = 0;
+        insert = false;
+        heightOffset = 0;
+        widthOffset = 0;
+        isShiftPressed = false;
+        existSelection = false;
+        fileType = FileType.Text;
+
+        dataInChars.clear();
+        if (initData != null) {
+            dataInChars.addAll(initData.stream().map(StringBuilder::new).collect(Collectors.toList()));
+        } else {
+            dataInChars.add(new StringBuilder());
+        }
+    }
     // add or remove line
 
     private void addLine(int row, StringBuilder sb) {
@@ -76,6 +94,13 @@ class EDocument {
         dataInWords.remove(row);
         parser.removeLine(row);
 
+    }
+
+    private void removeLines(int startRow, int endRow) {
+        endRow++;
+        dataInChars.subList(startRow, endRow).clear();
+        dataInWords.subList(startRow, endRow).clear();
+        parser.removeLines(startRow, endRow);
     }
 
     // Update
@@ -244,9 +269,7 @@ class EDocument {
             line.replace(startColumn, line.length(), "");
             line.append(dataInChars.get(endRow).substring(endColumn));
 
-            for (int i = startRow + 1; i <= endRow; i++) {
-                removeLine(startRow + 1);
-            }
+            removeLines(startRow + 1, endRow);
         }
         else {
             dataInChars.set(startRow, new StringBuilder(line.substring(0, startColumn) + line.substring(endColumn)));

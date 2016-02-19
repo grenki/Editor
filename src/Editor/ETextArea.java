@@ -58,7 +58,7 @@ class ETextArea extends JPanel{
     }
 
     public void setNewDocument(List<String> list){
-        doc = new EDocument(list);
+        doc.recreateDocument(list);
         listener.setEDocument(doc);
         doc.setScrollBar(scrollBar);
         updateSize();
