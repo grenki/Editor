@@ -53,6 +53,7 @@ class Parser {
     }
 
     private void parse(int row, int endRow, boolean forceEnd) {
+
         boolean parseAll = dataInChars.size() != dataInWords.size();
 
         dataInWords.subList(Math.min(dataInChars.size(), dataInWords.size()), dataInWords.size()).clear();
@@ -68,11 +69,9 @@ class Parser {
         for (int i = row; i < (forceEnd ? endRow : dataInChars.size()); i++) {
             boolean isNotChangesInLine = lineParser.parseLine(i, !forceEnd && endRow <= i);
             if (!parseAll && isNotChangesInLine && endRow <= i){
-                //System.out.println("lines: " + (i - row));
                 return;
             }
         }
-        //System.out.println("lines: " + (dataInChars.size() - row));
     }
 
     private int findWordInLine(int column, int row) {
@@ -194,7 +193,7 @@ class Parser {
                 if (isCommentContinuous) {
                     multilineCommentFirstPosition = -2;
                 }
-
+                //int lastdeletedchars = deletedChars;
                 while (inputStringToParse.length() > deletedChars) {
                     int closestMatch = Math.min(Math.min(inputStringToParse.length(), commentLineFirstPosition),
                             Math.min(bracketFirstPosition, Math.min(multilineCommentFirstPosition, identifierFirstPosition)));
@@ -211,7 +210,7 @@ class Parser {
                         }
                         int end = firstMultilineCommentEnd + multiLineCommentOffset;
                         outputLineInWords.add(new Word(inputStringToParse.substring(deletedChars, Math.min(inputStringToParse.length(), end)), Type.Comment));
-                        if (firstMultilineCommentEnd < inputStringToParse.length()) { // TODO
+                        if (firstMultilineCommentEnd < inputStringToParse.length()) {
                             update(firstMultilineCommentEnd + multiLineCommentOffset);
                             isCommentContinuous = false;
                         } else {
@@ -229,6 +228,10 @@ class Parser {
                         outputLineInWords.add(new Word(inputStringToParse.substring(deletedChars, end), fileType));
                         update(end);
                     }
+                    /*if (deletedChars == lastdeletedchars) {
+                        System.out.println(inputStringToParse);
+                    }
+                    lastdeletedchars = deletedChars;*/
                 }
             }
             boolean isThisLineEqualsPreviousParse = needCheck && isCommentContinuous == commentContinuousList.get(row + 1) &&
@@ -246,7 +249,9 @@ class Parser {
             commentLineFirstPosition = updateWhileLess2(commentLineFirstPosition, commentLine, deletedChars);
             bracketFirstPosition = updateWhileLess2(bracketFirstPosition, bracket, deletedChars);
 
-            identifierFirstPosition = updateIdentifier(updateWhileLess(identifierFirstPosition, identifier, Math.max(0, deletedChars - 1)),
+            int identifierThreshold = Character.isJavaIdentifierStart(inputStringToParse.charAt(Math.max(deletedChars - 1, 0))) ? 0 : -1;
+            identifierFirstPosition = updateIdentifier(updateWhileLess(identifierFirstPosition, identifier,
+                    Math.max(0, deletedChars + identifierThreshold)),
                     inputStringToParse);
 
         }
