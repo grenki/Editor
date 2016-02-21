@@ -512,14 +512,16 @@ class EDocument {
             fileType = FileType.Text;
         }
         boolean needParse = parser.setFileType(fileType);
-        if (open) {
-            parser.forceParse(0, dataInChars.size());
-            updateWithoutChanges();
-            //new Thread(() -> parser.forceParse(height + 95,)).start();
-        } else {
-            if (needParse) {
+        if (fileType != FileType.Text) {
+            if (open) {
                 parser.forceParse(0, dataInChars.size());
                 updateWithoutChanges();
+                //new Thread(() -> parser.forceParse(height + 95,)).start();
+            } else {
+                if (needParse) {
+                    parser.forceParse(0, dataInChars.size());
+                    updateWithoutChanges();
+                }
             }
         }
     }
@@ -527,10 +529,6 @@ class EDocument {
     public void updateHeightOffset(int diff) {
         heightOffset += diff;
         updateOffset();
-    }
-
-    public void setOffset(int widthOffset, int heightOffset) {
-
     }
 
     public void setScrollBar(JScrollBar scrollBar) {
