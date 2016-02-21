@@ -24,8 +24,8 @@ public class Editor extends JFrame{
         JScrollBar scrollBar = new JScrollBar(Adjustable.VERTICAL);
         add(scrollBar, BorderLayout.EAST);
         scrollBar.addAdjustmentListener(area.getAdjustmentListener());
-
         area.setScrollBar(scrollBar);
+
         JMenuBar menu = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem openItem = new JMenuItem("Open");
@@ -58,17 +58,14 @@ public class Editor extends JFrame{
             if (ret == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
                 try {
-                    long start = System.nanoTime();
                     area.setNewDocument(Files.readAllLines(file.toPath()));
-                    long midle = System.nanoTime();
-                    area.setFileName(file.getName());
-                    long end = System.nanoTime();
-                    System.out.println((midle - start) / 1000 + " " + (end - midle) / 1000);
+                    area.setFileName(file.getName(), true);
                 } catch (IOException exception) {
                     System.out.println("Problem with opening file");
                     exception.printStackTrace();
                 }
             }
+
         }
     }
 
@@ -85,7 +82,7 @@ public class Editor extends JFrame{
                     }
 
                     Files.write(file.toPath(), area.getLines(), StandardOpenOption.WRITE);
-                    area.setFileName(file.getName());
+                    area.setFileName(file.getName(), false);
                 } catch (IOException exception) {
                     System.out.println("Problem with saving file");
                     exception.printStackTrace();

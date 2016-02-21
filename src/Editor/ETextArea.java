@@ -65,8 +65,9 @@ class ETextArea extends JPanel{
         repaint();
     }
 
-    public void setFileName(String fileName) {
-        doc.setFileName(fileName);
+    public void setFileName(String fileName, boolean open) {
+        doc.setFileName(fileName, open);
+
         repaint();
     }
 

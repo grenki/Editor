@@ -63,7 +63,6 @@ class EDocument {
         parser = new Parser(dataInWords, dataInChars);
     }
 
-
     public void recreateDocument(List<String> initData) {
         column = 0;
         row = 0;
@@ -81,30 +80,36 @@ class EDocument {
             dataInChars.add(new StringBuilder());
         }
     }
-    // add or remove line
 
+    // add or remove lineА
     private void addLine(int row, StringBuilder sb) {
         dataInChars.add(row, sb);
-        dataInWords.add(row, new ArrayList<>());
-        parser.addLine(row);
+        if (fileType != FileType.Text) {
+            dataInWords.add(row, new ArrayList<>());
+            parser.addLine(row);
+        }
     }
 
     private void removeLine(int row) {
         dataInChars.remove(row);
-        dataInWords.remove(row);
-        parser.removeLine(row);
+        if (fileType != FileType.Text) {
+            dataInWords.remove(row);
+            parser.removeLine(row);
+        }
 
     }
 
     private void removeLines(int startRow, int endRow) {
         endRow++;
         dataInChars.subList(startRow, endRow).clear();
-        dataInWords.subList(startRow, endRow).clear();
-        parser.removeLines(startRow, endRow);
+        if (fileType != FileType.Text) {
+            dataInWords.subList(startRow, endRow).clear();
+            parser.removeLines(startRow, endRow);
+        }
+
     }
 
     // Update
-
     private void updateWithoutChanges() {
         updateWithChanges(-1, -1);
     }
@@ -121,7 +126,9 @@ class EDocument {
         if (fileType != FileType.Text) {
             if (startRow >= 0) {
                 isShiftPressed = false;
-                parser.parse(startRow, endRow);
+                if (endRow >= 0) {
+                    parser.parse(startRow, endRow);
+                }
             }
 
             parser.bracketLightOff();
@@ -491,7 +498,7 @@ class EDocument {
         insert = !insert;
     }
 
-    public void setFileName(String s) {
+    public void setFileName(String s, boolean open) {
         fileName = s;
 
         Matcher javaFile = Pattern.compile(".*\\.java").matcher(s);
@@ -504,9 +511,17 @@ class EDocument {
         } else {
             fileType = FileType.Text;
         }
-
-        parser.setFileType(fileType);
-        updateWithoutChanges();
+        boolean needParse = parser.setFileType(fileType);
+        if (open) {
+            parser.forceParse(0, dataInChars.size());
+            updateWithoutChanges();
+            //new Thread(() -> parser.forceParse(height + 95,)).start();
+        } else {
+            if (needParse) {
+                parser.forceParse(0, dataInChars.size());
+                updateWithoutChanges();
+            }
+        }
     }
 
     public void updateHeightOffset(int diff) {
