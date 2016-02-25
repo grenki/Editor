@@ -17,13 +17,13 @@ class ETextArea extends JPanel{
     private final int minOffsetRight = 1;
     private final int minOffsetBottom = 2;
     private JScrollBar scrollBar;
-    private EDocument doc;
+    private final EDocument doc;
 
 
 
     public ETextArea() {
         setOpaque(true);
-        doc = new EDocument(null);
+        doc = new EDocument();
 
 
         listener = new EListener(doc, this);

@@ -35,7 +35,7 @@ class EDocument {
     private String fileName;
     private JScrollBar scrollBar;
 
-    public EDocument(List<String> initData) {
+    public EDocument() {
 
         column = 0;
         row = 0;
@@ -48,15 +48,8 @@ class EDocument {
 
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
-        if (initData != null) {
-            dataInChars = new ArrayList<>(initData.size());
-            dataInChars.addAll(initData.stream().map(StringBuilder::new).collect(Collectors.toList()));
-        }
-        else {
-            dataInChars = new ArrayList<>();
-            dataInChars.add(new StringBuilder());
-        }
-
+        dataInChars = new ArrayList<>();
+        dataInChars.add(new StringBuilder());
 
         dataInWords = new ArrayList<>(dataInChars.size());
 
