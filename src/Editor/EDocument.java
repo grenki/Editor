@@ -81,7 +81,7 @@ class EDocument {
         }
     }
 
-    // add or remove lineА
+    // add or remove line
     private void addLine(int row, StringBuilder sb) {
         dataInChars.add(row, sb);
         if (fileType != FileType.Text) {
@@ -213,7 +213,7 @@ class EDocument {
         existSelection = true;
     }
 
-    public void paste() {
+    public synchronized void paste() {
         if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
             deleteSelection();
             try {
@@ -225,11 +225,41 @@ class EDocument {
         }
     }
 
+    public void copy() {
+        if (isExistSelection()) {
+            int[] selectionInterval = getSelectionInterval();
+            int startColumn = selectionInterval[0];
+            int startRow = selectionInterval[1];
+            int endColumn = selectionInterval[2];
+            int endRow = selectionInterval[3];
+
+            StringBuilder res = new StringBuilder();
+            if (startRow != endRow) {
+                res.append(dataInChars.get(startRow).substring(startColumn)).append("\n");
+                for (int i = startRow + 1; i < endRow; i++) {
+                    res.append(dataInChars.get(i)).append("\n");
+                }
+                res.append(dataInChars.get(endRow).substring(0, endColumn));
+            }
+            else {
+                res.append(dataInChars.get(startRow).substring(startColumn, endColumn));
+            }
+            clipboard.setContents(new StringSelection(res.toString()), null);
+        }
+    }
+
+    public synchronized void cut() {
+        if (isExistSelection()) {
+            copy();
+            deleteSelection();
+        }
+    }
+
     private void insertString(String s) {
         existSelection = false;
         int startChangesRow = row;
         StringBuilder sb = new StringBuilder();
-        StringBuilder start =  dataInChars.get(row);
+        StringBuilder start = dataInChars.get(row);
         String end = start.substring(column);
         start.replace(column, start.length(), "");
         for (int i = 0; i < s.length(); i++) {
@@ -238,8 +268,7 @@ class EDocument {
                     sb.append(TAB);
                 }
                 sb.append(s.charAt(i));
-            }
-            else {
+            } else {
                 column = 0;
                 dataInChars.get(row).append(sb);
                 row++;
@@ -277,47 +306,16 @@ class EDocument {
             line.append(dataInChars.get(endRow).substring(endColumn));
 
             removeLines(startRow + 1, endRow);
-        }
-        else {
+        } else {
             dataInChars.set(startRow, new StringBuilder(line.substring(0, startColumn) + line.substring(endColumn)));
         }
 
         updateWithChanges(row);
     }
 
-    public void copy() {
-        if (isExistSelection()) {
-            int[] selectionInterval = getSelectionInterval();
-            int startColumn = selectionInterval[0];
-            int startRow = selectionInterval[1];
-            int endColumn = selectionInterval[2];
-            int endRow = selectionInterval[3];
-
-            StringBuilder res = new StringBuilder();
-            if (startRow != endRow) {
-                res.append(dataInChars.get(startRow).substring(startColumn)).append("\n");
-                for (int i = startRow + 1; i < endRow; i++) {
-                    res.append(dataInChars.get(i)).append("\n");
-                }
-                res.append(dataInChars.get(endRow).substring(0, endColumn));
-            }
-            else {
-                res.append(dataInChars.get(startRow).substring(startColumn, endColumn));
-            }
-            clipboard.setContents(new StringSelection(res.toString()), null);
-        }
-    }
-
-    public void cut() {
-        if (isExistSelection()) {
-            copy();
-            deleteSelection();
-        }
-    }
-
     // Change char
 
-    public void insertChar(char character) {
+    public synchronized void insertChar(char character) {
         deleteSelection();
         String ch = Character.toString(character);
         StringBuilder line = dataInChars.get(row);
@@ -360,7 +358,7 @@ class EDocument {
         //updateWithChanges(row, false);
     }
 
-    public void backspace() {
+    public synchronized void backspace() {
         if (isExistSelection()) {
             deleteSelection();
         }
@@ -382,7 +380,7 @@ class EDocument {
         }
     }
 
-    public void delete(){
+    public synchronized void delete() {
         if (isExistSelection()) {
             deleteSelection();
         }
@@ -396,7 +394,7 @@ class EDocument {
         }
     }
 
-    public void insertTab() {
+    public synchronized void insertTab() {
         insertString(TAB);
     }
 
@@ -498,7 +496,7 @@ class EDocument {
         insert = !insert;
     }
 
-    public void setFileName(String s, boolean open) {
+    public synchronized void setFileName(String s, boolean open) {
         fileName = s;
 
         Matcher javaFile = Pattern.compile(".*\\.java").matcher(s);
@@ -514,9 +512,13 @@ class EDocument {
         boolean needParse = parser.setFileType(fileType);
         if (fileType != FileType.Text) {
             if (open) {
-                parser.forceParse(0, dataInChars.size());
+                parser.forceParse(0, height + 2);
                 updateWithoutChanges();
-                //new Thread(() -> parser.forceParse(height + 95,)).start();
+                new Thread(() -> {
+                    synchronized (this) {
+                        parser.forceParse(height + 2, dataInChars.size());
+                    }
+                }).start();
             } else {
                 if (needParse) {
                     parser.forceParse(0, dataInChars.size());

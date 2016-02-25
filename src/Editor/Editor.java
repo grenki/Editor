@@ -58,8 +58,11 @@ public class Editor extends JFrame{
             if (ret == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
                 try {
+                    long start = System.nanoTime();
                     area.setNewDocument(Files.readAllLines(file.toPath()));
                     area.setFileName(file.getName(), true);
+                    long end = System.nanoTime();
+                    System.out.println((end - start) / 1000000);
                 } catch (IOException exception) {
                     System.out.println("Problem with opening file");
                     exception.printStackTrace();

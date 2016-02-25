@@ -60,7 +60,7 @@ class Parser {
         commentContinuousList.subList(Math.min(dataInChars.size(), commentContinuousList.size()), commentContinuousList.size()).clear();
         for (int i = dataInWords.size(); i < dataInChars.size(); i++) {
             dataInWords.add(new ArrayList<>());
-        }
+            }
         for (int i = commentContinuousList.size(); i < dataInChars.size() + 1; i++) {
             commentContinuousList.add(false);
         }
@@ -68,7 +68,7 @@ class Parser {
         endRow = Math.min(dataInChars.size(), endRow);
         for (int i = row; i < (forceEnd ? endRow : dataInChars.size()); i++) {
             boolean isNotChangesInLine = lineParser.parseLine(i, !forceEnd && endRow <= i);
-            if (!parseAll && isNotChangesInLine && endRow <= i){
+            if (!parseAll && isNotChangesInLine && endRow <= i) {
                 return;
             }
         }
