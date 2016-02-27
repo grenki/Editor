@@ -48,11 +48,11 @@ class Parser {
 
     public void bracketLight(int column, int row) {
         if (column > 0 && isBracket(dataInChars.get(row).charAt(column - 1))) {
-            int wordN = findWordInLine(column, row);
-            if (dataInWords.get(row).get(wordN).t != Type.Bracket) {
+            int wordInLine = findWordInLine(column, row);
+            if (dataInWords.get(row).get(wordInLine).t != Type.Bracket) {
                 return;
             }
-            firstBracket = dataInWords.get(row).get(wordN);
+            firstBracket = dataInWords.get(row).get(wordInLine);
             firstBracket.t = Type.BracketLight;
             Pattern openBracketPattern = Pattern.compile("[\\{\\[\\(]");
             boolean openBracket = openBracketPattern.matcher(firstBracket.s).matches();
@@ -60,23 +60,23 @@ class Parser {
             Word word;
             int k = 1;
             do {
-                wordN = openBracket ? wordN + 1 : wordN - 1;
-                if (wordN >= dataInWords.get(row).size()) {
+                wordInLine = openBracket ? wordInLine + 1 : wordInLine - 1;
+                if (wordInLine >= dataInWords.get(row).size()) {
                     row++;
-                    wordN = 0;
+                    wordInLine = 0;
                 }
-                if (wordN < 0) {
+                if (wordInLine < 0) {
                     row--;
                     if (row < 0 || row >= dataInWords.size()) {
                         return;
                     }
-                    wordN = Math.max(dataInWords.get(row).size() - 1, 0);
+                    wordInLine = Math.max(dataInWords.get(row).size() - 1, 0);
                 }
                 if (row < 0 || row >= dataInWords.size()) {
                     return;
                 }
 
-                word = dataInWords.get(row).size() == 0 ? null : dataInWords.get(row).get(wordN);
+                word = dataInWords.get(row).size() == 0 ? null : dataInWords.get(row).get(wordInLine);
                 if (word != null && word.t == Type.Bracket &&
                         Math.abs(word.s.charAt(0) - firstBracket.s.charAt(0)) <= 2) {
                     k = !(openBracket == openBracketPattern.matcher(word.s).matches()) ? k - 1 : k + 1;
@@ -151,24 +151,4 @@ class Parser {
             commentContinuousList.set(i + 1, lineParser.isCommentContinuous());
         }
     }
-
-
-    private boolean isLinesEquals(ArrayList<Word> firstLine, ArrayList<Word> secondLine) {
-        if (firstLine == null || secondLine == null) {
-            return false;
-        }
-
-        if (firstLine.size() != secondLine.size()) {
-            return false;
-        }
-
-        for (int i = 0; i < firstLine.size(); i++) {
-            if (!firstLine.get(i).s.equals(secondLine.get(i).s)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
 }

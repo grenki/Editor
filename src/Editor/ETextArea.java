@@ -3,8 +3,6 @@ package Editor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,19 +28,7 @@ class ETextArea extends JPanel{
         addMouseMotionListener(listener);
         addMouseListener(listener);
         addMouseWheelListener(listener);
-
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                updateSize();
-            }
-            @Override
-            public void componentMoved(ComponentEvent e) {            }
-            @Override
-            public void componentShown(ComponentEvent e) {            }
-            @Override
-            public void componentHidden(ComponentEvent e) {            }
-        });
+        addComponentListener(listener);
     }
 
     public KeyListener getKeyListener() {
@@ -53,7 +39,7 @@ class ETextArea extends JPanel{
         return listener;
     }
 
-    private void updateSize() {
+    public void updateWindowSize() {
         doc.setWindowSize(getWidth() / charWidth - minOffsetRight, getHeight() / lineSpacing - minOffsetBottom);
     }
 
@@ -61,7 +47,7 @@ class ETextArea extends JPanel{
         doc.recreateDocument(list);
         listener.setEDocument(doc);
         doc.setScrollBar(scrollBar);
-        updateSize();
+        updateWindowSize();
         repaint();
     }
 
