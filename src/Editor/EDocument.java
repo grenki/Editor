@@ -20,19 +20,22 @@ class EDocument {
     private final Parser parser;
     private final Clipboard clipboard;
     private final String TAB = "    ";
+
     private int width;
     private int height;
     private int widthOffset;
     private int heightOffset;
     private int column;
     private int row;
+
     private boolean insert;
     private boolean isShiftPressed;
     private boolean existSelection;
+
     private int startSelectionRow;
     private int startSelectionColumn;
+
     private FileType fileType;
-    private String fileName;
     private JScrollBar scrollBar;
 
     public EDocument() {
@@ -490,7 +493,6 @@ class EDocument {
     }
 
     public synchronized void setFileName(String s, boolean open) {
-        fileName = s;
 
         Matcher javaFile = Pattern.compile(".*\\.java").matcher(s);
         Matcher jsFile = Pattern.compile(".*\\.js").matcher(s);

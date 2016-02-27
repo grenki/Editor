@@ -2,7 +2,7 @@ package Editor;
 
 import java.awt.event.*;
 
-class EListener implements AdjustmentListener, MouseMotionListener, MouseListener, MouseWheelListener, KeyListener {
+class EListener implements AdjustmentListener, MouseMotionListener, MouseListener, MouseWheelListener, KeyListener, ComponentListener {
 
     private final ETextArea area;
     private EDocument doc;
@@ -76,11 +76,6 @@ class EListener implements AdjustmentListener, MouseMotionListener, MouseListene
                     case 34: //pageDown
                         doc.pageDown();
                         break;
-                    //case 18: // Alt
-                    //case 20: // Caps Lock
-                    //case 27: // Escape
-                    //    break;
-                    //case 112-123: // F1 - 12
 
                     default:
                         if (e.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
@@ -110,7 +105,6 @@ class EListener implements AdjustmentListener, MouseMotionListener, MouseListene
                 }
             }
 
-            //System.out.println("keyPressed " + e.getKeyCode());
             area.repaint();
         }
     }
@@ -173,4 +167,15 @@ class EListener implements AdjustmentListener, MouseMotionListener, MouseListene
         doc.setOffsetFromScrollBar(e.getValue());
         area.repaint();
     }
+
+    @Override
+    public void componentResized(ComponentEvent e) {
+        area.updateWindowSize();
+    }
+    @Override
+    public void componentMoved(ComponentEvent e) {            }
+    @Override
+    public void componentShown(ComponentEvent e) {            }
+    @Override
+    public void componentHidden(ComponentEvent e) {            }
 }
