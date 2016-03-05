@@ -14,6 +14,9 @@ class Parser {
     private Word secondBracket;
     private FileType fileType;
 
+    private static final Pattern openBracketPattern = Pattern.compile("[\\{\\[\\(]");
+    private static Pattern bracket = Pattern.compile("[\\[\\]\\{\\}\\(\\)]");
+
     public Parser(ArrayList<ArrayList<Word>> dataInWords, ArrayList<StringBuilder> dataInChars) {
         this.dataInWords = dataInWords;
         this.dataInChars = dataInChars;
@@ -54,7 +57,7 @@ class Parser {
             }
             firstBracket = dataInWords.get(row).get(wordInLine);
             firstBracket.t = Type.BracketLight;
-            Pattern openBracketPattern = Pattern.compile("[\\{\\[\\(]");
+
             boolean openBracket = openBracketPattern.matcher(firstBracket.s).matches();
 
             Word word;
@@ -100,7 +103,6 @@ class Parser {
     // Words
 
     private static boolean isBracket(Character ch) {
-        Pattern bracket = Pattern.compile("[\\[\\]\\{\\}\\(\\)]");
         return bracket.matcher(ch.toString()).matches();
     }
 

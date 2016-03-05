@@ -12,6 +12,7 @@ import java.nio.file.StandardOpenOption;
 public class Editor extends JFrame{
 
     private final ETextArea area;
+    private final int startWindowSize = 600;
 
     private Editor() throws HeadlessException {
         super("Editor");
@@ -38,7 +39,7 @@ public class Editor extends JFrame{
         menu.add(fileMenu);
         setJMenuBar(menu);
         
-        setSize(600, 600);
+        setSize(startWindowSize, startWindowSize);
         setLocationRelativeTo(null);
 
         addKeyListener(area.getKeyListener());

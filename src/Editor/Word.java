@@ -4,6 +4,8 @@ class Word {
 
     public final String s;
     public Type t;
+    private int start;
+    private int end;
 
     Word(String string, FileType fileType) {
         s = string;
@@ -19,6 +21,10 @@ class Word {
     public Word(String s, Type t) {
         this.s = s;
         this.t = t;
+    }
+
+    public String s() {
+        return s.substring(start, end);
     }
 
     enum Type {

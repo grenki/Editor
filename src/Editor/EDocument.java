@@ -19,7 +19,6 @@ class EDocument {
     private final ArrayList<StringBuilder> dataInChars;
     private final Parser parser;
     private final Clipboard clipboard;
-    private final String TAB = "    ";
 
     private int width;
     private int height;
@@ -37,6 +36,10 @@ class EDocument {
 
     private FileType fileType;
     private JScrollBar scrollBar;
+
+    private static final Pattern javaFilePattern = Pattern.compile(".*\\.java");
+    private static final Pattern jsFilePattern = Pattern.compile(".*\\.js");
+    private static final String TAB = "    ";
 
     public EDocument() {
 
@@ -494,8 +497,8 @@ class EDocument {
 
     public synchronized void setFileName(String s, boolean open) {
 
-        Matcher javaFile = Pattern.compile(".*\\.java").matcher(s);
-        Matcher jsFile = Pattern.compile(".*\\.js").matcher(s);
+        Matcher javaFile = javaFilePattern.matcher(s);
+        Matcher jsFile = jsFilePattern.matcher(s);
 
         if (javaFile.matches()) {
             fileType = FileType.Java;
@@ -551,7 +554,7 @@ class EDocument {
         return widthOffset;
     }
 
-    public int getCaretRow() {
+   public int getCaretRow() {
         return row;
     }
 
