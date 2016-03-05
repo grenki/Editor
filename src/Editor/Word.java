@@ -2,29 +2,38 @@ package Editor;
 
 class Word {
 
-    public final String s;
-    public Type t;
+    public Type type;
     private int start;
     private int end;
+    private StringBuilder value;
 
-    Word(String string, FileType fileType) {
-        s = string;
+    public Word(StringBuilder value, int start, int end, Type type) {
+        this.value = value;
+        this.end = end;
+        this.start = start;
+        this.type = type;
+    }
+
+    public Word(StringBuilder value, int start, int end, FileType fileType) {
+        this.value = value;
+        this.end = end;
+        this.start = start;
+
         if (fileType == FileType.Java) {
-            t = KeyWords.isJavaKey(s) ? Type.Key : Type.Identifier;
+            type = KeyWords.isJavaKey(string()) ? Type.Key : Type.Identifier;
         } else if (fileType == FileType.JS) {
-            t = KeyWords.isJSKey(s) ? Type.Key : Type.Identifier;
+            type = KeyWords.isJSKey(string()) ? Type.Key : Type.Identifier;
         } else {
-            t = Type.Other;
+            type = Type.Other;
         }
     }
 
-    public Word(String s, Type t) {
-        this.s = s;
-        this.t = t;
+    public String string() {
+        return value.substring(start, end);
     }
 
-    public String s() {
-        return s.substring(start, end);
+    public int length() {
+        return end - start;
     }
 
     enum Type {

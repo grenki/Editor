@@ -160,7 +160,7 @@ class ETextArea extends JPanel{
                     if (x > getWidth()) {
                         break;
                     }
-                    switch (word.t) {
+                    switch (word.type) {
                         case Key:
                             graphics2D.setPaint(Color.BLUE);
                             break;
@@ -183,8 +183,8 @@ class ETextArea extends JPanel{
                             graphics2D.setPaint(Color.BLACK);
                             break;
                     }
-                    graphics2D.drawString(word.s, x, y);
-                    x += word.s.length() * charWidth;
+                    graphics2D.drawString(word.string(), x, y);
+                    x += word.string().length() * charWidth;
                 }
             } else {
                 int offset = doc.getWidthOffset();

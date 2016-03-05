@@ -25,7 +25,7 @@ public class LineParserTest extends Assert {
         for (String inputString : inputStrings) {
             LineParser lineParser = new LineParser(new StringBuilder(inputString), false, FileType.Java);
             lineParser.parseLine();
-            lineParser.getResultLine().forEach((e) -> assertEquals(e.t, Type.Other));
+            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Other));
         }
     }
 
@@ -43,7 +43,7 @@ public class LineParserTest extends Assert {
         for (String inputString : inputStrings) {
             LineParser lineParser = new LineParser(new StringBuilder(inputString), false, FileType.Java);
             lineParser.parseLine();
-            lineParser.getResultLine().forEach((e) -> assertEquals(e.t, Type.Comment));
+            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Comment));
         }
     }
 
@@ -65,8 +65,8 @@ public class LineParserTest extends Assert {
             LineParser lineParser = new LineParser(new StringBuilder(inputString), false, FileType.Java);
             lineParser.parseLine();
             lineParser.getResultLine().forEach((e) -> {
-                assertEquals(e.t, Type.Bracket);
-                assertEquals(e.s.length(), 1);
+                assertEquals(e.type, Type.Bracket);
+                assertEquals(e.length(), 1);
             });
         }
     }
@@ -82,7 +82,7 @@ public class LineParserTest extends Assert {
             lineParser.parseLine();
             ArrayList<Word> resultList = lineParser.getResultLine();
             StringBuilder result = new StringBuilder();
-            resultList.forEach((e) -> result.append(e.s));
+            resultList.forEach((e) -> result.append(e.string()));
 
             assertEquals(inputString.toString(), result.toString());
         }
@@ -136,7 +136,7 @@ public class LineParserTest extends Assert {
         for (String inputString : inputStrings) {
             LineParser lineParser = new LineParser(new StringBuilder(inputString), false, FileType.Java);
             lineParser.parseLine();
-            lineParser.getResultLine().forEach((e) -> assertEquals(e.t, Type.Identifier));
+            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Identifier));
         }
     }
 
@@ -154,7 +154,7 @@ public class LineParserTest extends Assert {
         for (String inputString : inputStrings) {
             LineParser lineParser = new LineParser(new StringBuilder(inputString), false, FileType.Java);
             lineParser.parseLine();
-            lineParser.getResultLine().forEach((word) -> assertEquals(word.t, Type.Key));
+            lineParser.getResultLine().forEach((word) -> assertEquals(word.type, Type.Key));
         }
     }
 
@@ -208,8 +208,8 @@ public class LineParserTest extends Assert {
             lineParser.parseLine();
 
             for (int j = 0; j < lineParser.getResultLine().size(); j++) {
-                assertEquals(expectedTypeResult[i][j], lineParser.getResultLine().get(j).t);
-                assertEquals(expectedWordsLength[i][j], lineParser.getResultLine().get(j).s.length());
+                assertEquals(expectedTypeResult[i][j], lineParser.getResultLine().get(j).type);
+                assertEquals(expectedWordsLength[i][j], lineParser.getResultLine().get(j).string().length());
             }
         }
     }

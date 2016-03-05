@@ -30,7 +30,7 @@ class Parser {
         int i = 0;
         int wordNumber = 0;
         while (i < column && wordNumber < dataInWords.get(row).size()) {
-            i += dataInWords.get(row).get(wordNumber++).s.length();
+            i += dataInWords.get(row).get(wordNumber++).length();
         }
 
         if (wordNumber == dataInWords.size()) {
@@ -42,23 +42,23 @@ class Parser {
 
     public void bracketLightOff() {
         if (firstBracket != null) {
-            firstBracket.t = Type.Bracket;
+            firstBracket.type = Type.Bracket;
         }
         if (secondBracket != null) {
-            secondBracket.t = Type.Bracket;
+            secondBracket.type = Type.Bracket;
         }
     }
 
     public void bracketLight(int column, int row) {
         if (column > 0 && isBracket(dataInChars.get(row).charAt(column - 1))) {
             int wordInLine = findWordInLine(column, row);
-            if (dataInWords.get(row).get(wordInLine).t != Type.Bracket) {
+            if (dataInWords.get(row).get(wordInLine).type != Type.Bracket) {
                 return;
             }
             firstBracket = dataInWords.get(row).get(wordInLine);
-            firstBracket.t = Type.BracketLight;
+            firstBracket.type = Type.BracketLight;
 
-            boolean openBracket = openBracketPattern.matcher(firstBracket.s).matches();
+            boolean openBracket = openBracketPattern.matcher(firstBracket.string()).matches();
 
             Word word;
             int k = 1;
@@ -80,16 +80,16 @@ class Parser {
                 }
 
                 word = dataInWords.get(row).size() == 0 ? null : dataInWords.get(row).get(wordInLine);
-                if (word != null && word.t == Type.Bracket &&
-                        Math.abs(word.s.charAt(0) - firstBracket.s.charAt(0)) <= 2) {
-                    k = !(openBracket == openBracketPattern.matcher(word.s).matches()) ? k - 1 : k + 1;
+                if (word != null && word.type == Type.Bracket &&
+                        Math.abs(word.string().charAt(0) - firstBracket.string().charAt(0)) <= 2) {
+                    k = !(openBracket == openBracketPattern.matcher(word.string()).matches()) ? k - 1 : k + 1;
                 }
 
             } while (k > 0);
 
             if (word != null) {
                 secondBracket = word;
-                secondBracket.t = Type.BracketLight;
+                secondBracket.type = Type.BracketLight;
             }
         }
     }

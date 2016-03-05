@@ -89,9 +89,9 @@ class LineParser {
             return;
         }
         if (type == Type.Identifier) {
-            outputLineInWords.add(new Word(inputStringToParse.substring(start, end), fileType));
+            outputLineInWords.add(new Word(inputStringToParse, start, end, fileType));
         } else {
-            outputLineInWords.add(new Word(inputStringToParse.substring(start, end), type));
+            outputLineInWords.add(new Word(inputStringToParse, start, end, type));
         }
     }
 
