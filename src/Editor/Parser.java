@@ -3,25 +3,32 @@ package Editor;
 import Editor.Word.Type;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Parser {
 
     private final ArrayList<ArrayList<Word>> dataInWords;
-    private final ArrayList<StringBuilder> dataInChars;
+    private final StringBuilder data;
+    private final ArrayList<Integer> length;
     private final ArrayList<Boolean> commentContinuousList;
     private Word firstBracket;
     private Word secondBracket;
     private FileType fileType;
+    private final EDocument doc;
 
     private static final Pattern openBracketPattern = Pattern.compile("[\\{\\[\\(]");
     private static Pattern bracket = Pattern.compile("[\\[\\]\\{\\}\\(\\)]");
 
-    public Parser(ArrayList<ArrayList<Word>> dataInWords, ArrayList<StringBuilder> dataInChars) {
+    public Parser(EDocument doc, ArrayList<ArrayList<Word>> dataInWords, StringBuilder data, ArrayList<Integer> length) {
+        this.doc = doc;
         this.dataInWords = dataInWords;
-        this.dataInChars = dataInChars;
+        this.data = data;
+        this.length = length;
+
         fileType = FileType.Text;
-        commentContinuousList = new ArrayList<>(dataInChars.size());
+        commentContinuousList = new ArrayList<>(length.size());
     }
 
     // Brackets
@@ -49,8 +56,8 @@ class Parser {
         }
     }
 
-    public void bracketLight(int column, int row) {
-        if (column > 0 && isBracket(dataInChars.get(row).charAt(column - 1))) {
+    public void bracketLight(int column, int row, int pos) {
+        if (column > 0 && isBracket(data.charAt(pos - 1))) {
             int wordInLine = findWordInLine(column, row);
             if (dataInWords.get(row).get(wordInLine).type != Type.Bracket) {
                 return;
@@ -58,7 +65,7 @@ class Parser {
             firstBracket = dataInWords.get(row).get(wordInLine);
             firstBracket.type = Type.BracketLight;
 
-            boolean openBracket = openBracketPattern.matcher(firstBracket.string()).matches();
+            boolean openBracket = openBracketPattern.matcher(Character.toString(data.charAt(pos - 1))).matches();
 
             Word word;
             int k = 1;
@@ -81,8 +88,9 @@ class Parser {
 
                 word = dataInWords.get(row).size() == 0 ? null : dataInWords.get(row).get(wordInLine);
                 if (word != null && word.type == Type.Bracket &&
-                        Math.abs(word.string().charAt(0) - firstBracket.string().charAt(0)) <= 2) {
-                    k = !(openBracket == openBracketPattern.matcher(word.string()).matches()) ? k - 1 : k + 1;
+                        Math.abs(data.charAt(word.start) - data.charAt(firstBracket.start)) <= 2) {
+                    k = !(openBracket == openBracketPattern.matcher(Character.toString(data.charAt(word.start))).matches()) ?
+                            k - 1 : k + 1;
                 }
 
             } while (k > 0);
@@ -97,6 +105,10 @@ class Parser {
     public boolean setFileType(FileType fileType) {
         boolean res = fileType != this.fileType;
         this.fileType = fileType;
+        if (fileType == FileType.Text) {
+            dataInWords.clear();
+            commentContinuousList.clear();
+        }
         return res;
     }
 
@@ -129,28 +141,46 @@ class Parser {
     }
 
     private void parse(int row, int endRow, boolean forceEnd) {
+        row = Math.min(row, length.size() - 1);
 
-        boolean parseAll = dataInChars.size() != dataInWords.size();
+        boolean parseAll = length.size() != dataInWords.size();
 
-        dataInWords.subList(Math.min(dataInChars.size(), dataInWords.size()), dataInWords.size()).clear();
-        commentContinuousList.subList(Math.min(dataInChars.size(), commentContinuousList.size()), commentContinuousList.size()).clear();
-        for (int i = dataInWords.size(); i < dataInChars.size(); i++) {
+        dataInWords.subList(Math.min(length.size(), dataInWords.size()), dataInWords.size()).clear();
+        commentContinuousList.subList(Math.min(length.size(), commentContinuousList.size()), commentContinuousList.size()).clear();
+        for (int i = dataInWords.size(); i < length.size(); i++) {
             dataInWords.add(new ArrayList<>());
-            }
-        for (int i = commentContinuousList.size(); i < dataInChars.size() + 1; i++) {
+        }
+        for (int i = commentContinuousList.size(); i < length.size() + 1; i++) {
             commentContinuousList.add(false);
         }
 
-        endRow = Math.min(dataInChars.size(), endRow);
-        for (int i = row; i < (forceEnd ? endRow : dataInChars.size()); i++) {
-            LineParser lineParser = new LineParser(dataInChars.get(i), commentContinuousList.get(i), fileType);
+        endRow = Math.min(length.size(), endRow);
+        int pos = doc.getPos(row, 0);
+        //System.out.println("pos " + pos);
+        for (int i = row; i < (forceEnd ? endRow : length.size()); i++) {
+            //System.out.println(data.substring(pos, pos + length.get(i)));
+            LineParser lineParser = new LineParser(data.substring(pos, pos + length.get(i)),
+                    commentContinuousList.get(i), fileType, pos);
             dataInWords.set(i, lineParser.getResultLine());
             lineParser.parseLine();
             if (!parseAll && !forceEnd && endRow <= i && lineParser.isCommentContinuous() == commentContinuousList.get(i + 1)) {
                 return;
             }
             dataInWords.set(i, lineParser.getResultLine());
+            ///final int k = pos;
+            //System.out.println(data.substring(pos, pos + length.get(i)));
+            //lineParser.getResultLine().forEach((e) -> System.out.print(data.substring(k + e.start, k + e.end)));
+            //System.out.println();
             commentContinuousList.set(i + 1, lineParser.isCommentContinuous());
+
+            pos += length.get(i) + 1;
         }
+        int k = 0;
+        for (ArrayList<Word> l: dataInWords) {
+            for (Word w: l) {
+                k++;
+            }
+        }
+        //System.out.println("words " + k);
     }
 }

@@ -12,18 +12,19 @@ class LineParser {
     private static final HashSet<Character> charType = new HashSet<>(Arrays.asList(specialChars));
 
     private final ArrayList<Word> outputLineInWords;
-    private final StringBuilder inputStringToParse;
+    private final String inputStringToParse;
     private boolean isCommentContinuous;
     private int pos;
+    private int offset;
     private int startWord;
     private Type state;
     private final FileType fileType;
 
-    LineParser(StringBuilder inputStringToParse, boolean isCommentContinuous, FileType fileType) {
+    LineParser(String inputStringToParse, boolean isCommentContinuous, FileType fileType, int offset) {
         this.inputStringToParse = inputStringToParse;
         this.isCommentContinuous = isCommentContinuous;
         this.fileType = fileType;
-
+        this.offset = offset;
         outputLineInWords = new ArrayList<>();
     }
 
@@ -88,11 +89,20 @@ class LineParser {
         if (end == start) {
             return;
         }
-        if (type == Type.Identifier) {
-            outputLineInWords.add(new Word(inputStringToParse, start, end, fileType));
-        } else {
-            outputLineInWords.add(new Word(inputStringToParse, start, end, type));
+        Type resType = type;
+        if (resType == Type.Identifier) {
+            String s = inputStringToParse.substring(start, end);
+
+            if (fileType == FileType.Java) {
+                resType = KeyWords.isJavaKey(s) ? Type.Key : Type.Identifier;
+            } else if (fileType == FileType.JS) {
+                resType = KeyWords.isJSKey(s) ? Type.Key : Type.Identifier;
+            } else {
+                resType = Type.Other;
+            }
         }
+       // System.out.println(inputStringToParse.substring(start, end));
+        outputLineInWords.add(new Word(start, end, resType));
     }
 
     private void updateState(char ch) {

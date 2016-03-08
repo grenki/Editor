@@ -6,6 +6,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 class ETextArea extends JPanel{
 
@@ -144,15 +145,23 @@ class ETextArea extends JPanel{
 
     private void drawText(Graphics2D graphics2D) {
 
+        StringBuilder data = doc.getAllDataInString();
+        ArrayList<Integer> length = doc. getAllLinesLength();
         ArrayList<ArrayList<Word>> dataInWords = doc.getAllDataInWords();
-        List<CharSequence> dataInLines = doc.getAllDataInLines();
 
         graphics2D.setPaint(Color.BLACK);
 
         int startDrawingRow = doc.getHeightOffset() > 0 ? -1 : 0;
         int y = startDrawingRow * lineSpacing;
         boolean isText = doc.isFileTypeText();
-        for (int i = doc.getHeightOffset() + startDrawingRow; i < dataInLines.size() && y < getHeight(); i++) {
+
+        int pos = 0;
+        for (int j = 0; j < doc.getHeightOffset() + startDrawingRow; j++) {
+            pos += length.get(j) + 1;
+        }
+        //System.out.println(pos);
+
+        for (int i = doc.getHeightOffset() + startDrawingRow; i < length.size() && y < getHeight(); i++) {
             y += lineSpacing;
             int x = -doc.getWidthOffset() * charWidth;
             if (!isText) {
@@ -183,17 +192,23 @@ class ETextArea extends JPanel{
                             graphics2D.setPaint(Color.BLACK);
                             break;
                     }
-                    graphics2D.drawString(word.string(), x, y);
-                    x += word.string().length() * charWidth;
+                    graphics2D.drawString(data.substring(pos + word.start, pos + word.end), x, y);
+                    //System.out.println(pos + " " + data.substring(pos + word.start, pos + word.end));
+                    //pos += word.length();
+                    x += word.length() * charWidth;
                 }
+                pos += length.get(i) + 1;
             } else {
-                int offset = doc.getWidthOffset();
-                CharSequence line = dataInLines.get(i);
-                if (dataInLines.get(i).length() > offset) {
+                //int offset = doc.getWidthOffset();
+
+                graphics2D.drawString(data.substring(pos, Math.min(pos + length.get(i), data.length())), x, y);
+
+                pos += length.get(i) + 1;
+                /*if (length.get(i) > offset) {
                     graphics2D.drawString(line.subSequence(offset, Math.min(offset + doc.getWidth() + 2, line.length())).toString(), 0, y);
                 } else {
                     graphics2D.drawString(line.toString(), x, y);
-                }
+                }*/
             }
         }
     }

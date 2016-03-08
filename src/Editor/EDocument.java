@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 class EDocument {
 
     private final ArrayList<ArrayList<Word>> dataInWords;
-    private final ArrayList<StringBuilder> dataInChars;
+    public final ArrayList<Integer> length;
+
+    private StringBuilder data;
     private final Parser parser;
     private final Clipboard clipboard;
 
@@ -26,6 +27,7 @@ class EDocument {
     private int heightOffset;
     private int column;
     private int row;
+    private int pos;
 
     private boolean insert;
     private boolean isShiftPressed;
@@ -45,6 +47,8 @@ class EDocument {
 
         column = 0;
         row = 0;
+        pos = 0;
+
         insert = false;
         heightOffset = 0;
         widthOffset = 0;
@@ -54,12 +58,13 @@ class EDocument {
 
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
-        dataInChars = new ArrayList<>();
-        dataInChars.add(new StringBuilder());
+        data = new StringBuilder();
+        length = new ArrayList<>(1);
+        length.add(0);
 
-        dataInWords = new ArrayList<>(dataInChars.size());
+        dataInWords = new ArrayList<>();
 
-        parser = new Parser(dataInWords, dataInChars);
+        parser = new Parser(this, dataInWords, data, length);
     }
 
     public void recreateDocument(List<String> initData) {
@@ -72,17 +77,25 @@ class EDocument {
         existSelection = false;
         fileType = FileType.Text;
 
-        dataInChars.clear();
+        data.delete(0, data.length());
+        length.clear();
+
         if (initData != null) {
-            dataInChars.addAll(initData.stream().map(StringBuilder::new).collect(Collectors.toList()));
+            for (String s: initData) {
+                data.append(s);
+                data.append('\n');
+                length.add(s.length());
+            }
+            data.delete(data.length() - 1, data.length());
+
         } else {
-            dataInChars.add(new StringBuilder());
+            length.add(0);
         }
     }
 
     // add or remove line
-    private void addLine(int row, StringBuilder sb) {
-        dataInChars.add(row, sb);
+    private void addLine(int row, int len) {
+        length.add(row, len);
         if (fileType != FileType.Text) {
             dataInWords.add(row, new ArrayList<>());
             parser.addLine(row);
@@ -90,17 +103,16 @@ class EDocument {
     }
 
     private void removeLine(int row) {
-        dataInChars.remove(row);
+        length.remove(row);
         if (fileType != FileType.Text) {
             dataInWords.remove(row);
             parser.removeLine(row);
         }
-
     }
 
     private void removeLines(int startRow, int endRow) {
         endRow++;
-        dataInChars.subList(startRow, endRow).clear();
+        length.subList(startRow, endRow).clear();
         if (fileType != FileType.Text) {
             dataInWords.subList(startRow, endRow).clear();
             parser.removeLines(startRow, endRow);
@@ -118,10 +130,8 @@ class EDocument {
     }
 
     private void updateWithChanges(int startRow, int endRow) {
-
         updatePosition();
-        updateOffsetOnCaret();
-
+        // TODO
         if (fileType != FileType.Text) {
             if (startRow >= 0) {
                 isShiftPressed = false;
@@ -131,15 +141,13 @@ class EDocument {
             }
 
             parser.bracketLightOff();
-            parser.bracketLight(column, row);
+            parser.bracketLight(column, row, pos);
         }
-
-        updateScrollBar();
     }
 
     private void updateOffset() {
-        if (heightOffset + height >= dataInChars.size()) {
-            heightOffset = dataInChars.size() - height;
+        if (heightOffset + height >= length.size()) {
+            heightOffset = length.size() - height;
         }
 
         if (heightOffset < 0) {
@@ -173,7 +181,7 @@ class EDocument {
 
     private void updateScrollBar() {
         int heightOffset = this.heightOffset;
-        scrollBar.setMaximum(dataInChars.size() - 1);
+        scrollBar.setMaximum(length.size() - 1);
         scrollBar.setValue(heightOffset);
         scrollBar.setVisibleAmount(height);
     }
@@ -186,20 +194,28 @@ class EDocument {
 
         if (column < 0){
             row--;
-            column = dataInChars.get(row).length();
+            column = length.get(row);
         }
 
         if (row < 0) {
             row = 0;
         }
 
-        if (row >= dataInChars.size()) {
-            row = dataInChars.size() - 1;
+        if (row >= length.size()) {
+            row = length.size() - 1;
         }
 
-        if (column > dataInChars.get(row).length()) {
-            column = dataInChars.get(row).length();
+        if (column > length.get(row)) {
+            column = length.get(row);
         }
+
+        updatePos();
+        updateOffsetOnCaret();
+        updateScrollBar();
+    }
+
+    private void updatePos() {
+        pos = getPos(row, column);
     }
 
     // Selection + change selection area
@@ -207,8 +223,8 @@ class EDocument {
     public void selectAll() {
         startSelectionColumn = 0;
         startSelectionRow = 0;
-        row = dataInChars.size() - 1;
-        column = dataInChars.get(row).length();
+        row = length.size() - 1;
+        column = length.get(row);
         existSelection = true;
     }
 
@@ -232,18 +248,12 @@ class EDocument {
             int endColumn = selectionInterval[2];
             int endRow = selectionInterval[3];
 
-            StringBuilder res = new StringBuilder();
-            if (startRow != endRow) {
-                res.append(dataInChars.get(startRow).substring(startColumn)).append("\n");
-                for (int i = startRow + 1; i < endRow; i++) {
-                    res.append(dataInChars.get(i)).append("\n");
-                }
-                res.append(dataInChars.get(endRow).substring(0, endColumn));
-            }
-            else {
-                res.append(dataInChars.get(startRow).substring(startColumn, endColumn));
-            }
-            clipboard.setContents(new StringSelection(res.toString()), null);
+            int startPos = getPos(startRow, startColumn);
+            int endPos = getPos(endRow, endColumn);
+
+            String res = data.substring(startPos, endPos);
+
+            clipboard.setContents(new StringSelection(res), null);
         }
     }
 
@@ -258,28 +268,31 @@ class EDocument {
         existSelection = false;
         int startChangesRow = row;
         StringBuilder sb = new StringBuilder();
-        StringBuilder start = dataInChars.get(row);
-        String end = start.substring(column);
-        start.replace(column, start.length(), "");
+
+        int len = column;
+        int endLen = length.get(row) - len;
+
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) != '\n') {
-                if (Character.codePointAt(s, i) == 9) {
-                    sb.append(TAB);
-                }
+            if (Character.codePointAt(s, i) == 9) {
+                sb.append(TAB);
+            }
+            else {
                 sb.append(s.charAt(i));
+            }
+
+            if (s.charAt(i) != '\n') {
+                len++;
             } else {
-                column = 0;
-                dataInChars.get(row).append(sb);
+                length.set(row, len);
                 row++;
-                column = 0;
-                addLine(row, new StringBuilder());
-                sb = new StringBuilder();
+                len = 0;
+                addLine(row, 0);
             }
         }
 
-        column += sb.length();
-        dataInChars.get(row).append(sb).append(end);
-
+        length.set(row, len + endLen);
+        column = len;
+        data.insert(pos, sb);
         updateWithChanges(startChangesRow, row);
     }
 
@@ -291,22 +304,23 @@ class EDocument {
         existSelection = false;
 
         int[] selectionInterval = getSelectionInterval();
-        int startColumn = selectionInterval[0];
-        int startRow = selectionInterval[1];
+        column = selectionInterval[0];
+        row = selectionInterval[1];
         int endColumn = selectionInterval[2];
         int endRow = selectionInterval[3];
 
-        column = startColumn;
-        row = startRow;
+        int startPos = getPos(row, column);
+        int endPos = getPos(endRow, endColumn);
+        //System.out.println(startPos + " " + endPos);
 
-        StringBuilder line = dataInChars.get(startRow);
-        if (startRow != endRow) {
-            line.replace(startColumn, line.length(), "");
-            line.append(dataInChars.get(endRow).substring(endColumn));
-
-            removeLines(startRow + 1, endRow);
+        data.delete(startPos, endPos);
+        if (row != endRow) {
+            length.set(row, column + length.get(endRow) - endColumn);
+            removeLines(row + 1, endRow);
+            //length.subList(row + 1, endRow + 1).clear();
+            //removeLines(row + 1, endRow); //tODO ??
         } else {
-            dataInChars.set(startRow, new StringBuilder(line.substring(0, startColumn) + line.substring(endColumn)));
+            length.set(row, length.get(row) - (endPos - startPos));
         }
 
         updateWithChanges(row);
@@ -316,17 +330,19 @@ class EDocument {
 
     public synchronized void insertChar(char character) {
         deleteSelection();
+
         String ch = Character.toString(character);
-        StringBuilder line = dataInChars.get(row);
         if (!insert) {
+            data.insert(pos, ch);
             if (ch.equals("\n")) {
-                dataInChars.set(row, new StringBuilder(line.substring(0, column)));
-                addLine(row + 1, new StringBuilder(line.substring(column)));
+                addLine(row + 1, length.get(row) - column);
+                //length.add(row + 1, length.get(row) - column);
+                length.set(row, column);
                 row++;
                 column = 0;
                 updateWithChanges(row - 1, row);
             } else {
-                line.insert(column, ch);
+                length.set(row, length.get(row) + 1);
                 column++;
                 updateWithChanges(row);
             }
@@ -335,8 +351,9 @@ class EDocument {
             if (ch.equals("\n")) {
                 row++;
                 column = 0;
-                if (row == dataInChars.size()) {
-                    addLine(dataInChars.size(), new StringBuilder());
+                if (row == length.size()) {
+                    //length.add(0);
+                    addLine(length.size(), 0);
                     updateWithChanges(row);
                 }
                 else {
@@ -344,17 +361,17 @@ class EDocument {
                 }
             }
             else {
-                if (column <= line.length() - 1) {
-                    line.replace(column, column + 1, ch);
+                if (column <= length.get(row) - 1) {
+                    data.replace(pos, pos + 1, ch);
                 }
                 else {
-                    line.append(ch);
+                    data.insert(pos, ch);
+                    length.set(row, length.get(row) + 1);
                 }
                 column++;
                 updateWithChanges(row);
             }
         }
-        //updateWithChanges(row, false);
     }
 
     public synchronized void backspace() {
@@ -365,13 +382,16 @@ class EDocument {
             if (column == 0) { // concat Lines
                 if (row > 0) {
                     row--;
-                    column = dataInChars.get(row).length();
-                    dataInChars.get(row).append(dataInChars.get(row + 1));
+                    column = length.get(row);
+                    length.set(row, column + length.get(row + 1));
+                    //length.remove(row + 1);
                     removeLine(row + 1);
+                    data.delete(pos, pos + 1);
                 }
             } else {
                 column--;
-                dataInChars.get(row).replace(column, column + 1, "");
+                length.set(row, length.get(row) - 1);
+                data.delete(pos - 1, pos);
             }
 
             existSelection = false;
@@ -384,7 +404,7 @@ class EDocument {
             deleteSelection();
         }
         else {
-            if (row == dataInChars.size() - 1 && column == dataInChars.get(row).length()) {
+            if (row == length.size() - 1 && column == length.get(row)) {
                 return;
             }
 
@@ -417,10 +437,10 @@ class EDocument {
     // Navigation
 
     public void right() {
-        if (column < dataInChars.get(row).length()) {
+        if (column < length.get(row)) {
             column++;
         }
-        else if (row < dataInChars.size() - 1) {
+        else if (row < length.size() - 1) {
             row ++;
             column = 0;
         }
@@ -448,7 +468,7 @@ class EDocument {
     }
 
     public void end() {
-        column = dataInChars.get(row).length();
+        column = length.get(row);
         updateWithoutChanges();
     }
 
@@ -459,7 +479,7 @@ class EDocument {
     }
 
     public void pageDown() {
-        heightOffset = Math.max(0, Math.min(dataInChars.size() - height, heightOffset + height));
+        heightOffset = Math.max(0, Math.min(length.size() - height, heightOffset + height));
         row += height;
         updateWithoutChanges();
     }
@@ -507,6 +527,7 @@ class EDocument {
         } else {
             fileType = FileType.Text;
         }
+        // TODO
         boolean needParse = parser.setFileType(fileType);
         if (fileType != FileType.Text) {
             if (open) {
@@ -514,12 +535,12 @@ class EDocument {
                 updateWithoutChanges();
                 new Thread(() -> {
                     synchronized (this) {
-                        parser.forceParse(height + 2, dataInChars.size());
+                        parser.forceParse(height + 2, length.size());
                     }
                 }).start();
             } else {
                 if (needParse) {
-                    parser.forceParse(0, dataInChars.size());
+                    parser.forceParse(0, length.size());
                     updateWithoutChanges();
                 }
             }
@@ -554,12 +575,33 @@ class EDocument {
         return widthOffset;
     }
 
-   public int getCaretRow() {
+    public int getCaretRow() {
         return row;
     }
 
     public int getCaretColumn() {
         return column;
+    }
+
+    public int getPos(int row, int column) {
+        int res = 0;
+        for (int i = 0; i < row; i++) {
+            res += length.get(i) + 1;
+        }
+        res += column;
+        /*System.out.println("----------------");
+        System.out.println(data);
+        System.out.println("---------");
+        length.forEach(System.out :: println);*/
+        int k = 0;
+        for (int i = 0; i < length.size(); i++) {
+            k += length.get(i) + 1;
+        }
+        if (k - 1 != data.length()) {
+            System.out.println("ERROR " + k + " " + data.length());
+        }
+
+        return res;
     }
 
     int[] getSelectionInterval() {
@@ -585,6 +627,45 @@ class EDocument {
     }
 
     public List<CharSequence> getAllDataInLines(){
-        return (List) dataInChars;
+        ArrayList<String> res = new ArrayList<>(length.size());
+        int pos = 0;
+        for (Integer aLength : length) {
+            res.add(data.substring(pos, pos + aLength));
+            pos += aLength + 1;
+        }
+        return (List) res;
     }
+
+    public StringBuilder getAllDataInString() {
+        return data;
+    }
+
+    public ArrayList<Integer> getAllLinesLength() {
+        return length;
+    }
+
+    /*private void verification() {
+        int k = 0;
+        try {
+            for (int i = 0; i < dataInChars.size(); i++) {
+                StringBuilder line = dataInChars.get(i);
+                for (int j = 0; j < line.length(); j++) {
+                    if (line.charAt(j) != data.charAt(k)) {
+                        System.out.println("--------data-------");
+                        System.out.println(i + " " + j + " " + getPos());
+                        System.out.println(data);
+                        System.out.println("--dInChars----");
+                        dataInChars.forEach(System.out :: println);
+
+                        System.out.println("---------------");
+                    }
+                    k++;
+                }
+                k++;
+            }
+        }
+        catch (Exception e) {
+            System.out.println("wrong");
+        }
+    }*/
 }

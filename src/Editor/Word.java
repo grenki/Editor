@@ -3,19 +3,17 @@ package Editor;
 class Word {
 
     public Type type;
-    private int start;
-    private int end;
-    private StringBuilder value;
+    public int start;
+    public int end;
 
-    public Word(StringBuilder value, int start, int end, Type type) {
-        this.value = value;
-        this.end = end;
-        this.start = start;
+    public Word(int start, int end, Type type) {
         this.type = type;
+        this.start = start;
+        this.end = end;
     }
 
-    public Word(StringBuilder value, int start, int end, FileType fileType) {
-        this.value = value;
+    /*public Word(StringBuilder value, int start, int end, FileType fileType) {
+        //this.value = value;
         this.end = end;
         this.start = start;
 
@@ -26,17 +24,17 @@ class Word {
         } else {
             type = Type.Other;
         }
-    }
+    }*/
 
-    public String string() {
+    /*public String string() {
         return value.substring(start, end);
-    }
+    }*/
 
     public int length() {
         return end - start;
     }
 
     enum Type {
-        Key, Identifier, Comment, Bracket, Other, BracketLight
+        Key, Identifier, Comment, Bracket, Other, BracketLight, CR
     }
 }
