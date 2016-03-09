@@ -14,13 +14,14 @@ import java.util.regex.Pattern;
 
 class EDocument {
 
-    private final ArrayList<ArrayList<Word>> dataInWords;
-    public final ArrayList<Integer> length;
-
-    private StringBuilder data;
+    private static final Pattern javaFilePattern = Pattern.compile(".*\\.java");
+    private static final Pattern jsFilePattern = Pattern.compile(".*\\.js");
+    private static final String TAB = "    ";
+    private final ArrayList<Integer> length;
+    private final Words dataInWords;
     private final Parser parser;
     private final Clipboard clipboard;
-
+    private final StringBuilder data;
     private int width;
     private int height;
     private int widthOffset;
@@ -28,20 +29,13 @@ class EDocument {
     private int column;
     private int row;
     private int pos;
-
     private boolean insert;
     private boolean isShiftPressed;
     private boolean existSelection;
-
     private int startSelectionRow;
     private int startSelectionColumn;
-
     private FileType fileType;
     private JScrollBar scrollBar;
-
-    private static final Pattern javaFilePattern = Pattern.compile(".*\\.java");
-    private static final Pattern jsFilePattern = Pattern.compile(".*\\.js");
-    private static final String TAB = "    ";
 
     public EDocument() {
 
@@ -62,12 +56,12 @@ class EDocument {
         length = new ArrayList<>(1);
         length.add(0);
 
-        dataInWords = new ArrayList<>();
+        dataInWords = new Words();
 
         parser = new Parser(this, dataInWords, data, length);
     }
 
-    public void recreateDocument(List<String> initData) {
+    public synchronized void recreateDocument(List<String> initData) {
         column = 0;
         row = 0;
         insert = false;
@@ -97,8 +91,7 @@ class EDocument {
     private void addLine(int row, int len) {
         length.add(row, len);
         if (fileType != FileType.Text) {
-            dataInWords.add(row, new ArrayList<>());
-            parser.addLine(row);
+            dataInWords.add(row);
         }
     }
 
@@ -106,16 +99,13 @@ class EDocument {
         length.remove(row);
         if (fileType != FileType.Text) {
             dataInWords.remove(row);
-            parser.removeLine(row);
         }
     }
 
     private void removeLines(int startRow, int endRow) {
-        endRow++;
-        length.subList(startRow, endRow).clear();
+        length.subList(startRow, endRow + 1).clear();
         if (fileType != FileType.Text) {
-            dataInWords.subList(startRow, endRow).clear();
-            parser.removeLines(startRow, endRow);
+            dataInWords.remove(startRow, endRow);
         }
 
     }
@@ -131,7 +121,7 @@ class EDocument {
 
     private void updateWithChanges(int startRow, int endRow) {
         updatePosition();
-        // TODO
+
         if (fileType != FileType.Text) {
             if (startRow >= 0) {
                 isShiftPressed = false;
@@ -311,14 +301,11 @@ class EDocument {
 
         int startPos = getPos(row, column);
         int endPos = getPos(endRow, endColumn);
-        //System.out.println(startPos + " " + endPos);
 
         data.delete(startPos, endPos);
         if (row != endRow) {
             length.set(row, column + length.get(endRow) - endColumn);
             removeLines(row + 1, endRow);
-            //length.subList(row + 1, endRow + 1).clear();
-            //removeLines(row + 1, endRow); //tODO ??
         } else {
             length.set(row, length.get(row) - (endPos - startPos));
         }
@@ -346,8 +333,7 @@ class EDocument {
                 column++;
                 updateWithChanges(row);
             }
-        }
-        else {
+        } else {
             if (ch.equals("\n")) {
                 row++;
                 column = 0;
@@ -355,16 +341,13 @@ class EDocument {
                     //length.add(0);
                     addLine(length.size(), 0);
                     updateWithChanges(row);
-                }
-                else {
+                } else {
                     updateWithoutChanges();
                 }
-            }
-            else {
+            } else {
                 if (column <= length.get(row) - 1) {
                     data.replace(pos, pos + 1, ch);
-                }
-                else {
+                } else {
                     data.insert(pos, ch);
                     length.set(row, length.get(row) + 1);
                 }
@@ -527,17 +510,18 @@ class EDocument {
         } else {
             fileType = FileType.Text;
         }
-        // TODO
+
         boolean needParse = parser.setFileType(fileType);
         if (fileType != FileType.Text) {
             if (open) {
-                parser.forceParse(0, height + 2);
+                //parser.forceParse(0, height + 2);
+                parser.forceParse(0, length.size());
                 updateWithoutChanges();
-                new Thread(() -> {
+                /*new Thread(() -> {
                     synchronized (this) {
                         parser.forceParse(height + 2, length.size());
                     }
-                }).start();
+                }).start();*/
             } else {
                 if (needParse) {
                     parser.forceParse(0, length.size());
@@ -589,13 +573,10 @@ class EDocument {
             res += length.get(i) + 1;
         }
         res += column;
-        /*System.out.println("----------------");
-        System.out.println(data);
-        System.out.println("---------");
-        length.forEach(System.out :: println);*/
+
         int k = 0;
-        for (int i = 0; i < length.size(); i++) {
-            k += length.get(i) + 1;
+        for (Integer aLength : length) {
+            k += aLength + 1;
         }
         if (k - 1 != data.length()) {
             System.out.println("ERROR " + k + " " + data.length());
@@ -616,13 +597,9 @@ class EDocument {
         return fileType == FileType.Text;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
     // Get all data
 
-    public ArrayList<ArrayList<Word>> getAllDataInWords() {
+    public Words getAllDataInWords() {
         return dataInWords;
     }
 
@@ -643,29 +620,4 @@ class EDocument {
     public ArrayList<Integer> getAllLinesLength() {
         return length;
     }
-
-    /*private void verification() {
-        int k = 0;
-        try {
-            for (int i = 0; i < dataInChars.size(); i++) {
-                StringBuilder line = dataInChars.get(i);
-                for (int j = 0; j < line.length(); j++) {
-                    if (line.charAt(j) != data.charAt(k)) {
-                        System.out.println("--------data-------");
-                        System.out.println(i + " " + j + " " + getPos());
-                        System.out.println(data);
-                        System.out.println("--dInChars----");
-                        dataInChars.forEach(System.out :: println);
-
-                        System.out.println("---------------");
-                    }
-                    k++;
-                }
-                k++;
-            }
-        }
-        catch (Exception e) {
-            System.out.println("wrong");
-        }
-    }*/
 }

@@ -6,7 +6,6 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 class ETextArea extends JPanel{
 
@@ -15,8 +14,8 @@ class ETextArea extends JPanel{
     private final EListener listener;
     private final int minOffsetRight = 1;
     private final int minOffsetBottom = 2;
-    private JScrollBar scrollBar;
     private final EDocument doc;
+    private JScrollBar scrollBar;
 
 
 
@@ -147,7 +146,7 @@ class ETextArea extends JPanel{
 
         StringBuilder data = doc.getAllDataInString();
         ArrayList<Integer> length = doc. getAllLinesLength();
-        ArrayList<ArrayList<Word>> dataInWords = doc.getAllDataInWords();
+        Words dataInWords = doc.getAllDataInWords();
 
         graphics2D.setPaint(Color.BLACK);
 
@@ -165,7 +164,8 @@ class ETextArea extends JPanel{
             y += lineSpacing;
             int x = -doc.getWidthOffset() * charWidth;
             if (!isText) {
-                for (Word word : dataInWords.get(i)) {
+                for (int j = 0; j < dataInWords.rowSize(i); j++) {
+                    Word word = dataInWords.get(i, j);
                     if (x > getWidth()) {
                         break;
                     }
@@ -193,10 +193,12 @@ class ETextArea extends JPanel{
                             break;
                     }
                     graphics2D.drawString(data.substring(pos + word.start, pos + word.end), x, y);
-                    //System.out.println(pos + " " + data.substring(pos + word.start, pos + word.end));
+                    //System.out.println(word.start + " " + word.end + " ");
+                    //System.out.print(data.substring(pos + word.start, pos + word.end));
                     //pos += word.length();
                     x += word.length() * charWidth;
                 }
+                System.out.println();
                 pos += length.get(i) + 1;
             } else {
                 //int offset = doc.getWidthOffset();

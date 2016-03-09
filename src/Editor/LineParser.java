@@ -1,10 +1,10 @@
 package Editor;
 
+import Editor.Word.Type;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-
-import Editor.Word.Type;
 
 class LineParser {
 
@@ -13,19 +13,21 @@ class LineParser {
 
     private final ArrayList<Word> outputLineInWords;
     private final String inputStringToParse;
+    private final FileType fileType;
+    private final Words dataInWords;
+    private final int row;
     private boolean isCommentContinuous;
     private int pos;
-    private int offset;
     private int startWord;
     private Type state;
-    private final FileType fileType;
 
-    LineParser(String inputStringToParse, boolean isCommentContinuous, FileType fileType, int offset) {
+    LineParser(String inputStringToParse, FileType fileType, Words words, int row) {
+        dataInWords = words;
         this.inputStringToParse = inputStringToParse;
-        this.isCommentContinuous = isCommentContinuous;
+        this.isCommentContinuous = dataInWords.isCommentContinuous(row);
         this.fileType = fileType;
-        this.offset = offset;
         outputLineInWords = new ArrayList<>();
+        this.row = row;
     }
 
     public void parseLine() {
@@ -101,8 +103,9 @@ class LineParser {
                 resType = Type.Other;
             }
         }
-       // System.out.println(inputStringToParse.substring(start, end));
-        outputLineInWords.add(new Word(start, end, resType));
+
+        //outputLineInWords.add(new Word(start, end, resType));
+        dataInWords.popLast(row, new Word(start, end, resType));
     }
 
     private void updateState(char ch) {
