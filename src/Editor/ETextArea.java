@@ -198,7 +198,6 @@ class ETextArea extends JPanel{
                     //pos += word.length();
                     x += word.length() * charWidth;
                 }
-                System.out.println();
                 pos += length.get(i) + 1;
             } else {
                 //int offset = doc.getWidthOffset();

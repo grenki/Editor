@@ -64,6 +64,7 @@ class EDocument {
     public synchronized void recreateDocument(List<String> initData) {
         column = 0;
         row = 0;
+        pos = 0;
         insert = false;
         heightOffset = 0;
         widthOffset = 0;
@@ -577,9 +578,6 @@ class EDocument {
         int k = 0;
         for (Integer aLength : length) {
             k += aLength + 1;
-        }
-        if (k - 1 != data.length()) {
-            System.out.println("ERROR " + k + " " + data.length());
         }
 
         return res;

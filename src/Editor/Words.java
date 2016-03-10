@@ -3,7 +3,7 @@ package Editor;
 import java.util.ArrayList;
 
 class Words {
-    private final ArrayList<Word> data;
+    private final WordsArrayList data;
     private final ArrayList<Boolean> commentContinuousList;
     private final ArrayList<Integer> length;
 
@@ -11,7 +11,7 @@ class Words {
     private int pos;
 
     Words() {
-        data = new ArrayList<>();
+        data = new WordsArrayList();
         length = new ArrayList<>();
         commentContinuousList = new ArrayList<>();
         length.add(0);
@@ -34,28 +34,31 @@ class Words {
 
     public void clearDataLine(int row) {
         int pos = find(row, 0);
-        data.subList(pos, pos + length.get(row)).clear();
+        data.remove(pos, pos + length.get(row));
+        //data.subList(pos, pos + length.get(row)).clear();
         length.set(row, 0);
     }
 
-    public void add(int row, ArrayList<Word> list) {
+    /*public void add(int row, ArrayList<Word> list) {
         int pos = find(row, 0);
         data.addAll(pos, list);
         length.add(row, list.size());
         commentContinuousList.add(row, false);
-    }
+    }*/
 
-    public void set(int row, ArrayList<Word> list) {
+    /*public void set(int row, ArrayList<Word> list) {
         int pos = find(row, 0);
-        data.subList(pos, pos + length.get(row)).clear();
+        data.remove(pos, pos + length.get(row));
+        //data.subList(pos, pos + length.get(row)).clear();
 
         data.addAll(pos, list);
         length.add(row, list.size());
-    }
+    }*/
 
     public void remove(int row) {
         int pos = find(row, 0);
-        data.subList(pos, pos + length.get(row)).clear();
+        //data.subList(pos, pos + length.get(row)).clear();
+        data.remove(pos, pos + length.get(row));
         length.remove(row);
         commentContinuousList.remove(row);
     }
@@ -64,7 +67,8 @@ class Words {
         int pos = find(row, 0);
         int endPos = endRow >= length.size() ? data.size() : find(endRow, length.get(endRow));
 
-        data.subList(pos, endPos).clear();
+        //data.subList(pos, endPos).clear();
+        data.remove(pos, endPos);
         length.subList(row, endRow + 1).clear();
         commentContinuousList.subList(row, endRow + 1).clear();
     }
