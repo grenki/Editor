@@ -153,8 +153,10 @@ public class LineParserTest extends Assert {
             LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
             lineParser.parseLine();
 
-
-            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Identifier));
+            for (int j = 0; j < words.rowSize(0); j++) {
+                Word word = words.get(0, j);
+                assertEquals(word.type, Type.Identifier);
+            }
         }
     }
 

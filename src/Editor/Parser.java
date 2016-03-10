@@ -1,6 +1,7 @@
 package Editor;
 
 import Editor.Word.Type;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -15,6 +16,8 @@ class Parser {
     private final EDocument doc;
     private Word firstBracket;
     private Word secondBracket;
+    private Pair<Integer, Integer> firstBracketPos;
+    private Pair<Integer, Integer> secondBracketPos;
     private FileType fileType;
 
     public Parser(EDocument doc, Words dataInWords, StringBuilder data, ArrayList<Integer> length) {
@@ -49,9 +52,15 @@ class Parser {
     public void bracketLightOff() {
         if (firstBracket != null) {
             firstBracket.type = Type.Bracket;
+            dataInWords.set(firstBracketPos.getKey(), firstBracketPos.getValue(), firstBracket);
+
+            firstBracket = null;
         }
         if (secondBracket != null) {
             secondBracket.type = Type.Bracket;
+            dataInWords.set(secondBracketPos.getKey(), secondBracketPos.getValue(), secondBracket);
+
+            secondBracket = null;
         }
     }
 
@@ -63,15 +72,28 @@ class Parser {
             }
             firstBracket = dataInWords.get(row, wordInLine);
             firstBracket.type = Type.BracketLight;
+            firstBracketPos = new Pair<>(row, wordInLine);
+            char firstBracketChar = data.charAt(pos - 1);
 
-            boolean openBracket = openBracketPattern.matcher(Character.toString(data.charAt(pos - 1))).matches();
+            pos -= firstBracket.start + 1;
+
+
+            dataInWords.set(row, wordInLine, firstBracket);
+
+            secondBracket = null;
+
+            boolean openBracket = openBracketPattern.matcher(Character.toString(firstBracketChar)).matches();
 
             Word word;
             int k = 1;
             do {
                 wordInLine = openBracket ? wordInLine + 1 : wordInLine - 1;
                 if (wordInLine >= dataInWords.rowSize(row)) {
+                    pos += length.get(row) + 1;
                     row++;
+                    if (row >= dataInWords.size()) {
+                        return;
+                    }
                     wordInLine = 0;
                 }
                 if (wordInLine < 0) {
@@ -79,24 +101,24 @@ class Parser {
                     if (row < 0 || row >= dataInWords.size()) {
                         return;
                     }
+                    pos -= length.get(row) + 1;
                     wordInLine = Math.max(dataInWords.rowSize(row) - 1, 0);
-                }
-                if (row < 0 || row >= dataInWords.size()) {
-                    return;
                 }
 
                 word = dataInWords.rowSize(row) == 0 ? null : dataInWords.get(row, wordInLine);
                 if (word != null && word.type == Type.Bracket &&
-                        Math.abs(data.charAt(word.start) - data.charAt(firstBracket.start)) <= 2) {
-                    k = !(openBracket == openBracketPattern.matcher(Character.toString(data.charAt(word.start))).matches()) ?
+                        Math.abs(data.charAt(pos + word.start) - firstBracketChar) <= 2) {
+                    k = !(openBracket == openBracketPattern.matcher(Character.toString(data.charAt(pos + word.start))).matches()) ?
                             k - 1 : k + 1;
                 }
 
             } while (k > 0);
 
+            secondBracket = word;
             if (word != null) {
-                secondBracket = word;
                 secondBracket.type = Type.BracketLight;
+                dataInWords.set(row, wordInLine, secondBracket);
+                secondBracketPos = new Pair<>(row, wordInLine);
             }
         }
     }
@@ -108,7 +130,6 @@ class Parser {
         this.fileType = fileType;
         if (fileType == FileType.Text) {
             dataInWords.clear();
-            //commentContinuousList.clear();
         }
         return res;
     }

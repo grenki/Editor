@@ -123,15 +123,17 @@ class EDocument {
     private void updateWithChanges(int startRow, int endRow) {
         updatePosition();
 
+        if (startRow >= 0 && endRow >= 0) {
+            isShiftPressed = false;
+        }
+
         if (fileType != FileType.Text) {
-            if (startRow >= 0) {
-                isShiftPressed = false;
-                if (endRow >= 0) {
-                    parser.parse(startRow, endRow);
-                }
+            parser.bracketLightOff();
+
+            if (startRow >= 0 && endRow >= 0) {
+                parser.parse(startRow, endRow);
             }
 
-            parser.bracketLightOff();
             parser.bracketLight(column, row, pos);
         }
     }
@@ -324,7 +326,6 @@ class EDocument {
             data.insert(pos, ch);
             if (ch.equals("\n")) {
                 addLine(row + 1, length.get(row) - column);
-                //length.add(row + 1, length.get(row) - column);
                 length.set(row, column);
                 row++;
                 column = 0;
@@ -368,7 +369,6 @@ class EDocument {
                     row--;
                     column = length.get(row);
                     length.set(row, column + length.get(row + 1));
-                    //length.remove(row + 1);
                     removeLine(row + 1);
                     data.delete(pos, pos + 1);
                 }
@@ -515,7 +515,6 @@ class EDocument {
         boolean needParse = parser.setFileType(fileType);
         if (fileType != FileType.Text) {
             if (open) {
-                //parser.forceParse(0, height + 2);
                 parser.forceParse(0, length.size());
                 updateWithoutChanges();
                 /*new Thread(() -> {
@@ -574,11 +573,6 @@ class EDocument {
             res += length.get(i) + 1;
         }
         res += column;
-
-        int k = 0;
-        for (Integer aLength : length) {
-            k += aLength + 1;
-        }
 
         return res;
     }

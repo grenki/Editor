@@ -28,6 +28,7 @@ class Words {
     }
 
     public void add(int row) {
+        find(row - 1, 0);
         length.add(row, 0);
         commentContinuousList.add(row, false);
     }
@@ -35,29 +36,15 @@ class Words {
     public void clearDataLine(int row) {
         int pos = find(row, 0);
         data.remove(pos, pos + length.get(row));
-        //data.subList(pos, pos + length.get(row)).clear();
         length.set(row, 0);
     }
 
-    /*public void add(int row, ArrayList<Word> list) {
-        int pos = find(row, 0);
-        data.addAll(pos, list);
-        length.add(row, list.size());
-        commentContinuousList.add(row, false);
-    }*/
-
-    /*public void set(int row, ArrayList<Word> list) {
-        int pos = find(row, 0);
-        data.remove(pos, pos + length.get(row));
-        //data.subList(pos, pos + length.get(row)).clear();
-
-        data.addAll(pos, list);
-        length.add(row, list.size());
-    }*/
+    public void set(int row, int wordN, Word word) {
+        data.set(find(row, wordN), word);
+    }
 
     public void remove(int row) {
         int pos = find(row, 0);
-        //data.subList(pos, pos + length.get(row)).clear();
         data.remove(pos, pos + length.get(row));
         length.remove(row);
         commentContinuousList.remove(row);
@@ -67,7 +54,8 @@ class Words {
         int pos = find(row, 0);
         int endPos = endRow >= length.size() ? data.size() : find(endRow, length.get(endRow));
 
-        //data.subList(pos, endPos).clear();
+        find(row, 0);
+
         data.remove(pos, endPos);
         length.subList(row, endRow + 1).clear();
         commentContinuousList.subList(row, endRow + 1).clear();
@@ -86,9 +74,15 @@ class Words {
                     pos += length.get(i);
                 }
             } else {
-                pos = 0;
-                for (int i = 0; i < row; i++) {
-                    pos += length.get(i);
+                if (this.row >> 1 < row) {
+                    for (int i = row; i < this.row; i++) {
+                        pos -= length.get(i);
+                    }
+                } else {
+                    pos = 0;
+                    for (int i = 0; i < row; i++) {
+                        pos += length.get(i);
+                    }
                 }
             }
 

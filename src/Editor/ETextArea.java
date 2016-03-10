@@ -158,7 +158,6 @@ class ETextArea extends JPanel{
         for (int j = 0; j < doc.getHeightOffset() + startDrawingRow; j++) {
             pos += length.get(j) + 1;
         }
-        //System.out.println(pos);
 
         for (int i = doc.getHeightOffset() + startDrawingRow; i < length.size() && y < getHeight(); i++) {
             y += lineSpacing;
@@ -193,23 +192,14 @@ class ETextArea extends JPanel{
                             break;
                     }
                     graphics2D.drawString(data.substring(pos + word.start, pos + word.end), x, y);
-                    //System.out.println(word.start + " " + word.end + " ");
-                    //System.out.print(data.substring(pos + word.start, pos + word.end));
-                    //pos += word.length();
+
                     x += word.length() * charWidth;
                 }
                 pos += length.get(i) + 1;
             } else {
-                //int offset = doc.getWidthOffset();
-
                 graphics2D.drawString(data.substring(pos, Math.min(pos + length.get(i), data.length())), x, y);
 
                 pos += length.get(i) + 1;
-                /*if (length.get(i) > offset) {
-                    graphics2D.drawString(line.subSequence(offset, Math.min(offset + doc.getWidth() + 2, line.length())).toString(), 0, y);
-                } else {
-                    graphics2D.drawString(line.toString(), x, y);
-                }*/
             }
         }
     }

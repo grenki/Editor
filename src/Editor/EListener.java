@@ -2,7 +2,8 @@ package Editor;
 
 import java.awt.event.*;
 
-class EListener implements AdjustmentListener, MouseMotionListener, MouseListener, MouseWheelListener, KeyListener, ComponentListener {
+class EListener implements AdjustmentListener, MouseMotionListener,
+        MouseListener, MouseWheelListener, KeyListener, ComponentListener {
 
     private final ETextArea area;
     private EDocument doc;

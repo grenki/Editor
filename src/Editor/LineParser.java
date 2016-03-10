@@ -2,7 +2,6 @@ package Editor;
 
 import Editor.Word.Type;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -11,7 +10,6 @@ class LineParser {
     private static final Character[] specialChars = {'{', '}', '[', ']', '(', ')', '/'};
     private static final HashSet<Character> charType = new HashSet<>(Arrays.asList(specialChars));
 
-    private final ArrayList<Word> outputLineInWords;
     private final String inputStringToParse;
     private final FileType fileType;
     private final Words dataInWords;
@@ -26,7 +24,6 @@ class LineParser {
         this.inputStringToParse = inputStringToParse;
         this.isCommentContinuous = dataInWords.isCommentContinuous(row);
         this.fileType = fileType;
-        outputLineInWords = new ArrayList<>();
         this.row = row;
     }
 
@@ -142,10 +139,6 @@ class LineParser {
 
     private boolean isNextStar(int pos) {
         return pos < inputStringToParse.length() - 1 && inputStringToParse.charAt(pos + 1) == '*';
-    }
-
-    public ArrayList<Word> getResultLine() {
-        return outputLineInWords;
     }
 
     public boolean isCommentContinuous() {

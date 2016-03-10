@@ -35,9 +35,14 @@ class WordsArrayList {
     public void add(int pos, Word word) {
         size++;
         updateCapacityUp();
-        //System.out.println(size + " " + capacity);
 
         shiftArrays(pos, 1, true);
+        start[pos] = word.start;
+        end[pos] = word.end;
+        type[pos] = typeToByte(word.type);
+    }
+
+    public void set(int pos, Word word) {
         start[pos] = word.start;
         end[pos] = word.end;
         type[pos] = typeToByte(word.type);
@@ -47,15 +52,11 @@ class WordsArrayList {
         return new Word(start[pos], end[pos], byteToType(type[pos]));
     }
 
-    public void remove(int pos) {
-        remove(pos, pos + 1);
-    }
-
-    public void remove(int startPos, int endPos) {  // delete interval [..., ...)
+    public void remove(int startPos, int endPos) {  // delete interval [ )
         int length = endPos - startPos;
-        size -= length;
 
         shiftArrays(startPos, length, false);
+        size -= length;
 
         updateCapacityDown();
     }
@@ -88,11 +89,15 @@ class WordsArrayList {
     }
 
     private void shiftArrays(int offset, int shift, boolean right) {
+        if (shift == 0) {
+            return;
+        }
         int shiftRight = right ? shift : 0;
         int shiftLeft = !right ? shift : 0;
-        System.arraycopy(start, offset + shiftLeft, start, offset + shiftRight, size - offset);
-        System.arraycopy(end, offset + shiftLeft, end, offset + shiftRight, size - offset);
-        System.arraycopy(type, offset + shiftLeft, type, offset + shiftRight, size - offset);
+
+        System.arraycopy(start, offset + shiftLeft, start, offset + shiftRight, size - offset - shiftLeft);
+        System.arraycopy(end, offset + shiftLeft, end, offset + shiftRight, size - offset - shiftLeft);
+        System.arraycopy(type, offset + shiftLeft, type, offset + shiftRight, size - offset - shiftLeft);
     }
 
     private Word.Type byteToType(byte type) {
