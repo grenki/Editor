@@ -101,7 +101,6 @@ class LineParser {
             }
         }
 
-        //outputLineInWords.add(new Word(start, end, resType));
         dataInWords.popLast(row, new Word(start, end, resType));
     }
 

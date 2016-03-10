@@ -61,7 +61,7 @@ class EDocument {
         parser = new Parser(this, dataInWords, data, length);
     }
 
-    public synchronized void recreateDocument(List<String> initData) {
+    public void recreateDocument(List<String> initData) {
         column = 0;
         row = 0;
         pos = 0;
@@ -221,7 +221,7 @@ class EDocument {
         existSelection = true;
     }
 
-    public synchronized void paste() {
+    public void paste() {
         if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
             deleteSelection();
             try {
@@ -250,7 +250,7 @@ class EDocument {
         }
     }
 
-    public synchronized void cut() {
+    public void cut() {
         if (isExistSelection()) {
             copy();
             deleteSelection();
@@ -318,7 +318,7 @@ class EDocument {
 
     // Change char
 
-    public synchronized void insertChar(char character) {
+    public void insertChar(char character) {
         deleteSelection();
 
         String ch = Character.toString(character);
@@ -340,7 +340,6 @@ class EDocument {
                 row++;
                 column = 0;
                 if (row == length.size()) {
-                    //length.add(0);
                     addLine(length.size(), 0);
                     updateWithChanges(row);
                 } else {
@@ -359,7 +358,7 @@ class EDocument {
         }
     }
 
-    public synchronized void backspace() {
+    public void backspace() {
         if (isExistSelection()) {
             deleteSelection();
         }
@@ -370,7 +369,7 @@ class EDocument {
                     column = length.get(row);
                     length.set(row, column + length.get(row + 1));
                     removeLine(row + 1);
-                    data.delete(pos, pos + 1);
+                    data.delete(pos - 1, pos);
                 }
             } else {
                 column--;
@@ -383,7 +382,7 @@ class EDocument {
         }
     }
 
-    public synchronized void delete() {
+    public void delete() {
         if (isExistSelection()) {
             deleteSelection();
         }
@@ -397,7 +396,7 @@ class EDocument {
         }
     }
 
-    public synchronized void insertTab() {
+    public void insertTab() {
         insertString(TAB);
     }
 
@@ -499,7 +498,7 @@ class EDocument {
         insert = !insert;
     }
 
-    public synchronized void setFileName(String s, boolean open) {
+    public void setFileName(String s, boolean open) {
 
         Matcher javaFile = javaFilePattern.matcher(s);
         Matcher jsFile = jsFilePattern.matcher(s);
@@ -517,11 +516,6 @@ class EDocument {
             if (open) {
                 parser.forceParse(0, length.size());
                 updateWithoutChanges();
-                /*new Thread(() -> {
-                    synchronized (this) {
-                        parser.forceParse(height + 2, length.size());
-                    }
-                }).start();*/
             } else {
                 if (needParse) {
                     parser.forceParse(0, length.size());
