@@ -4,6 +4,7 @@ import Editor.Word.Type;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class LineParserTest extends Assert {
@@ -22,12 +23,10 @@ public class LineParserTest extends Assert {
 
         for (String inputString : inputStrings) {
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-
-            for (int i = 0; i < words.rowSize(0); i++) {
-                assertEquals(words.get(0, i).type, Type.Other);
-            }
+            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Other));
         }
     }
 
@@ -44,12 +43,10 @@ public class LineParserTest extends Assert {
 
         for (String inputString : inputStrings) {
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-
-            for (int i = 0; i < words.rowSize(0); i++) {
-                assertEquals(words.get(0, i).type, Type.Comment);
-            }
+            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Comment));
         }
     }
 
@@ -69,13 +66,13 @@ public class LineParserTest extends Assert {
         for (String inputString : inputStrings) {
 
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-
-            for (int i = 0; i < words.rowSize(0); i++) {
-                assertEquals(words.get(0, i).type, Type.Bracket);
-                assertEquals(words.get(0, i).length(), 1);
-            }
+            lineParser.getResultLine().forEach((e) -> {
+                assertEquals(e.type, Type.Bracket);
+                assertEquals(e.length(), 1);
+            });
         }
     }
 
@@ -87,14 +84,12 @@ public class LineParserTest extends Assert {
             StringBuilder inputString = randomString(random.nextInt(maxLength));
 
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString.toString(), FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString.toString(), FileType.Java, words, res, 0);
             lineParser.parseLine();
+            ArrayList<Word> resultList = lineParser.getResultLine();
             StringBuilder result = new StringBuilder();
-
-            for (int j = 0; j < words.rowSize(0); j++) {
-                Word word = words.get(0, j);
-                result.append(inputString.substring(word.start, word.end));
-            }
+            resultList.forEach((e) -> result.append(inputString.substring(e.start, e.end)));
 
             assertEquals(inputString.toString(), result.toString());
         }
@@ -111,9 +106,9 @@ public class LineParserTest extends Assert {
         for (String inputString : inputStrings) {
 
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-
             assertEquals(lineParser.isCommentContinuous(), false);
         }
     }
@@ -131,7 +126,8 @@ public class LineParserTest extends Assert {
 
         for (String inputString : inputStrings) {
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
             assertEquals(lineParser.isCommentContinuous(), true);
         }
@@ -150,13 +146,10 @@ public class LineParserTest extends Assert {
 
         for (String inputString : inputStrings) {
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-
-            for (int j = 0; j < words.rowSize(0); j++) {
-                Word word = words.get(0, j);
-                assertEquals(word.type, Type.Identifier);
-            }
+            lineParser.getResultLine().forEach((e) -> assertEquals(e.type, Type.Identifier));
         }
     }
 
@@ -173,13 +166,10 @@ public class LineParserTest extends Assert {
 
         for (String inputString : inputStrings) {
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-
-            for (int j = 0; j < words.rowSize(0); j++) {
-                Word word = words.get(0, j);
-                assertEquals(word.type, Type.Key);
-            }
+            lineParser.getResultLine().forEach((word) -> assertEquals(word.type, Type.Key));
         }
     }
 
@@ -197,9 +187,10 @@ public class LineParserTest extends Assert {
 
         for (String inputString : inputStrings) {
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
-            assertNotEquals(words.rowSize(0), 1);
+            assertNotEquals(lineParser.getResultLine().size(), 1);
         }
     }
 
@@ -231,13 +222,13 @@ public class LineParserTest extends Assert {
         for (int i=0; i < inputStrings.length; i++) {
             String inputString = inputStrings[i];
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
 
-            for (int j = 0; j < words.rowSize(0); j++) {
-                Word word = words.get(0, j);
-                assertEquals(expectedTypeResult[i][j], word.type);
-                assertEquals(expectedWordsLength[i][j], inputString.substring(word.start, word.end).length());
+            for (int j = 0; j < lineParser.getResultLine().size(); j++) {
+                assertEquals(expectedTypeResult[i][j], lineParser.getResultLine().get(j).type);
+                assertEquals(expectedWordsLength[i][j], lineParser.getResultLine().get(j).length());
             }
         }
     }
@@ -251,9 +242,11 @@ public class LineParserTest extends Assert {
         };
 
         for (String inputString : inputStrings) {
+
             Words words = new Words();
             words.setCommentContinuous(0, true);
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
             assertEquals(lineParser.isCommentContinuous(), true);
         }
@@ -270,8 +263,10 @@ public class LineParserTest extends Assert {
         };
 
         for (String inputString : inputStrings) {
+
             Words words = new Words();
-            LineParser lineParser = new LineParser(inputString, FileType.Java, words, 0);
+            ArrayList<Word> res = new ArrayList<>();
+            LineParser lineParser = new LineParser(inputString, FileType.Java, words, res, 0);
             lineParser.parseLine();
             assertEquals(lineParser.isCommentContinuous(), false);
         }

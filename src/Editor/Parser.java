@@ -1,6 +1,7 @@
 package Editor;
 
 import Editor.Word.Type;
+import gnu.trove.list.array.TIntArrayList;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ class Parser {
     private static final Pattern bracket = Pattern.compile("[\\[\\]\\{\\}\\(\\)]");
     private final Words dataInWords;
     private final StringBuilder data;
-    private final ArrayList<Integer> length;
+    private final TIntArrayList length;
     private final EDocument doc;
     private Word firstBracket;
     private Word secondBracket;
@@ -20,7 +21,7 @@ class Parser {
     private Pair<Integer, Integer> secondBracketPos;
     private FileType fileType;
 
-    public Parser(EDocument doc, Words dataInWords, StringBuilder data, ArrayList<Integer> length) {
+    public Parser(EDocument doc, Words dataInWords, StringBuilder data, TIntArrayList length) {
         this.doc = doc;
         this.dataInWords = dataInWords;
         this.data = data;
@@ -154,20 +155,28 @@ class Parser {
         endRow = Math.min(length.size(), endRow);
 
         int pos = doc.getPos(row, 0);
+        ArrayList<Word> res = new ArrayList<>();
+        TIntArrayList resLength = new TIntArrayList();
+        int end = 0;
         for (int i = row; i < (forceEnd ? endRow : length.size()); i++) {
-            dataInWords.clearDataLine(i);
-            LineParser lineParser = new LineParser(data.substring(pos, pos + length.get(i)), fileType, dataInWords, i);
+            LineParser lineParser = new LineParser(data.substring(pos, pos + length.get(i)), fileType, dataInWords, res, i);
 
             lineParser.parseLine();
+
+            resLength.add(lineParser.size());
 
             boolean lastCommentContinuous = dataInWords.isCommentContinuous(i + 1);
             dataInWords.setCommentContinuous(i + 1, lineParser.isCommentContinuous());
 
             if (!parseAll && !forceEnd && endRow <= i && lineParser.isCommentContinuous() == lastCommentContinuous) {
-                return;
+                end = i;
+                break;
             }
 
             pos += length.get(i) + 1;
+            end = i;
         }
+        dataInWords.clearDataLines(row, end);
+        dataInWords.setAll(row, res, resLength);
     }
 }

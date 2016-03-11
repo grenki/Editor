@@ -1,10 +1,11 @@
 package Editor;
 
+import gnu.trove.list.array.TIntArrayList;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.List;
 
 class ETextArea extends JPanel{
@@ -145,7 +146,7 @@ class ETextArea extends JPanel{
     private void drawText(Graphics2D graphics2D) {
 
         StringBuilder data = doc.getAllDataInString();
-        ArrayList<Integer> length = doc. getAllLinesLength();
+        TIntArrayList length = doc.getAllLinesLength();
         Words dataInWords = doc.getAllDataInWords();
 
         graphics2D.setPaint(Color.BLACK);

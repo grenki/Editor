@@ -1,103 +1,70 @@
 package Editor;
 
 import Editor.Word.Type;
+import gnu.trove.list.array.TByteArrayList;
+import gnu.trove.list.array.TIntArrayList;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 class WordsArrayList {
-    private final static int initialCapacity = 100;
-    private int[] start;
-    private int[] end;
-    private byte[] type;
-    private int capacity;
-    private int size;
+    private final TIntArrayList start;
+    private final TIntArrayList end;
+    private final TByteArrayList type;
 
     WordsArrayList() {
-        this(initialCapacity);
-    }
-
-    WordsArrayList(int capacity) {
-        this.capacity = capacity;
-        init();
-    }
-
-    private void init() {
-        size = 0;
-        start = new int[capacity];
-        end = new int[capacity];
-        type = new byte[capacity];
+        start = new TIntArrayList();
+        end = new TIntArrayList();
+        type = new TByteArrayList();
     }
 
     public int size() {
-        return size;
+        return start.size();
     }
 
     public void add(int pos, Word word) {
-        size++;
-        updateCapacityUp();
+        start.insert(pos, word.start);
+        end.insert(pos, word.end);
+        type.insert(pos, typeToByte(word.type));
+    }
 
-        shiftArrays(pos, 1, true);
-        start[pos] = word.start;
-        end[pos] = word.end;
-        type[pos] = typeToByte(word.type);
+    public void add(int pos, ArrayList<Word> list) {
+        int[] startIns = new int[list.size()];
+        int[] endIns = new int[list.size()];
+        byte[] typeIns = new byte[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            Word word = list.get(i);
+            startIns[i] = word.start;
+            endIns[i] = word.end;
+            typeIns[i] = typeToByte(word.type);
+        }
+
+        start.insert(pos, startIns);
+        end.insert(pos, endIns);
+        type.insert(pos, typeIns);
     }
 
     public void set(int pos, Word word) {
-        start[pos] = word.start;
-        end[pos] = word.end;
-        type[pos] = typeToByte(word.type);
+        start.set(pos, word.start);
+        end.set(pos, word.end);
+        type.set(pos, typeToByte(word.type));
     }
 
     public Word get(int pos) {
-        return new Word(start[pos], end[pos], byteToType(type[pos]));
+        return new Word(start.get(pos), end.get(pos), byteToType(type.get(pos)));
     }
 
     public void remove(int startPos, int endPos) {  // delete interval [ )
         int length = endPos - startPos;
 
-        shiftArrays(startPos, length, false);
-        size -= length;
-
-        updateCapacityDown();
+        start.remove(startPos, length);
+        end.remove(startPos, length);
+        type.remove(startPos, length);
     }
 
     public void clear() {
-        capacity = initialCapacity;
-        init();
-    }
-
-    private void updateCapacityUp() {
-        if (size >= capacity) {
-            capacity = size + (size >> 1);
-
-            updateArraysSize(capacity);
-        }
-    }
-
-    private void updateCapacityDown() {
-        if (size > initialCapacity && size < capacity >> 1) {
-            capacity = size + (size >> 1);
-
-            updateArraysSize(capacity);
-        }
-    }
-
-    private void updateArraysSize(int capacity) {
-        start = Arrays.copyOf(start, capacity);
-        end = Arrays.copyOf(end, capacity);
-        type = Arrays.copyOf(type, capacity);
-    }
-
-    private void shiftArrays(int offset, int shift, boolean right) {
-        if (shift == 0) {
-            return;
-        }
-        int shiftRight = right ? shift : 0;
-        int shiftLeft = !right ? shift : 0;
-
-        System.arraycopy(start, offset + shiftLeft, start, offset + shiftRight, size - offset - shiftLeft);
-        System.arraycopy(end, offset + shiftLeft, end, offset + shiftRight, size - offset - shiftLeft);
-        System.arraycopy(type, offset + shiftLeft, type, offset + shiftRight, size - offset - shiftLeft);
+        start.clear();
+        end.clear();
+        type.clear();
     }
 
     private Word.Type byteToType(byte type) {

@@ -1,5 +1,7 @@
 package Editor;
 
+import gnu.trove.list.array.TIntArrayList;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -17,7 +19,7 @@ class EDocument {
     private static final Pattern javaFilePattern = Pattern.compile(".*\\.java");
     private static final Pattern jsFilePattern = Pattern.compile(".*\\.js");
     private static final String TAB = "    ";
-    private final ArrayList<Integer> length;
+    private final TIntArrayList length;
     private final Words dataInWords;
     private final Parser parser;
     private final Clipboard clipboard;
@@ -53,7 +55,7 @@ class EDocument {
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
         data = new StringBuilder();
-        length = new ArrayList<>(1);
+        length = new TIntArrayList();
         length.add(0);
 
         dataInWords = new Words();
@@ -74,6 +76,7 @@ class EDocument {
 
         data.delete(0, data.length());
         length.clear();
+        dataInWords.clear();
 
         if (initData != null) {
             for (String s: initData) {
@@ -90,21 +93,28 @@ class EDocument {
 
     // add or remove line
     private void addLine(int row, int len) {
-        length.add(row, len);
+        length.insert(row, len);
         if (fileType != FileType.Text) {
             dataInWords.add(row);
         }
     }
 
+    private void addLines(int row, int[] len) {
+        length.insert(row, len);
+        if (fileType != FileType.Text) {
+            dataInWords.addVoidLines(row, len.length);
+        }
+    }
+
     private void removeLine(int row) {
-        length.remove(row);
+        length.removeAt(row);
         if (fileType != FileType.Text) {
             dataInWords.remove(row);
         }
     }
 
     private void removeLines(int startRow, int endRow) {
-        length.subList(startRow, endRow + 1).clear();
+        length.remove(startRow, endRow + 1 - startRow);
         if (fileType != FileType.Text) {
             dataInWords.remove(startRow, endRow);
         }
@@ -259,12 +269,13 @@ class EDocument {
 
     private void insertString(String s) {
         existSelection = false;
-        int startChangesRow = row;
+        final int startChangesRow = row;
         StringBuilder sb = new StringBuilder();
 
         int len = column;
         int endLen = length.get(row) - len;
 
+        TIntArrayList insLength = new TIntArrayList();
         for (int i = 0; i < s.length(); i++) {
             if (Character.codePointAt(s, i) == 9) {
                 sb.append(TAB);
@@ -276,14 +287,18 @@ class EDocument {
             if (s.charAt(i) != '\n') {
                 len++;
             } else {
-                length.set(row, len);
+                if (row == startChangesRow) {
+                    length.set(startChangesRow, len);
+                } else {
+                    insLength.add(len);
+                }
                 row++;
                 len = 0;
-                addLine(row, 0);
             }
         }
 
-        length.set(row, len + endLen);
+        insLength.add(len + endLen);
+        addLines(startChangesRow + 1, insLength.toArray());
         column = len;
         data.insert(pos, sb);
         updateWithChanges(startChangesRow, row);
@@ -592,7 +607,9 @@ class EDocument {
     public List<CharSequence> getAllDataInLines(){
         ArrayList<String> res = new ArrayList<>(length.size());
         int pos = 0;
-        for (Integer aLength : length) {
+
+        for (int i = 0; i < length.size(); i++) {
+            int aLength = length.get(i);
             res.add(data.substring(pos, pos + aLength));
             pos += aLength + 1;
         }
@@ -603,7 +620,7 @@ class EDocument {
         return data;
     }
 
-    public ArrayList<Integer> getAllLinesLength() {
+    public TIntArrayList getAllLinesLength() {
         return length;
     }
 }
