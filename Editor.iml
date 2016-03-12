@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="JUnit4">
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/" />
@@ -17,7 +17,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="trove-3.0.3-src" level="project" />
-    <orderEntry type="library" name="trove-3.0.3" level="project" />
+    <orderEntry type="library" exported="" name="trove-3.0.3" level="project" />
   </component>
 </module>
