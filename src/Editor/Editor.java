@@ -19,13 +19,15 @@ public class Editor extends JFrame{
         setFocusTraversalKeysEnabled(false);
         setLayout(new BorderLayout());
 
-        area = new ETextArea();
-        add(area);
+
 
         JScrollBar scrollBar = new JScrollBar(Adjustable.VERTICAL);
         add(scrollBar, BorderLayout.EAST);
+
+        area = new ETextArea(scrollBar);
         scrollBar.addAdjustmentListener(area.getAdjustmentListener());
-        area.setScrollBar(scrollBar);
+
+        add(area);
 
         JMenuBar menu = new JMenuBar();
         JMenu fileMenu = new JMenu("File");

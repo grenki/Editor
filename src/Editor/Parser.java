@@ -50,19 +50,18 @@ class Parser {
         return wordNumber - 1;
     }
 
+    private void bracketLightOff(Word bracket, Pair<Integer, Integer> bracketPos) {
+        if (bracket != null && bracket.type != null) {
+            bracket.type = Type.Bracket;
+            dataInWords.set(bracketPos.getKey(), bracketPos.getValue(), bracket);
+
+            bracket.type = null;
+        }
+    }
+
     public void bracketLightOff() {
-        if (firstBracket != null) {
-            firstBracket.type = Type.Bracket;
-            dataInWords.set(firstBracketPos.getKey(), firstBracketPos.getValue(), firstBracket);
-
-            firstBracket = null;
-        }
-        if (secondBracket != null) {
-            secondBracket.type = Type.Bracket;
-            dataInWords.set(secondBracketPos.getKey(), secondBracketPos.getValue(), secondBracket);
-
-            secondBracket = null;
-        }
+        bracketLightOff(firstBracket, firstBracketPos);
+        bracketLightOff(secondBracket, secondBracketPos);
     }
 
     public void bracketLight(int column, int row, int pos) {
@@ -124,6 +123,17 @@ class Parser {
         }
     }
 
+    /*private void validateBracketAfterRemoveLine(Word bracket, Pair<Integer, Integer> bracketPos, int startRow, int endRow) {
+        if (bracket != null && bracket.type != null &&
+                bracketPos.getKey() >= startRow && bracketPos.getKey() <= endRow) {
+            bracket.type = null;
+        }
+    }
+    public void removeLines(int startRow, int endRow) {
+        validateBracketAfterRemoveLine(firstBracket, firstBracketPos, startRow, endRow);
+        validateBracketAfterRemoveLine(secondBracket, secondBracketPos, startRow, endRow);
+    }
+*/
     // Words
 
     public boolean setFileType(FileType fileType) {

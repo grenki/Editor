@@ -14,16 +14,12 @@ class ETextArea extends JPanel{
     private final int charWidth = 8;
     private final EListener listener;
     private final int minOffsetRight = 1;
-    private final int minOffsetBottom = 2;
+    private final int minOffsetBottom = 1;
     private final EDocument doc;
-    private JScrollBar scrollBar;
 
-
-
-    public ETextArea() {
+    public ETextArea(JScrollBar scrollBar) {
         setOpaque(true);
-        doc = new EDocument();
-
+        doc = new EDocument(scrollBar);
 
         listener = new EListener(doc, this);
         addMouseMotionListener(listener);
@@ -47,20 +43,13 @@ class ETextArea extends JPanel{
     public void setNewDocument(List<String> list){
         doc.recreateDocument(list);
         listener.setEDocument(doc);
-        doc.setScrollBar(scrollBar);
         updateWindowSize();
         repaint();
     }
 
     public void setFileName(String fileName, boolean open) {
         doc.setFileName(fileName, open);
-
         repaint();
-    }
-
-    public void setScrollBar(JScrollBar scrollBar) {
-        this.scrollBar = scrollBar;
-        doc.setScrollBar(scrollBar);
     }
 
     public List<CharSequence> getLines() {

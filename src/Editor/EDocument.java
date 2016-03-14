@@ -24,6 +24,7 @@ class EDocument {
     private final Parser parser;
     private final Clipboard clipboard;
     private final StringBuilder data;
+    private final JScrollBar scrollBar;
     private int width;
     private int height;
     private int widthOffset;
@@ -37,9 +38,8 @@ class EDocument {
     private int startSelectionRow;
     private int startSelectionColumn;
     private FileType fileType;
-    private JScrollBar scrollBar;
 
-    public EDocument() {
+    public EDocument(JScrollBar scrollBar) {
 
         column = 0;
         row = 0;
@@ -52,6 +52,8 @@ class EDocument {
         existSelection = false;
         fileType = FileType.Text;
 
+        this.scrollBar = scrollBar;
+
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
         data = new StringBuilder();
@@ -61,6 +63,8 @@ class EDocument {
         dataInWords = new Words();
 
         parser = new Parser(this, dataInWords, data, length);
+
+        updatePosition();
     }
 
     public void recreateDocument(List<String> initData) {
@@ -78,17 +82,18 @@ class EDocument {
         length.clear();
         dataInWords.clear();
 
-        if (initData != null) {
+        if (initData != null && initData.size() > 0) {
             for (String s: initData) {
                 data.append(s);
                 data.append('\n');
                 length.add(s.length());
             }
             data.delete(data.length() - 1, data.length());
-
         } else {
             length.add(0);
         }
+
+        updatePosition();
     }
 
     // add or remove line
@@ -107,10 +112,7 @@ class EDocument {
     }
 
     private void removeLine(int row) {
-        length.removeAt(row);
-        if (fileType != FileType.Text) {
-            dataInWords.remove(row);
-        }
+        removeLines(row, row);
     }
 
     private void removeLines(int startRow, int endRow) {
@@ -191,21 +193,16 @@ class EDocument {
 
     private void updatePosition(){
 
-        if (column < 0 && row <= 0) {
+        if (column < 0) {
             column = 0;
-        }
-
-        if (column < 0){
-            row--;
-            column = length.get(row);
-        }
-
-        if (row < 0) {
-            row = 0;
         }
 
         if (row >= length.size()) {
             row = length.size() - 1;
+        }
+
+        if (row < 0) {
+            row = 0;
         }
 
         if (column > length.get(row)) {
@@ -311,6 +308,10 @@ class EDocument {
         }
         existSelection = false;
 
+        if (fileType != FileType.Text) {
+            parser.bracketLightOff();
+        }
+
         int[] selectionInterval = getSelectionInterval();
         column = selectionInterval[0];
         row = selectionInterval[1];
@@ -356,6 +357,7 @@ class EDocument {
                 column = 0;
                 if (row == length.size()) {
                     addLine(length.size(), 0);
+                    data.append('\n');
                     updateWithChanges(row);
                 } else {
                     updateWithoutChanges();
@@ -446,7 +448,12 @@ class EDocument {
     }
 
     public void left() {
-        column--;
+        if (column > 0) {
+            column--;
+        } else {
+            row--;
+            column = Integer.MAX_VALUE;
+        }
         updateWithoutChanges();
     }
 
@@ -543,11 +550,6 @@ class EDocument {
     public void updateHeightOffset(int diff) {
         heightOffset += diff;
         updateOffset();
-    }
-
-    public void setScrollBar(JScrollBar scrollBar) {
-        this.scrollBar = scrollBar;
-        updateScrollBar();
     }
 
     public void setOffsetFromScrollBar(int value) {
