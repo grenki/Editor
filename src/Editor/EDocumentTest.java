@@ -792,6 +792,66 @@ public class EDocumentTest extends Assert {
         }
     }
 
+    @Test
+    public void testParserBracketLightInOneString() {
+        recreateDoc("12{[ } ");
+
+        mouseClickAt(0, 6);
+
+        assertEquals(doc.getAllDataInWords().get(0, 1).type, Word.Type.BracketLight);
+        assertEquals(doc.getAllDataInWords().get(0, 4).type, Word.Type.BracketLight);
+    }
+
+    @Test
+    public void testParserBracketLightInOneStringWhenPairBracketClosedEarly() {
+        recreateDoc("12{[} } ");
+
+        mouseClickAt(0, 7);
+
+        assertEquals(Word.Type.Bracket, doc.getAllDataInWords().get(0, 1).type);
+        assertEquals(Word.Type.BracketLight, doc.getAllDataInWords().get(0, 5).type);
+    }
+
+    @Test
+    public void testParserBracketLightInFewLines() {
+        recreateDoc(new String[]{"12{[ ", "asd }"});
+
+        mouseClickAt(1, 5);
+
+        assertEquals(Word.Type.BracketLight, doc.getAllDataInWords().get(0, 1).type);
+        assertEquals(Word.Type.BracketLight, doc.getAllDataInWords().get(1, 2).type);
+    }
+
+    @Test
+    public void testParserBracketLightInFewLinesWhenPairBracketClosedEarly() {
+        recreateDoc(new String[]{"12{[ }", "asd }"});
+
+        mouseClickAt(0, 3);
+
+        assertEquals(Word.Type.BracketLight, doc.getAllDataInWords().get(0, 1).type);
+        assertEquals(Word.Type.Bracket, doc.getAllDataInWords().get(1, 2).type);
+    }
+
+    @Test
+    public void testDeletionLightBracketNotBreakingParserBracketLightOff() {
+        recreateDoc(new String[]{"12{[ }", "asd }"});
+
+        doc.mousePressed(1, 1);
+        doc.mouseMoved(3, 0);
+        doc.delete();
+
+        assertEquals(Word.Type.BracketLight, doc.getAllDataInWords().get(0, 1).type);
+    }
+
+    @Test
+    public void testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff() {
+        recreateDoc(new String[]{"12{", "asd }"});
+
+        doc.mousePressed(1, 1);
+        doc.mouseMoved(3, 0);
+        doc.insertChar('\n');
+    }
+
     private void recreateDoc(int minRows, int maxRows, int minLength, int maxLength) {
         inputData = randomText.nextText(minRows, maxRows, minLength, maxLength);
         doc.recreateDocument(fromStringBuilderListToStringList(inputData));

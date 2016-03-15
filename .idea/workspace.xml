@@ -13,8 +13,6 @@
     <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Add more tests to EDocumentTest&#10;Fixing bug with removing lighting bracket">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EDocumentTest.java" afterPath="$PROJECT_DIR$/src/Editor/EDocumentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/Parser.java" afterPath="$PROJECT_DIR$/src/Editor/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/Words.java" afterPath="$PROJECT_DIR$/src/Editor/Words.java" />
     </list>
     <manually-removed-from-ignored>
       <directory path="$PROJECT_DIR$/out/" />
@@ -59,13 +57,27 @@
       <file leaf-file-name="EDocumentTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Editor/EDocumentTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5762712">
-              <caret line="844" column="20" selection-start-line="844" selection-start-column="20" selection-end-line="844" selection-end-column="20" />
+            <state vertical-scroll-proportion="2.9743178">
+              <caret line="393" column="12" selection-start-line="393" selection-start-column="9" selection-end-line="393" selection-end-column="12" />
+              <caret line="391" column="12" selection-start-line="391" selection-start-column="9" selection-end-line="391" selection-end-column="12" />
+              <caret line="390" column="12" selection-start-line="390" selection-start-column="9" selection-end-line="390" selection-end-column="12" />
+              <caret line="389" column="12" selection-start-line="389" selection-start-column="9" selection-end-line="389" selection-end-column="12" />
+              <caret line="387" column="12" selection-start-line="387" selection-start-column="9" selection-end-line="387" selection-end-column="12" />
+              <caret line="386" column="12" selection-start-line="386" selection-start-column="9" selection-end-line="386" selection-end-column="12" />
+              <caret line="385" column="12" selection-start-line="385" selection-start-column="9" selection-end-line="385" selection-end-column="12" />
+              <caret line="383" column="12" selection-start-line="383" selection-start-column="9" selection-end-line="383" selection-end-column="12" />
+              <caret line="382" column="12" selection-start-line="382" selection-start-column="9" selection-end-line="382" selection-end-column="12" />
+              <caret line="381" column="12" selection-start-line="381" selection-start-column="9" selection-end-line="381" selection-end-column="12" />
+              <caret line="379" column="12" selection-start-line="379" selection-start-column="9" selection-end-line="379" selection-end-column="12" />
+              <caret line="378" column="12" selection-start-line="378" selection-start-column="9" selection-end-line="378" selection-end-column="12" />
+              <caret line="376" column="12" selection-start-line="376" selection-start-column="9" selection-end-line="376" selection-end-column="12" />
+              <caret line="375" column="12" selection-start-line="375" selection-start-column="9" selection-end-line="375" selection-end-column="12" />
               <folding>
                 <element signature="method#fromStringBuilderListToStringList#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#setUpCaretRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#mouseClickAt#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#removeFromInputData#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#setUpSelectionAndDeleteFromInputData#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#randomNavigationFunction#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#init#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testRecreateDocumentWithNull#0;class#EDocumentTest#0" expanded="false" />
@@ -93,15 +105,19 @@
                 <element signature="method#testSelectAllAtRandomText#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testSelectAllAtOneLine#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testPasteVoidString#0;class#EDocumentTest#0" expanded="false" />
-                <element signature="method#testPasteOneString#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testPasteFewString#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testSelectTextInOneLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSelectTextInOneLineInReverse#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSelectTextInNextLines#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSelectTextInNextLinesInReverse#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testCopyInOneLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testCopyInFewLines#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testDeleteSelectionInOneLine#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testDeleteSelectionInFewLines#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testBackspaceSelectionInOneLine#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testBackspaceSelectionInFewLines#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testCutInOneLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testCutInFewLines#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testBackspaceInBeginOfFirstLine#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testBackspaceInMiddleOfString#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testBackspaceInTheBeginOfLine#0;class#EDocumentTest#0" expanded="false" />
@@ -113,16 +129,24 @@
                 <element signature="method#testInsertCharCaretReturnRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInsertCharNotCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInsertCharCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testInsertCharNotCaretReturnWithSelection#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testSetFileNameIsText#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testSetFileNameIsNotText#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testParserBracketLightInOneString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testParserBracketLightInOneStringWhenPairBracketClosedEarly#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testParserBracketLightInFewLines#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testParserBracketLightInFewLinesWhenPairBracketClosedEarly#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testDeletionLightBracketNotBreakingParserBracketLightOff#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#recreateDoc#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#recreateDocWithInputData#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#recreateDoc#1;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#recreateDoc#2;class#EDocumentTest#0" expanded="false" />
+                <element signature="class#RandomText#0" expanded="false" />
+                <element signature="method#RandomText#0;class#RandomText#0" expanded="false" />
+                <element signature="method#randomLine#0;class#RandomText#0" expanded="false" />
                 <element signature="method#nextText#0;class#RandomText#0" expanded="false" />
-                <element signature="e#23950#23951#0" expanded="true" />
-                <element signature="e#24007#24008#0" expanded="true" />
-                <element signature="e#24014#24084#0" expanded="false" />
+                <element signature="e#25890#25960#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -389,8 +413,8 @@
       <recent name="F:\Ed2\123\Editor\src\Tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EDocumentTest.testSelectTextInNextLinesInReverse">
-    <configuration default="false" name="EDocumentTest.testCutInFewLines" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EDocumentTest.testDeletionLightBracketNotBreakingParserBracketLightOff">
+    <configuration default="false" name="EDocumentTest.testParserBracketLightInFewLines" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -402,7 +426,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testCutInFewLines" />
+      <option name="METHOD_NAME" value="testParserBracketLightInFewLines" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -416,7 +440,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EDocumentTest.testInsertCharNotCaretReturnWithSelection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EDocumentTest.testParserBracketLightInFewLinesWhenPairBracketClosedEarly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -428,7 +452,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testInsertCharNotCaretReturnWithSelection" />
+      <option name="METHOD_NAME" value="testParserBracketLightInFewLinesWhenPairBracketClosedEarly" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -442,7 +466,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EDocumentTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EDocumentTest.testDeletionLightBrackets" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -454,33 +478,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="EDocumentTest.testSelectTextInOneLineInReverse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="Editor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Editor" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="Editor" />
-      <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testSelectTextInOneLineInReverse" />
+      <option name="METHOD_NAME" value="testDeletionLightBrackets" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -494,7 +492,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EDocumentTest.testSelectTextInNextLinesInReverse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EDocumentTest.testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -506,7 +504,33 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testSelectTextInNextLinesInReverse" />
+      <option name="METHOD_NAME" value="testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="EDocumentTest.testDeletionLightBracketNotBreakingParserBracketLightOff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Editor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Editor" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="Editor" />
+      <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
+      <option name="METHOD_NAME" value="testDeletionLightBracketNotBreakingParserBracketLightOff" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -776,19 +800,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testCutInFewLines" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testInsertCharNotCaretReturnWithSelection" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testSelectTextInOneLineInReverse" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testSelectTextInNextLinesInReverse" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testParserBracketLightInFewLines" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testParserBracketLightInFewLinesWhenPairBracketClosedEarly" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testDeletionLightBrackets" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testDeletionLightBracketNotBreakingParserBracketLightOff" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testSelectTextInNextLinesInReverse" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testSelectTextInOneLineInReverse" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testInsertCharNotCaretReturnWithSelection" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testCutInFewLines" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testDeletionLightBracketNotBreakingParserBracketLightOff" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testDeletionLightBrackets" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testParserBracketLightInFewLinesWhenPairBracketClosedEarly" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testParserBracketLightInFewLines" />
       </list>
     </recent_temporary>
   </component>
@@ -932,39 +956,45 @@
       <option name="project" value="LOCAL" />
       <updated>1458000851985</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add more tests to EDocumentTest&#10;Fixing bug with removing lighting bracket">
+      <created>1458049932804</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1458049932804</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EDocumentTest - 2016.03.15 at 16h 41m 15s.xml">
-      <configuration name="EDocumentTest" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testDeletionLightBracketNotBreakingParserBracketLightOff - 2016.03.15 at 17h 06m 19s.xml">
+      <configuration name="EDocumentTest.testDeletionLightBracketNotBreakingParserBracketLightOff" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testCutInFewLines - 2016.03.15 at 16h 30m 37s.xml">
-      <configuration name="EDocumentTest.testCutInFewLines" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testDeletionLightBrackets - 2016.03.15 at 17h 04m 29s.xml">
+      <configuration name="EDocumentTest.testDeletionLightBrackets" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testCutInFewLines - 2016.03.15 at 16h 33m 13s.xml">
-      <configuration name="EDocumentTest.testCutInFewLines" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testDeletionLightBrackets - 2016.03.15 at 17h 04m 32s.xml">
+      <configuration name="EDocumentTest.testDeletionLightBrackets" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testCutInFewLines - 2016.03.15 at 16h 40m 09s.xml">
-      <configuration name="EDocumentTest.testCutInFewLines" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff - 2016.03.15 at 17h 06m 15s.xml">
+      <configuration name="EDocumentTest.testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testInsertCharCaretReturnRandom - 2016.03.15 at 16h 33m 13s.xml">
-      <configuration name="EDocumentTest.testInsertCharCaretReturnRandom" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testParserBracketLightInFewLines - 2016.03.15 at 17h 00m 02s.xml">
+      <configuration name="EDocumentTest.testParserBracketLightInFewLines" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testInsertCharCaretReturnWithInsertModeRandom - 2016.03.15 at 16h 33m 14s.xml">
-      <configuration name="EDocumentTest.testInsertCharCaretReturnWithInsertModeRandom" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testParserBracketLightInFewLines - 2016.03.15 at 17h 00m 17s.xml">
+      <configuration name="EDocumentTest.testParserBracketLightInFewLines" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testInsertCharNotCaretReturnWithSelection - 2016.03.15 at 16h 35m 24s.xml">
-      <configuration name="EDocumentTest.testInsertCharNotCaretReturnWithSelection" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testParserBracketLightInFewLines - 2016.03.15 at 17h 00m 50s.xml">
+      <configuration name="EDocumentTest.testParserBracketLightInFewLines" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testInsertCharNotCaretReturnWithSelection - 2016.03.15 at 16h 42m 40s.xml">
-      <configuration name="EDocumentTest.testInsertCharNotCaretReturnWithSelection" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testParserBracketLightInFewLinesWhenPairBracketClosedEarly - 2016.03.15 at 17h 01m 39s.xml">
+      <configuration name="EDocumentTest.testParserBracketLightInFewLinesWhenPairBracketClosedEarly" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testSelectTextInNextLinesInReverse - 2016.03.15 at 16h 44m 34s.xml">
-      <configuration name="EDocumentTest.testSelectTextInNextLinesInReverse" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testParserBracketLightInOneStringWhenPairBracketClosedEarly - 2016.03.15 at 16h 57m 50s.xml">
+      <configuration name="EDocumentTest.testParserBracketLightInOneStringWhenPairBracketClosedEarly" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testSelectTextInOneLineInReverse - 2016.03.15 at 16h 44m 02s.xml">
-      <configuration name="EDocumentTest.testSelectTextInOneLineInReverse" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testParserBracketLightInOneStringWhenPairBracketClosedEarly - 2016.03.15 at 16h 58m 18s.xml">
+      <configuration name="EDocumentTest.testParserBracketLightInOneStringWhenPairBracketClosedEarly" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -978,17 +1008,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19815668" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32258064" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.093701996" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5028158" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.16949153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1508" y="400" width="982" height="336" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.1843318" sideWeight="0.49718422" order="9" side_tool="false" content_ui="tabs" x="193" y="151" width="1059" height="580" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="1517" y="98" width="958" height="860" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="1517" y="98" width="958" height="860" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30721965" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1111,7 +1141,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="139" />
+      <option name="time" value="140" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -1802,13 +1832,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EDocumentTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5762712">
-          <caret line="844" column="20" selection-start-line="844" selection-start-column="20" selection-end-line="844" selection-end-column="20" />
+        <state vertical-scroll-proportion="2.9743178">
+          <caret line="393" column="12" selection-start-line="393" selection-start-column="9" selection-end-line="393" selection-end-column="12" />
+          <caret line="391" column="12" selection-start-line="391" selection-start-column="9" selection-end-line="391" selection-end-column="12" />
+          <caret line="390" column="12" selection-start-line="390" selection-start-column="9" selection-end-line="390" selection-end-column="12" />
+          <caret line="389" column="12" selection-start-line="389" selection-start-column="9" selection-end-line="389" selection-end-column="12" />
+          <caret line="387" column="12" selection-start-line="387" selection-start-column="9" selection-end-line="387" selection-end-column="12" />
+          <caret line="386" column="12" selection-start-line="386" selection-start-column="9" selection-end-line="386" selection-end-column="12" />
+          <caret line="385" column="12" selection-start-line="385" selection-start-column="9" selection-end-line="385" selection-end-column="12" />
+          <caret line="383" column="12" selection-start-line="383" selection-start-column="9" selection-end-line="383" selection-end-column="12" />
+          <caret line="382" column="12" selection-start-line="382" selection-start-column="9" selection-end-line="382" selection-end-column="12" />
+          <caret line="381" column="12" selection-start-line="381" selection-start-column="9" selection-end-line="381" selection-end-column="12" />
+          <caret line="379" column="12" selection-start-line="379" selection-start-column="9" selection-end-line="379" selection-end-column="12" />
+          <caret line="378" column="12" selection-start-line="378" selection-start-column="9" selection-end-line="378" selection-end-column="12" />
+          <caret line="376" column="12" selection-start-line="376" selection-start-column="9" selection-end-line="376" selection-end-column="12" />
+          <caret line="375" column="12" selection-start-line="375" selection-start-column="9" selection-end-line="375" selection-end-column="12" />
           <folding>
             <element signature="method#fromStringBuilderListToStringList#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#setUpCaretRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#mouseClickAt#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#removeFromInputData#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#setUpSelectionAndDeleteFromInputData#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#randomNavigationFunction#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#init#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testRecreateDocumentWithNull#0;class#EDocumentTest#0" expanded="false" />
@@ -1836,15 +1880,19 @@
             <element signature="method#testSelectAllAtRandomText#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testSelectAllAtOneLine#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testPasteVoidString#0;class#EDocumentTest#0" expanded="false" />
-            <element signature="method#testPasteOneString#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testPasteFewString#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testSelectTextInOneLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSelectTextInOneLineInReverse#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSelectTextInNextLines#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSelectTextInNextLinesInReverse#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testCopyInOneLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testCopyInFewLines#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testDeleteSelectionInOneLine#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testDeleteSelectionInFewLines#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testBackspaceSelectionInOneLine#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testBackspaceSelectionInFewLines#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testCutInOneLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testCutInFewLines#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testBackspaceInBeginOfFirstLine#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testBackspaceInMiddleOfString#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testBackspaceInTheBeginOfLine#0;class#EDocumentTest#0" expanded="false" />
@@ -1856,16 +1904,24 @@
             <element signature="method#testInsertCharCaretReturnRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInsertCharNotCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInsertCharCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testInsertCharNotCaretReturnWithSelection#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testSetFileNameIsText#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testSetFileNameIsNotText#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testParserBracketLightInOneString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testParserBracketLightInOneStringWhenPairBracketClosedEarly#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testParserBracketLightInFewLines#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testParserBracketLightInFewLinesWhenPairBracketClosedEarly#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testDeletionLightBracketNotBreakingParserBracketLightOff#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testInsertionCRAfterLightBracketNotBreakingParserBracketLightOff#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#recreateDoc#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#recreateDocWithInputData#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#recreateDoc#1;class#EDocumentTest#0" expanded="false" />
             <element signature="method#recreateDoc#2;class#EDocumentTest#0" expanded="false" />
+            <element signature="class#RandomText#0" expanded="false" />
+            <element signature="method#RandomText#0;class#RandomText#0" expanded="false" />
+            <element signature="method#randomLine#0;class#RandomText#0" expanded="false" />
             <element signature="method#nextText#0;class#RandomText#0" expanded="false" />
-            <element signature="e#23950#23951#0" expanded="true" />
-            <element signature="e#24007#24008#0" expanded="true" />
-            <element signature="e#24014#24084#0" expanded="false" />
+            <element signature="e#25890#25960#0" expanded="false" />
           </folding>
         </state>
       </provider>
