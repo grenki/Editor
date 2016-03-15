@@ -65,9 +65,6 @@ class Parser {
     }
 
     public void bracketLight(int column, int row, int pos) {
-        if (column > 0 && pos - 1 >= data.length()) {
-            System.out.println("wtf");
-        }
         if (column > 0 && isBracket(data.charAt(pos - 1))) {
             int wordInLine = findWordInLine(column, row);
             if (dataInWords.get(row, wordInLine).type != Type.Bracket) {
@@ -127,17 +124,6 @@ class Parser {
         }
     }
 
-    /*private void validateBracketAfterRemoveLine(Word bracket, Pair<Integer, Integer> bracketPos, int startRow, int endRow) {
-        if (bracket != null && bracket.type != null &&
-                bracketPos.getKey() >= startRow && bracketPos.getKey() <= endRow) {
-            bracket.type = null;
-        }
-    }
-    public void removeLines(int startRow, int endRow) {
-        validateBracketAfterRemoveLine(firstBracket, firstBracketPos, startRow, endRow);
-        validateBracketAfterRemoveLine(secondBracket, secondBracketPos, startRow, endRow);
-    }
-*/
     // Words
 
     public boolean setFileType(FileType fileType) {

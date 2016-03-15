@@ -922,10 +922,6 @@ class RandomText {
         return nextText(1, maxRows, 0, maxLength);
     }
 
-    // public List<String> nextTextInStrings(int maxRows, int maxLength) {
-    //   return fromStringBuilderListToStringList(nextText(maxRows, maxLength));
-    //}
-
     public char randomChar() {
         return symbols.charAt(rand.nextInt(symbols.length()));
     }
