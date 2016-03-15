@@ -7,8 +7,12 @@ import org.junit.Test;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -41,6 +45,64 @@ public class EDocumentTest extends Assert {
         doc.mouseMoved(column, row);
     }
 
+    private static void removeFromInputData(int startRow, int startColumn, int endRow, int endColumn) {
+        if (startRow < endRow) {
+            inputData.get(startRow).delete(startColumn, inputData.get(startRow).length())
+                    .append(inputData.get(endRow).substring(endColumn));
+            inputData.subList(startRow + 1, endRow + 1).clear();
+        } else {
+            inputData.get(startRow).delete(startColumn, endColumn);
+        }
+    }
+
+    private static void setUpSelectionAndDeleteFromInputData(int startRow, int startColumn, int endRow, int endColumn) {
+        doc.mousePressed(startColumn, startRow);
+        startRow = doc.getCaretRow();
+        startColumn = doc.getCaretColumn();
+        doc.mouseMoved(endColumn, endRow);
+        endColumn = doc.getCaretColumn();
+        endRow = doc.getCaretRow();
+
+        removeFromInputData(startRow, startColumn, endRow, endColumn);
+    }
+
+    private static void randomNavigationFunction() {
+        int n = rand.nextInt(10);
+        switch (n) {
+            case 0:
+                doc.right();
+                break;
+            case 1:
+                doc.left();
+                break;
+            case 2:
+                doc.up();
+                break;
+            case 3:
+                doc.down();
+                break;
+            case 4:
+                doc.pageDown();
+                break;
+            case 5:
+                doc.pageUp();
+                break;
+            case 6:
+                doc.home();
+                break;
+            case 7:
+                doc.end();
+                break;
+
+            case 8:
+                doc.pageDown();
+                break;
+            case 9:
+                doc.pageDown();
+                break;
+        }
+    }
+
     @Before
     public void init() {
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -63,8 +125,7 @@ public class EDocumentTest extends Assert {
     @Test
     public void testRecreateDocumentWithVoidList() {
         inputData = new ArrayList<>();
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDocWithInputData();
     }
 
     @Test
@@ -85,10 +146,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testRightInBeginOfLine() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("asd asd asd");
 
         mouseClickAt(0, 0);
         doc.right();
@@ -97,10 +155,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testRightInMiddleOfLine() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("asd asd asd");
 
         mouseClickAt(0, 4);
         doc.right();
@@ -109,11 +164,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testRightInTheEndOfLine() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc(new String[]{"asd asd asd", "asd asd asd"});
 
         mouseClickAt(0, 20);
         doc.right();
@@ -123,26 +174,17 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testLeftInTheBeginOfLine() {
-        ArrayList<String> inputData = new ArrayList<>();
-        String inputString = "asd asd asd";
-        inputData.add(inputString);
-        inputData.add(inputString);
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc(new String[]{"asd asd asd", "asd asd asd"});
 
         mouseClickAt(1, 0);
         doc.left();
         assertEquals(0, doc.getCaretRow());
-        assertEquals(inputString.length(), doc.getCaretColumn());
+        assertEquals(inputData.get(0).length(), doc.getCaretColumn());
     }
 
     @Test
     public void testLeftInTheMiddleOfLine() {
-        ArrayList<String> inputData = new ArrayList<>();
-        String inputString = "asd asd asd";
-        inputData.add(inputString);
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("asd asd asd");
 
         mouseClickAt(0, 5);
         doc.left();
@@ -152,11 +194,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testUpInTheMiddleString() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc(new String[]{"asd asd asd", "asd asd asd"});
         mouseClickAt(1, 5);
 
         doc.up();
@@ -166,10 +204,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testUpInTheFirstString() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("asd asd asd");
         mouseClickAt(0, 5);
 
         doc.up();
@@ -179,41 +214,31 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testDownInTheLastString() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("asd asd asd");
 
         mouseClickAt(0, 5);
-
         doc.down();
+
         assertEquals(0, doc.getCaretRow());
         assertEquals(5, doc.getCaretColumn());
     }
 
     @Test
     public void testDownInTheMiddleString() {
-        ArrayList<String> inputData = new ArrayList<>();
-        inputData.add("asd asd asd");
-        inputData.add("asd asd asd");
-        doc.recreateDocument(inputData);
-        doc.setFileName(javaFileName, true);
+        recreateDoc(new String[]{"asd asd asd", "asd asd asd"});
 
         mouseClickAt(0, 5);
-
         doc.down();
+
         assertEquals(1, doc.getCaretRow());
         assertEquals(5, doc.getCaretColumn());
     }
 
     @Test
     public void testPageUpInFirstString() {
-        inputData = randomText.nextText(200, 210, 10, 100);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(200, 210, 10, 100);
 
         mouseClickAt(0, 8);
-
         doc.pageUp();
 
         assertEquals(0, doc.getCaretRow());
@@ -222,12 +247,9 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPageUpInStringInFirstWindow() {
-        inputData = randomText.nextText(200, 210, 10, 100);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(200, 210, 10, 100);
 
         mouseClickAt(50, 8);
-
         doc.pageUp();
 
         assertEquals(0, doc.getCaretRow());
@@ -236,12 +258,9 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPageDownInMiddleOfText() {
-        inputData = randomText.nextText(200, 210, 10, 100);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(200, 210, 10, 100);
 
         mouseClickAt(50, 8);
-
         doc.pageDown();
 
         assertEquals(50 + windowRowSize, doc.getCaretRow());
@@ -250,12 +269,9 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPageUpDownStringInLastWindow() {
-        inputData = randomText.nextText(200, 200, 10, 100);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(200, 200, 10, 100);
 
         mouseClickAt(150, 8);
-
         doc.pageDown();
 
         assertEquals(199, doc.getCaretRow());
@@ -264,12 +280,9 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPageUpInMiddleOfText() {
-        inputData = randomText.nextText(200, 210, 10, 100);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(200, 210, 10, 100);
 
         mouseClickAt(50 + windowRowSize, 8);
-
         doc.pageUp();
 
         assertEquals(50, doc.getCaretRow());
@@ -278,21 +291,16 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testHomeVoidLine() {
-        ArrayList<String> input = new ArrayList<>();
-        input.add("");
-        doc.recreateDocument(input);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("");
 
         doc.home();
+
         assertEquals(0, doc.getCaretColumn());
     }
 
     @Test
     public void testHomeCaretInMiddleOfLine() {
-        ArrayList<String> input = new ArrayList<>();
-        input.add(randomText.randomLine(10, 20).toString());
-        doc.recreateDocument(input);
-        doc.setFileName(javaFileName, true);
+        recreateDoc(1, 1, 10, 20);
 
         mouseClickAt(0, 8);
 
@@ -302,12 +310,10 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testEndVoidLine() {
-        ArrayList<String> input = new ArrayList<>();
-        input.add("");
-        doc.recreateDocument(input);
-        doc.setFileName(javaFileName, true);
+        recreateDoc("");
 
         doc.end();
+
         assertEquals(0, doc.getCaretColumn());
     }
 
@@ -339,10 +345,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testSelectAllAtOneLine() {
-        inputData = new ArrayList<>();
-        inputData.add(randomText.randomLine(10, 10));
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(1, 1, 10, 10);
 
         doc.selectAll();
         int[] selectionInterval = doc.getSelectionInterval();
@@ -355,9 +358,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPasteVoidString() {
-        inputData = randomText.nextText(10, 10, 20, 20);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(10, 10, 20, 20);
 
         clipboard.setContents(new StringSelection(""), null);
 
@@ -373,9 +374,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPasteOneString() {
-        inputData = randomText.nextText(10, 10, 20, 20);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(10, 10, 20, 20);
 
         String pasteString = "pasteString";
         clipboard.setContents(new StringSelection(pasteString), null);
@@ -397,9 +396,7 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testPasteFewString() {
-        inputData = randomText.nextText(10, 10, 20, 20);
-        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
-        doc.setFileName(javaFileName, true);
+        recreateDoc(10, 10, 20, 20);
 
         String pasteString = "pasteString\npasteString2";
         String firstString = "pasteString";
@@ -430,7 +427,220 @@ public class EDocumentTest extends Assert {
 
     @Test
     public void testSelectTextInOneLine() {
+        recreateDoc(10, 10, 20, 20);
 
+        doc.mousePressed(1, 0);
+        doc.mouseMoved(8, 0);
+        assertTrue(doc.isExistSelection());
+
+        int[] selection = doc.getSelectionInterval();
+        assertArrayEquals(selection, new int[]{1, 0, 8, 0});
+    }
+
+    @Test
+    public void testSelectTextInOneLineInReverse() {
+        recreateDoc(10, 10, 20, 20);
+
+        doc.mousePressed(8, 0);
+        doc.mouseMoved(1, 0);
+        assertTrue(doc.isExistSelection());
+
+        int[] selection = doc.getSelectionInterval();
+        assertArrayEquals(selection, new int[]{1, 0, 8, 0});
+    }
+
+    @Test
+    public void testSelectTextInNextLines() {
+        recreateDoc(10, 10, 20, 20);
+
+        doc.mousePressed(1, 1);
+        doc.mouseMoved(8, 4);
+        assertTrue(doc.isExistSelection());
+
+        int[] selection = doc.getSelectionInterval();
+        assertArrayEquals(selection, new int[]{1, 1, 8, 4});
+    }
+
+    @Test
+    public void testSelectTextInNextLinesInReverse() {
+        recreateDoc(10, 10, 20, 20);
+
+        doc.mousePressed(8, 4);
+        doc.mouseMoved(1, 1);
+        assertTrue(doc.isExistSelection());
+
+        int[] selection = doc.getSelectionInterval();
+        assertArrayEquals(selection, new int[]{1, 1, 8, 4});
+    }
+
+    @Test
+    public void testCopyInOneLine() throws IOException, UnsupportedFlavorException {
+        recreateDoc(10, 10, 20, 20);
+
+        doc.mousePressed(1, 0);
+        doc.mouseMoved(8, 0);
+        doc.copy();
+
+
+        assertEquals(clipboard.getData(DataFlavor.stringFlavor), inputData.get(0).substring(1, 8));
+    }
+
+    @Test
+    public void testCopyInFewLines() throws IOException, UnsupportedFlavorException {
+        recreateDoc(10, 10, 20, 20);
+
+        doc.mousePressed(1, 1);
+        doc.mouseMoved(8, 3);
+        doc.copy();
+
+        System.out.println(Arrays.toString(doc.getSelectionInterval()));
+
+        String expected = inputData.get(1).substring(1) + '\n' + inputData.get(2) +
+                '\n' + inputData.get(3).substring(0, 8);
+
+        assertEquals(expected, clipboard.getData(DataFlavor.stringFlavor));
+    }
+
+    @Test
+    public void testDeleteSelectionInOneLine() {
+        recreateDoc(1, 1, 30, 30);
+
+        setUpSelectionAndDeleteFromInputData(0, 1, 0, 20);
+        doc.delete();
+
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testDeleteSelectionInFewLines() {
+        setUpSelectionAndDeleteFromInputData(1, 1, 20, 20);
+        doc.delete();
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testBackspaceSelectionInOneLine() {
+        recreateDoc(1, 1, 30, 30);
+
+        setUpSelectionAndDeleteFromInputData(0, 1, 0, 20);
+        doc.backspace();
+
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testBackspaceSelectionInFewLines() {
+        setUpSelectionAndDeleteFromInputData(1, 1, 20, 20);
+        doc.backspace();
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testCutInOneLine() throws IOException, UnsupportedFlavorException {
+        recreateDoc("asd asd asd");
+
+        doc.mousePressed(4, 0);
+        doc.mouseMoved(7, 0);
+        doc.cut();
+
+        inputData.get(0).delete(4, 7);
+        testInputEqualsGetAllData();
+
+        assertEquals("asd", clipboard.getData(DataFlavor.stringFlavor));
+    }
+
+    @Test
+    public void testCutInFewLines() throws IOException, UnsupportedFlavorException {
+        recreateDoc(10, 10, 10, 20);
+
+        doc.mousePressed(4, 3);
+        doc.mouseMoved(7, 5);
+        doc.cut();
+
+        String sb = inputData.get(3).substring(4, inputData.get(3).length()) + '\n' +
+                inputData.get(4) + '\n' +
+                inputData.get(5).substring(0, 7);
+
+        removeFromInputData(3, 4, 5, 7);
+
+        testInputEqualsGetAllData();
+        assertEquals(sb, clipboard.getData(DataFlavor.stringFlavor));
+    }
+
+    @Test
+    public void testBackspaceInBeginOfFirstLine() {
+        mouseClickAt(0, 0);
+        doc.backspace();
+
+        assertEquals(0, doc.getCaretColumn());
+        assertEquals(0, doc.getCaretRow());
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testBackspaceInMiddleOfString() {
+        recreateDoc(1, 1, 20, 20);
+
+        mouseClickAt(0, 5);
+        doc.backspace();
+
+        inputData.get(0).deleteCharAt(4);
+        assertEquals(4, doc.getCaretColumn());
+        assertEquals(0, doc.getCaretRow());
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testBackspaceInTheBeginOfLine() {
+        recreateDoc(3, 3, 20, 20);
+
+        mouseClickAt(1, 0);
+        doc.backspace();
+
+        assertEquals(inputData.get(0).length(), doc.getCaretColumn());
+        assertEquals(0, doc.getCaretRow());
+
+        inputData.get(0).append(inputData.get(1));
+        inputData.remove(1);
+
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testDeleteInTheEndOfText() {
+        mouseClickAt(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        doc.delete();
+
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testDeleteInMiddleOfString() {
+        recreateDoc(1, 1, 20, 20);
+
+        mouseClickAt(0, 5);
+        doc.delete();
+
+        inputData.get(0).deleteCharAt(5);
+        assertEquals(5, doc.getCaretColumn());
+        assertEquals(0, doc.getCaretRow());
+        testInputEqualsGetAllData();
+    }
+
+    @Test
+    public void testDeleteInTheEndOfLine() {
+        recreateDoc(3, 3, 20, 20);
+
+        mouseClickAt(0, 20);
+        doc.delete();
+
+        assertEquals(20, doc.getCaretColumn());
+        assertEquals(0, doc.getCaretRow());
+
+        inputData.get(0).append(inputData.get(1));
+        inputData.remove(1);
+
+        testInputEqualsGetAllData();
     }
 
     @Test
@@ -467,7 +677,7 @@ public class EDocumentTest extends Assert {
     }
 
     @Test
-    public void testInsertCaretReturnRandom() {
+    public void testInsertCharCaretReturnRandom() {
         for (int i = 0; i < countOfRandomOperations; i++) {
             setUpCaretRandom();
             int row = doc.getCaretRow();
@@ -504,7 +714,7 @@ public class EDocumentTest extends Assert {
     }
 
     @Test
-    public void testInsertCaretReturnWithInsertModeRandom() {
+    public void testInsertCharCaretReturnWithInsertModeRandom() {
         doc.switchInsert();
         for (int i = 0; i < countOfRandomOperations; i++) {
             int column;
@@ -525,6 +735,23 @@ public class EDocumentTest extends Assert {
             testInputEqualsGetAllData();
         }
         doc.switchInsert();
+    }
+
+    @Test
+    public void testInsertCharNotCaretReturnWithSelection() {
+        recreateDoc(10, 10, 20, 20);
+
+        doc.mousePressed(5, 1);
+        doc.mouseMoved(2, 3);
+        doc.insertChar('a');
+
+        assertEquals(6, doc.getCaretColumn());
+        assertEquals(1, doc.getCaretRow());
+
+        removeFromInputData(1, 5, 3, 2);
+        inputData.get(1).insert(5, 'a');
+
+        testInputEqualsGetAllData();
     }
 
     @Test
@@ -565,67 +792,53 @@ public class EDocumentTest extends Assert {
         }
     }
 
+    private void recreateDoc(int minRows, int maxRows, int minLength, int maxLength) {
+        inputData = randomText.nextText(minRows, maxRows, minLength, maxLength);
+        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
+        doc.setFileName(javaFileName, true);
+    }
 
+    private void recreateDocWithInputData() {
+        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
+        doc.setFileName(javaFileName, true);
+    }
 
-    private void randomNavigationFunction() {
-        int n = rand.nextInt(10);
-        switch (n) {
-            case 0:
-                doc.right();
-                break;
-            case 1:
-                doc.left();
-                break;
-            case 2:
-                doc.up();
-                break;
-            case 3:
-                doc.down();
-                break;
-            case 4:
-                doc.pageDown();
-                break;
-            case 5:
-                doc.pageUp();
-                break;
-            case 6:
-                doc.home();
-                break;
-            case 7:
-                doc.end();
-                break;
+    private void recreateDoc(String s) {
+        String[] init = new String[1];
+        init[0] = s;
+        recreateDoc(init);
+    }
 
-            case 8:
-                doc.pageDown();
-                break;
-            case 9:
-                doc.pageDown();
-                break;
+    private void recreateDoc(String[] init) {
+        inputData = new ArrayList<>();
+        for (String s : init) {
+            inputData.add(new StringBuilder(s));
         }
+        doc.recreateDocument(fromStringBuilderListToStringList(inputData));
+        doc.setFileName(javaFileName, true);
     }
 }
 
 class RandomText {
     private final StringBuilder symbols;
     private final Random rand;
+    private final boolean onlyBrackets = true;
 
     RandomText() {
         symbols = new StringBuilder();
-        /*for (char i = 'a'; i <= 'z'; i++) {
-            symbols.append(i);
+        if (!onlyBrackets) {
+            for (char i = 'a'; i <= 'z'; i++) {
+                symbols.append(i);
+            }
+            for (char i = '0'; i <= '9'; i++) {
+                symbols.append(i);
+            }
+            symbols.append("!@#$%^&*_+=-`");
         }
-        for (char i = '0'; i <= '9'; i++) {
-            symbols.append(i);
-        }*/
         symbols.append(' ');
         symbols.append("{}[]()");
-        //symbols.append("{}[]()!@#$%^&*_+=-`");
 
         rand = new Random();
-    }
-
-    public StringBuilder randomLine(int maxLength) {
-        return randomLine(0, maxLength);
     }
 
     public StringBuilder randomLine(int minLength, int maxLength) {

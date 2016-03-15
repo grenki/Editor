@@ -72,13 +72,6 @@ class Words {
         }
     }
 
-    public void remove(int row) {
-        int pos = find(row, 0);
-        data.remove(pos, pos + length.get(row));
-        length.removeAt(row);
-        commentContinuousList.removeAt(row);
-    }
-
     public void remove(int row, int endRow) { // [.,.]
         int pos = find(row, 0);
         int endPos = endRow >= length.size() ? data.size() : find(endRow, length.get(endRow));

@@ -44,7 +44,7 @@ class Parser {
         }
 
         if (i > column) {
-            throw new IllegalStateException("Algo is wrong");
+            throw new IllegalStateException("Column is too big to parsed line number" + row);
         }
 
         return wordNumber - 1;
@@ -108,16 +108,13 @@ class Parser {
                 }
 
                 word = dataInWords.rowSize(row) == 0 ? null : dataInWords.get(row, wordInLine);
-                try { //TODO
 
                 if (word != null && word.type == Type.Bracket &&
                         Math.abs(data.charAt(pos + word.start) - firstBracketChar) <= 2) {
                     k = !(openBracket == openBracketPattern.matcher(Character.toString(data.charAt(pos + word.start))).matches()) ?
                             k - 1 : k + 1;
                 }
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("problem");
-                }
+
 
             } while (k > 0);
 
