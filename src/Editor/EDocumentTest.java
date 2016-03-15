@@ -12,7 +12,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -492,8 +491,6 @@ public class EDocumentTest extends Assert {
         doc.mousePressed(1, 1);
         doc.mouseMoved(8, 3);
         doc.copy();
-
-        System.out.println(Arrays.toString(doc.getSelectionInterval()));
 
         String expected = inputData.get(1).substring(1) + '\n' + inputData.get(2) +
                 '\n' + inputData.get(3).substring(0, 8);
