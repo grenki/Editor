@@ -165,7 +165,7 @@ class EListener implements AdjustmentListener, MouseMotionListener,
 
     @Override
     public void adjustmentValueChanged(AdjustmentEvent e) {
-        doc.setOffsetFromScrollBar(e.getValue());
+        doc.setHeightOffset(e.getValue());
         area.repaint();
     }
 

@@ -19,8 +19,6 @@ public class Editor extends JFrame{
         setFocusTraversalKeysEnabled(false);
         setLayout(new BorderLayout());
 
-
-
         JScrollBar scrollBar = new JScrollBar(Adjustable.VERTICAL);
         add(scrollBar, BorderLayout.EAST);
 
@@ -68,7 +66,6 @@ public class Editor extends JFrame{
                     exception.printStackTrace();
                 }
             }
-
         }
     }
 

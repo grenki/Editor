@@ -6,14 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Add trove library&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Editor/EDocumentTest.java" />
+    <list default="true" id="55e321aa-5450-4e4c-bb0a-e01fea4177fd" name="Default" comment="Add EDocumentTest">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Editor.iml" afterPath="$PROJECT_DIR$/Editor.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EDocument.java" afterPath="$PROJECT_DIR$/src/Editor/EDocument.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/ETextArea.java" afterPath="$PROJECT_DIR$/src/Editor/ETextArea.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EDocumentTest.java" afterPath="$PROJECT_DIR$/src/Editor/EDocumentTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/EListener.java" afterPath="$PROJECT_DIR$/src/Editor/EListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/Editor.java" afterPath="$PROJECT_DIR$/src/Editor/Editor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/LineParserTest.java" afterPath="$PROJECT_DIR$/src/Editor/LineParserTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor/Parser.java" afterPath="$PROJECT_DIR$/src/Editor/Parser.java" />
     </list>
     <manually-removed-from-ignored>
@@ -30,61 +28,6 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="EDocument.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.25698325">
-                    <caret line="351" column="16" selection-start-line="351" selection-start-column="16" selection-end-line="351" selection-end-column="16" />
-                    <folding>
-                      <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-                      <element signature="e#3447#3448#0" expanded="true" />
-                      <element signature="e#3500#3501#0" expanded="true" />
-                      <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#paste#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#copy#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#cut#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#delete#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#mouseMoved#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#right#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#left#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#up#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#down#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#home#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#end#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#pageUp#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#pageDown#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
-                      <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Editor" />
@@ -95,50 +38,7 @@
         <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Words.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Editor/Words.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ETextArea.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.206897">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding>
-                <element signature="method#ETextArea#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#setNewDocument#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#setFileName#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#paintComponent#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#drawSelectionBackground#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#drawText#0;class#ETextArea#0" expanded="false" />
-                <element signature="method#drawCaret#0;class#ETextArea#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -147,29 +47,110 @@
       <file leaf-file-name="EDocumentTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Editor/EDocumentTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5104334">
-              <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+            <state vertical-scroll-proportion="-0.08025682">
+              <caret line="432" column="8" selection-start-line="432" selection-start-column="8" selection-end-line="432" selection-end-column="8" />
               <folding>
+                <element signature="method#fromStringBuilderListToStringList#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#setUpCaretRandom#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#mouseClickAt#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#init#0;class#EDocumentTest#0" expanded="false" />
-                <element signature="method#testOpenVoidFile#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testRecreateDocumentWithNull#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testRecreateDocumentWithVoidList#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInputEqualsGetAllData#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testNavigationFunctionsNotChangesTextRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testRightInBeginOfLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testRightInMiddleOfLine#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testRightInTheEndOfLine#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testLeftInTheBeginOfLine#0;class#EDocumentTest#0" expanded="false" />
-                <element signature="method#testCaretInstallByMouseRandom#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testLeftInTheMiddleOfLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testUpInTheMiddleString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testUpInTheFirstString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testDownInTheLastString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testDownInTheMiddleString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPageUpInFirstString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPageUpInStringInFirstWindow#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPageDownInMiddleOfText#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPageUpDownStringInLastWindow#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPageUpInMiddleOfText#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testHomeVoidLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testHomeCaretInMiddleOfLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testEndVoidLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSelectAllAtVoidText#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSelectAllAtRandomText#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSelectAllAtOneLine#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPasteVoidString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPasteOneString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testPasteFewString#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testInstallCaretByMouseRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInsertCharNotCaretReturnRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInsertCaretReturnRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInsertCharNotCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#testInsertCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSetFileNameIsText#0;class#EDocumentTest#0" expanded="false" />
+                <element signature="method#testSetFileNameIsNotText#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#randomNavigationFunction#0;class#EDocumentTest#0" expanded="false" />
-                <element signature="method#fromStringBuilderListToStringList#0;class#EDocumentTest#0" expanded="false" />
-                <element signature="method#setUpCaretRandom#0;class#EDocumentTest#0" expanded="false" />
-                <element signature="method#mouseClickAt#0;class#EDocumentTest#0" expanded="false" />
                 <element signature="method#RandomText#0;class#RandomText#0" expanded="false" />
                 <element signature="method#randomLine#1;class#RandomText#0" expanded="false" />
-                <element signature="method#nextText#0;class#RandomText#0" expanded="false" />
-                <element signature="e#9041#9111#0" expanded="false" />
+                <element signature="e#19182#19252#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Random.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/src.zip!/java/util/Random.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EDocument.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="269" column="40" selection-start-line="269" selection-start-column="40" selection-end-line="269" selection-end-column="40" />
+              <folding>
+                <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
+                <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+                <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
+                <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
+                <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
+                <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
+                <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
+                <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
+                <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+                <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
+                <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
+                <element signature="method#paste#0;class#EDocument#0" expanded="false" />
+                <element signature="method#copy#0;class#EDocument#0" expanded="false" />
+                <element signature="method#cut#0;class#EDocument#0" expanded="false" />
+                <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
+                <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+                <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
+                <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
+                <element signature="method#delete#0;class#EDocument#0" expanded="false" />
+                <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
+                <element signature="method#mouseMoved#0;class#EDocument#0" expanded="false" />
+                <element signature="method#right#0;class#EDocument#0" expanded="false" />
+                <element signature="method#left#0;class#EDocument#0" expanded="false" />
+                <element signature="method#up#0;class#EDocument#0" expanded="false" />
+                <element signature="method#down#0;class#EDocument#0" expanded="false" />
+                <element signature="method#home#0;class#EDocument#0" expanded="false" />
+                <element signature="method#end#0;class#EDocument#0" expanded="false" />
+                <element signature="method#pageUp#0;class#EDocument#0" expanded="false" />
+                <element signature="method#pageDown#0;class#EDocument#0" expanded="false" />
+                <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
+                <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
+                <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+                <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
+                <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
+                <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
+                <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
+                <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+                <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -190,16 +171,11 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.8965516">
-              <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
                 <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-                <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-                <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-                <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
                 <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-                <element signature="e#5195#5196#0" expanded="true" />
-                <element signature="e#5236#5237#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -250,13 +226,13 @@
         <option value="$PROJECT_DIR$/src/Editor/asd.java" />
         <option value="$PROJECT_DIR$/src/Editor/EListener.java" />
         <option value="$PROJECT_DIR$/src/Editor/Test.java" />
-        <option value="$PROJECT_DIR$/src/Editor/Parser.java" />
-        <option value="$PROJECT_DIR$/src/Editor/Editor.java" />
         <option value="$PROJECT_DIR$/src/Tests/LineParserTest.java" />
         <option value="$PROJECT_DIR$/src/Editor/Tests/LineParserTest.java" />
         <option value="$PROJECT_DIR$/src/Editor/Tests/EDocumentTest.java" />
         <option value="$PROJECT_DIR$/src/Editor/LineParserTest.java" />
         <option value="$PROJECT_DIR$/src/Editor/ETextArea.java" />
+        <option value="$PROJECT_DIR$/src/Editor/Editor.java" />
+        <option value="$PROJECT_DIR$/src/Editor/Parser.java" />
         <option value="$PROJECT_DIR$/src/Editor/EDocument.java" />
         <option value="$PROJECT_DIR$/src/Editor/EDocumentTest.java" />
       </list>
@@ -324,24 +300,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Editor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EDocumentTest.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -412,8 +370,8 @@
       <recent name="F:\Ed2\123\Editor\src\Tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EDocumentTest.testLeftInTheMiddleOfLine">
-    <configuration default="false" name="EDocumentTest.testRightInBeginOfLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EDocumentTest.testPageUpDownStringInLastWindow">
+    <configuration default="false" name="EDocumentTest.testPasteVoidString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -425,7 +383,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testRightInBeginOfLine" />
+      <option name="METHOD_NAME" value="testPasteVoidString" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -439,7 +397,27 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EDocumentTest.testRightInMiddleOfLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Editor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Editor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Editor.Editor" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Editor" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="EDocumentTest.testPasteOneString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -451,7 +429,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testRightInMiddleOfLine" />
+      <option name="METHOD_NAME" value="testPasteOneString" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -465,7 +443,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EDocumentTest.testRightInTheEndOfLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EDocumentTest.testPasteFewString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -477,7 +455,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testRightInTheEndOfLine" />
+      <option name="METHOD_NAME" value="testPasteFewString" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -491,7 +469,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EDocumentTest.testLeftInTheBeginOfLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EDocumentTest.testPageUpDownStringInLastWindow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="Editor.*" />
@@ -503,33 +481,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="Editor" />
       <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testLeftInTheBeginOfLine" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="EDocumentTest.testLeftInTheMiddleOfLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="Editor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Editor" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="Editor" />
-      <option name="MAIN_CLASS_NAME" value="Editor.EDocumentTest" />
-      <option name="METHOD_NAME" value="testLeftInTheMiddleOfLine" />
+      <option name="METHOD_NAME" value="testPageUpDownStringInLastWindow" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -799,19 +751,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testRightInBeginOfLine" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testRightInMiddleOfLine" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testRightInTheEndOfLine" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testLeftInTheBeginOfLine" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testLeftInTheMiddleOfLine" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPasteVoidString" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Editor" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPasteOneString" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPasteFewString" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPageUpDownStringInLastWindow" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testLeftInTheMiddleOfLine" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testLeftInTheBeginOfLine" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testRightInTheEndOfLine" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testRightInBeginOfLine" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testRightInMiddleOfLine" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPageUpDownStringInLastWindow" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPasteFewString" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPasteOneString" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.EDocumentTest.testPasteVoidString" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Editor" />
       </list>
     </recent_temporary>
   </component>
@@ -943,39 +895,45 @@
       <option name="project" value="LOCAL" />
       <updated>1457828148053</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Add EDocumentTest">
+      <created>1457966185268</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1457966185268</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EDocumentTest - 2016.03.14 at 17h 04m 56s.xml">
-      <configuration name="EDocumentTest" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPageUpDownStringInLastWindow - 2016.03.15 at 03h 13m 39s.xml">
+      <configuration name="EDocumentTest.testPageUpDownStringInLastWindow" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest - 2016.03.14 at 17h 23m 23s.xml">
-      <configuration name="EDocumentTest" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteFewString - 2016.03.15 at 02h 17m 20s.xml">
+      <configuration name="EDocumentTest.testPasteFewString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest - 2016.03.14 at 17h 25m 49s.xml">
-      <configuration name="EDocumentTest" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteFewString - 2016.03.15 at 02h 17m 53s.xml">
+      <configuration name="EDocumentTest.testPasteFewString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testInsertCaretReturnWithInsertModeRandom - 2016.03.14 at 17h 04m 32s.xml">
-      <configuration name="EDocumentTest.testInsertCaretReturnWithInsertModeRandom" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteFewString - 2016.03.15 at 02h 18m 24s.xml">
+      <configuration name="EDocumentTest.testPasteFewString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testLeftInTheBeginOfLine - 2016.03.14 at 17h 34m 46s.xml">
-      <configuration name="EDocumentTest.testLeftInTheBeginOfLine" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteFewString - 2016.03.15 at 02h 19m 23s.xml">
+      <configuration name="EDocumentTest.testPasteFewString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testLeftInTheMiddleOfLine - 2016.03.14 at 17h 35m 35s.xml">
-      <configuration name="EDocumentTest.testLeftInTheMiddleOfLine" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteOneString - 2016.03.15 at 02h 11m 35s.xml">
+      <configuration name="EDocumentTest.testPasteOneString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testRightInBeginOfLine - 2016.03.14 at 17h 30m 48s.xml">
-      <configuration name="EDocumentTest.testRightInBeginOfLine" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteVoidString - 2016.03.15 at 01h 36m 29s.xml">
+      <configuration name="EDocumentTest.testPasteVoidString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testRightInBeginOfLine - 2016.03.14 at 17h 30m 54s.xml">
-      <configuration name="EDocumentTest.testRightInBeginOfLine" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteVoidString - 2016.03.15 at 02h 06m 12s.xml">
+      <configuration name="EDocumentTest.testPasteVoidString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testRightInMiddleOfLine - 2016.03.14 at 17h 30m 50s.xml">
-      <configuration name="EDocumentTest.testRightInMiddleOfLine" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteVoidString - 2016.03.15 at 02h 06m 29s.xml">
+      <configuration name="EDocumentTest.testPasteVoidString" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EDocumentTest_testRightInTheEndOfLine - 2016.03.14 at 17h 32m 17s.xml">
-      <configuration name="EDocumentTest.testRightInTheEndOfLine" configurationId="JUnit" />
+    <history-entry file="EDocumentTest_testPasteVoidString - 2016.03.15 at 02h 08m 40s.xml">
+      <configuration name="EDocumentTest.testPasteVoidString" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -999,7 +957,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.16949153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1508" y="400" width="610" height="336" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.1843318" sideWeight="0.49718422" order="9" side_tool="false" content_ui="tabs" x="193" y="151" width="1059" height="580" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="1552" y="132" width="964" height="595" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="1550" y="369" width="958" height="533" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30721965" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1011,7 +969,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24957411" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="68" y="55" width="1172" height="698" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="67" y="119" width="1234" height="898" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1083,7 +1041,8 @@
     <MESSAGE value="Add parsing in separate thread" />
     <MESSAGE value="Add parsing while opening file in separate thread" />
     <MESSAGE value="Add trove library&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add trove library&#10;" />
+    <MESSAGE value="Add EDocumentTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add EDocumentTest" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1093,39 +1052,57 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
-          <line>467</line>
+          <line>470</line>
           <properties />
           <option name="timeStamp" value="95" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
-          <line>207</line>
-          <properties />
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
-          <line>360</line>
+          <line>362</line>
           <properties />
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Editor/Parser.java</url>
-          <line>171</line>
+          <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
+          <line>357</line>
           <properties />
-          <option name="timeStamp" value="103" />
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
-          <line>355</line>
+          <line>100</line>
           <properties />
-          <option name="timeStamp" value="104" />
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Editor/Parser.java</url>
+          <line>119</line>
+          <properties />
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Editor/Parser.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Editor/EDocument.java</url>
+          <line>234</line>
+          <properties />
+          <option name="timeStamp" value="124" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="107" />
+      <option name="time" value="126" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -1134,6 +1111,11 @@
         <watch expression="inputData.get(0).length()" language="JAVA" custom="" />
         <watch expression="column &gt; inputData.get(row).length() " language="JAVA" custom="" />
         <watch expression="column != doc.getCaretColumn()" language="JAVA" custom="" />
+        <watch expression="length.get(606)" language="JAVA" custom="" />
+        <watch expression="length.get(607)" language="JAVA" custom="" />
+        <watch expression="length.size()" language="JAVA" custom="" />
+        <watch expression="dataInWords.get(row, 0).length()" language="JAVA" custom="" />
+        <watch expression="dataInWords.rowSize(row)" language="JAVA" custom="" />
       </configuration>
       <configuration name="Application">
         <watch expression="outputLineInWords" language="JAVA" custom="" />
@@ -1144,6 +1126,8 @@
         <watch expression="length.get(606)" language="JAVA" custom="" />
         <watch expression="length.get(607)" language="JAVA" custom="" />
         <watch expression="length.size()" language="JAVA" custom="" />
+        <watch expression="dataInWords.get(row, 0).length()" language="JAVA" custom="" />
+        <watch expression="dataInWords.rowSize(row)" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -1152,49 +1136,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Editor/ETextArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-          <folding>
-            <element signature="method#ETextArea#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#setNewDocument#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#setFileName#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#scaleFromColumnToXPixel#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#createScaledPolygon#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#createPolygon#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#paintComponent#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#drawSelectionBackground#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#drawText#0;class#ETextArea#0" expanded="false" />
-            <element signature="method#drawCaret#0;class#ETextArea#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
-            <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5236#5237#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1202,19 +1143,21 @@
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+            <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-            <element signature="e#3447#3448#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
             <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
             <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
             <element signature="method#delete#0;class#EDocument#0" expanded="false" />
             <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
@@ -1230,10 +1173,12 @@
             <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1287,19 +1232,21 @@
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+            <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-            <element signature="e#3447#3448#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
             <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
             <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
             <element signature="method#delete#0;class#EDocument#0" expanded="false" />
             <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
@@ -1315,10 +1262,12 @@
             <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1329,12 +1278,7 @@
           <caret line="111" column="73" selection-start-line="111" selection-start-column="73" selection-end-line="111" selection-end-column="73" />
           <folding>
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
             <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5236#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1388,19 +1332,21 @@
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+            <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-            <element signature="e#3447#3448#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
             <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
             <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
             <element signature="method#delete#0;class#EDocument#0" expanded="false" />
             <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
@@ -1416,10 +1362,12 @@
             <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1430,12 +1378,7 @@
           <caret line="185" column="139" selection-start-line="185" selection-start-column="139" selection-end-line="185" selection-end-column="139" />
           <folding>
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
             <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5236#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1474,19 +1417,21 @@
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+            <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-            <element signature="e#3447#3448#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
             <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
             <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
             <element signature="method#delete#0;class#EDocument#0" expanded="false" />
             <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
@@ -1502,10 +1447,12 @@
             <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1531,12 +1478,7 @@
           <caret line="77" column="42" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
           <folding>
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
             <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5236#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1582,19 +1524,21 @@
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+            <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-            <element signature="e#3447#3448#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
             <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
             <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
             <element signature="method#delete#0;class#EDocument#0" expanded="false" />
             <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
@@ -1610,10 +1554,12 @@
             <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1624,12 +1570,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
             <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5236#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1735,40 +1676,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/Words.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/Assert.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34731543">
           <caret line="322" column="0" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33707866">
-          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <element signature="method#EListener#0;class#EListener#0" expanded="false" />
-            <element signature="method#keyReleased#0;class#EListener#0" expanded="false" />
-            <element signature="method#keyPressed#0;class#EListener#0" expanded="false" />
-            <element signature="method#mousePressed#0;class#EListener#0" expanded="false" />
-            <element signature="method#mouseReleased#0;class#EListener#0" expanded="false" />
-            <element signature="method#mouseWheelMoved#0;class#EListener#0" expanded="false" />
-            <element signature="method#adjustmentValueChanged#0;class#EListener#0" expanded="false" />
-            <element signature="method#componentMoved#0;class#EListener#0" expanded="false" />
-            <element signature="method#componentShown#0;class#EListener#0" expanded="false" />
-            <element signature="method#componentHidden#0;class#EListener#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1791,16 +1703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor/LineParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/FileType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1809,50 +1711,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/Words.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/src.zip!/java/lang/StringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33226323">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/src.zip!/java/util/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/EListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="method#EListener#0;class#EListener#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#EListener#0" expanded="false" />
+            <element signature="method#mouseDragged#0;class#EListener#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#EListener#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#EListener#0" expanded="false" />
+            <element signature="method#mouseWheelMoved#0;class#EListener#0" expanded="false" />
+            <element signature="method#adjustmentValueChanged#0;class#EListener#0" expanded="false" />
+            <element signature="method#componentMoved#0;class#EListener#0" expanded="false" />
+            <element signature="method#componentShown#0;class#EListener#0" expanded="false" />
+            <element signature="method#componentHidden#0;class#EListener#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/LineParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8965516">
-          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#findWordInLine#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLightOff#0;class#Parser#0" expanded="false" />
-            <element signature="method#bracketLight#0;class#Parser#0" expanded="false" />
             <element signature="method#setFileType#0;class#Parser#0" expanded="false" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5236#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EDocument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25698325">
-          <caret line="351" column="16" selection-start-line="351" selection-start-column="16" selection-end-line="351" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="269" column="40" selection-start-line="269" selection-start-column="40" selection-end-line="269" selection-end-column="40" />
           <folding>
             <element signature="method#EDocument#0;class#EDocument#0" expanded="false" />
             <element signature="method#recreateDocument#0;class#EDocument#0" expanded="false" />
+            <element signature="method#addLine#0;class#EDocument#0" expanded="false" />
             <element signature="method#addLines#0;class#EDocument#0" expanded="false" />
             <element signature="method#removeLines#0;class#EDocument#0" expanded="false" />
-            <element signature="e#3447#3448#0" expanded="true" />
-            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="method#updateWithChanges#1;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateOffsetOnCaret#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateScrollBar#0;class#EDocument#0" expanded="false" />
+            <element signature="method#updatePosition#0;class#EDocument#0" expanded="false" />
             <element signature="method#selectAll#0;class#EDocument#0" expanded="false" />
             <element signature="method#paste#0;class#EDocument#0" expanded="false" />
             <element signature="method#copy#0;class#EDocument#0" expanded="false" />
             <element signature="method#cut#0;class#EDocument#0" expanded="false" />
             <element signature="method#insertString#0;class#EDocument#0" expanded="false" />
             <element signature="method#deleteSelection#0;class#EDocument#0" expanded="false" />
+            <element signature="method#insertChar#0;class#EDocument#0" expanded="false" />
             <element signature="method#backspace#0;class#EDocument#0" expanded="false" />
             <element signature="method#delete#0;class#EDocument#0" expanded="false" />
             <element signature="method#mousePressed#0;class#EDocument#0" expanded="false" />
@@ -1868,39 +1820,73 @@
             <element signature="method#setExistSelectionFalse#0;class#EDocument#0" expanded="false" />
             <element signature="method#setWindowSize#0;class#EDocument#0" expanded="false" />
             <element signature="method#setShiftPressed#0;class#EDocument#0" expanded="false" />
+            <element signature="method#setFileName#0;class#EDocument#0" expanded="false" />
             <element signature="method#updateHeightOffset#0;class#EDocument#0" expanded="false" />
             <element signature="method#isExistSelection#0;class#EDocument#0" expanded="false" />
             <element signature="method#getPos#0;class#EDocument#0" expanded="false" />
             <element signature="method#getSelectionInterval#0;class#EDocument#0" expanded="false" />
+            <element signature="method#getAllDataInLines#0;class#EDocument#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Editor/LineParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor/EDocumentTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5104334">
-          <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+        <state vertical-scroll-proportion="-0.08025682">
+          <caret line="432" column="8" selection-start-line="432" selection-start-column="8" selection-end-line="432" selection-end-column="8" />
           <folding>
+            <element signature="method#fromStringBuilderListToStringList#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#setUpCaretRandom#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#mouseClickAt#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#init#0;class#EDocumentTest#0" expanded="false" />
-            <element signature="method#testOpenVoidFile#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testRecreateDocumentWithNull#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testRecreateDocumentWithVoidList#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInputEqualsGetAllData#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testNavigationFunctionsNotChangesTextRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testRightInBeginOfLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testRightInMiddleOfLine#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testRightInTheEndOfLine#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testLeftInTheBeginOfLine#0;class#EDocumentTest#0" expanded="false" />
-            <element signature="method#testCaretInstallByMouseRandom#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testLeftInTheMiddleOfLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testUpInTheMiddleString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testUpInTheFirstString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testDownInTheLastString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testDownInTheMiddleString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPageUpInFirstString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPageUpInStringInFirstWindow#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPageDownInMiddleOfText#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPageUpDownStringInLastWindow#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPageUpInMiddleOfText#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testHomeVoidLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testHomeCaretInMiddleOfLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testEndVoidLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSelectAllAtVoidText#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSelectAllAtRandomText#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSelectAllAtOneLine#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPasteVoidString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPasteOneString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testPasteFewString#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testInstallCaretByMouseRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInsertCharNotCaretReturnRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInsertCaretReturnRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInsertCharNotCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#testInsertCaretReturnWithInsertModeRandom#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSetFileNameIsText#0;class#EDocumentTest#0" expanded="false" />
+            <element signature="method#testSetFileNameIsNotText#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#randomNavigationFunction#0;class#EDocumentTest#0" expanded="false" />
-            <element signature="method#fromStringBuilderListToStringList#0;class#EDocumentTest#0" expanded="false" />
-            <element signature="method#setUpCaretRandom#0;class#EDocumentTest#0" expanded="false" />
-            <element signature="method#mouseClickAt#0;class#EDocumentTest#0" expanded="false" />
             <element signature="method#RandomText#0;class#RandomText#0" expanded="false" />
             <element signature="method#randomLine#1;class#RandomText#0" expanded="false" />
-            <element signature="method#nextText#0;class#RandomText#0" expanded="false" />
-            <element signature="e#9041#9111#0" expanded="false" />
+            <element signature="e#19182#19252#0" expanded="false" />
           </folding>
         </state>
       </provider>

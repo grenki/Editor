@@ -100,6 +100,7 @@ class EDocument {
     private void addLine(int row, int len) {
         length.insert(row, len);
         if (fileType != FileType.Text) {
+            parser.bracketLightOff();
             dataInWords.add(row);
         }
     }
@@ -107,6 +108,7 @@ class EDocument {
     private void addLines(int row, int[] len) {
         length.insert(row, len);
         if (fileType != FileType.Text) {
+            parser.bracketLightOff();
             dataInWords.addVoidLines(row, len.length);
         }
     }
@@ -118,6 +120,7 @@ class EDocument {
     private void removeLines(int startRow, int endRow) {
         length.remove(startRow, endRow + 1 - startRow);
         if (fileType != FileType.Text) {
+            parser.bracketLightOff();
             dataInWords.remove(startRow, endRow);
         }
 
@@ -293,9 +296,12 @@ class EDocument {
                 len = 0;
             }
         }
-
-        insLength.add(len + endLen);
-        addLines(startChangesRow + 1, insLength.toArray());
+        if (row == startChangesRow) {
+            length.set(startChangesRow, len + endLen);
+        } else {
+            insLength.add(len + endLen);
+            addLines(startChangesRow + 1, insLength.toArray());
+        }
         column = len;
         data.insert(pos, sb);
         updateWithChanges(startChangesRow, row);
@@ -307,10 +313,6 @@ class EDocument {
             return;
         }
         existSelection = false;
-
-        if (fileType != FileType.Text) {
-            parser.bracketLightOff();
-        }
 
         int[] selectionInterval = getSelectionInterval();
         column = selectionInterval[0];
@@ -451,8 +453,10 @@ class EDocument {
         if (column > 0) {
             column--;
         } else {
-            row--;
-            column = Integer.MAX_VALUE;
+            if (row > 0) {
+                row--;
+                column = Integer.MAX_VALUE;
+            }
         }
         updateWithoutChanges();
     }
@@ -494,7 +498,6 @@ class EDocument {
     public void setExistSelectionFalse() {
         if (!isShiftPressed) {
             existSelection = false;
-
         }
     }
 
@@ -552,18 +555,18 @@ class EDocument {
         updateOffset();
     }
 
-    public void setOffsetFromScrollBar(int value) {
-        heightOffset = value;
-    }
-
-    // Getters
-
     public boolean isExistSelection() {
         return existSelection && !(startSelectionColumn == column && startSelectionRow == row);
     }
 
+    // Getters
+
     public int getHeightOffset() {
         return heightOffset;
+    }
+
+    public void setHeightOffset(int value) {
+        heightOffset = value;
     }
 
     public int getWidthOffset() {

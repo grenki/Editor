@@ -43,8 +43,8 @@ class Parser {
             i += dataInWords.get(row, wordNumber++).length();
         }
 
-        if (wordNumber == dataInWords.size()) {
-            return 0;
+        if (i > column) {
+            throw new IllegalStateException("Algo is wrong");
         }
 
         return wordNumber - 1;
@@ -65,6 +65,9 @@ class Parser {
     }
 
     public void bracketLight(int column, int row, int pos) {
+        if (column > 0 && pos - 1 >= data.length()) {
+            System.out.println("wtf");
+        }
         if (column > 0 && isBracket(data.charAt(pos - 1))) {
             int wordInLine = findWordInLine(column, row);
             if (dataInWords.get(row, wordInLine).type != Type.Bracket) {
@@ -76,7 +79,6 @@ class Parser {
             char firstBracketChar = data.charAt(pos - 1);
 
             pos -= firstBracket.start + 1;
-
 
             dataInWords.set(row, wordInLine, firstBracket);
 
@@ -106,10 +108,15 @@ class Parser {
                 }
 
                 word = dataInWords.rowSize(row) == 0 ? null : dataInWords.get(row, wordInLine);
+                try { //TODO
+
                 if (word != null && word.type == Type.Bracket &&
                         Math.abs(data.charAt(pos + word.start) - firstBracketChar) <= 2) {
                     k = !(openBracket == openBracketPattern.matcher(Character.toString(data.charAt(pos + word.start))).matches()) ?
                             k - 1 : k + 1;
+                }
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("problem");
                 }
 
             } while (k > 0);
